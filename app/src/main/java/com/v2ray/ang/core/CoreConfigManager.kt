@@ -1115,6 +1115,24 @@ object CoreConfigManager {
     /**
      * Configure inbound listeners and related runtime options.
      */
+    internal fun createHttpInboundFromSocks(
+        socksInbound: V2rayConfig.InboundBean,
+        httpPort: Int,
+    ): V2rayConfig.InboundBean {
+        val httpInbound = JsonUtil.fromJson(
+            JsonUtil.toJson(socksInbound),
+            V2rayConfig.InboundBean::class.java,
+        ) ?: error("Failed to clone SOCKS inbound for HTTP")
+        httpInbound.tag = EConfigType.HTTP.name.lowercase()
+        httpInbound.port = httpPort
+        httpInbound.protocol = EConfigType.HTTP.name.lowercase()
+        // HTTP inbound authenticates via the copied accounts list; the SOCKS-only auth/UDP
+        // switches are not valid HTTP settings. Preserve listen and accounts exactly.
+        httpInbound.settings?.auth = null
+        httpInbound.settings?.udp = null
+        return httpInbound
+    }
+
     private fun configureInbounds(context: Context, v2rayConfig: V2rayConfig) {
         val vpn = SettingsManager.isVpnMode()
         val useHev = SettingsManager.isUsingHevTun()
@@ -1170,14 +1188,7 @@ object CoreConfigManager {
         }
 
         if (!Utils.isXray()) {
-            val inbound2 = JsonUtil.fromJson(JsonUtil.toJson(inbound1), V2rayConfig.InboundBean::class.java)
-                ?: error("Failed to clone inbound template")
-            inbound2.tag = EConfigType.HTTP.name.lowercase()
-            inbound2.port = SettingsManager.getHttpPort()
-            inbound2.protocol = EConfigType.HTTP.name.lowercase()
-            inbound2.settings?.auth = null
-            inbound2.settings?.udp = null
-            v2rayConfig.inbounds.add(inbound2)
+            v2rayConfig.inbounds.add(createHttpInboundFromSocks(inbound1, SettingsManager.getHttpPort()))
         }
 
         if (!enableLocalProxy) {

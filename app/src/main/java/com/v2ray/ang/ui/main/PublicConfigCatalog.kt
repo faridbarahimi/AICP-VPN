@@ -28,9 +28,10 @@ internal object PublicConfigCatalog {
         "TH" to "Thailand", "NL" to "The_Netherlands", "TR" to "Turkey", "UA" to "Ukraine",
         "AE" to "United_Arab_Emirates", "GB" to "United_Kingdom", "US" to "United_States"
     )
-    private val feedCountryCodes = au1rxxCountryCodes + countryFileNames.keys + "IR"
+    internal const val GLOBAL_FEED_CODE = "GL" // Internal selector for the mixed Telegram feed; not a country picker entry.
+    private val feedCountryCodes = au1rxxCountryCodes + countryFileNames.keys + "IR" + GLOBAL_FEED_CODE
 
-    val countries: List<Country> = feedCountryCodes.map { code ->
+    val countries: List<Country> = (feedCountryCodes - GLOBAL_FEED_CODE).map { code ->
         Country(code, "${flag(code)} ${Locale("", code).getDisplayCountry(Locale.ENGLISH).ifBlank { code }} / ${Locale("", code).getDisplayCountry(Locale("fa" )).ifBlank { code }}")
     }.sortedBy { it.label }
 
@@ -111,7 +112,8 @@ internal object AicpSelectedRefreshTargetPolicy {
         val selected = selectedGroupId.trim()
         val country = when {
             selected.startsWith("aicp-finder-") -> selected.removePrefix("aicp-finder-")
-            selected == "aicp-multilocation" || selected.isBlank() -> fallbackCountry
+            selected == "aicp-multilocation" -> PublicConfigCatalog.GLOBAL_FEED_CODE
+            selected.isBlank() -> fallbackCountry
             else -> return null
         }.trim().uppercase(Locale.ROOT)
         return country.takeIf { it.matches(Regex("[A-Z]{2}")) }

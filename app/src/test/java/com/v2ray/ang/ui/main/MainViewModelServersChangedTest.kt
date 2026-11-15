@@ -45,7 +45,7 @@ class MainViewModelServersChangedTest {
      * One subscription, whose server list [serverGuids] a change away from the screen replaces, and in which a move is
      * stored, recorded in [moves], at once or, held by [hold], once [release] lets it, or refused, see [refusals].
      */
-    private class FakeSource : MainDataSource {
+    private class FakeSource(private val expectedRealPingSorts: Int = 1) : MainDataSource {
         val events = Channel<MainServiceEvent>(Channel.UNLIMITED)
 
         @Volatile
@@ -154,7 +154,7 @@ class MainViewModelServersChangedTest {
         override fun clearAllTestDelayResults(guids: List<String>) = Unit
         override fun sortByTestResultsForSub(subId: String) {
             realPingSortedGroups += subId
-            if (realPingSortedGroups.size >= 1) realPingSortsCompleted.complete(Unit)
+            if (realPingSortedGroups.size >= expectedRealPingSorts) realPingSortsCompleted.complete(Unit)
         }
         override fun getSubsList() = listOf(SUB)
         override suspend fun importBatchConfig(server: String?, subscriptionId: String, updateUI: Boolean) = 0 to 0
@@ -186,10 +186,14 @@ class MainViewModelServersChangedTest {
     }
 
     @Test
-    fun manualSortMenuUsesRealPingForTheSelectedBank() = runBlocking {
+    fun manualSortMenuUsesRealPingForTheExplicitlySelectedBank() = runBlocking {
         val source = FakeSource()
         val viewModel = MainViewModel(mock<Application>(), source)
 
+        // Wait for startup group discovery, then select the subscription explicitly; an empty selection means all banks.
+        withTimeout(5_000) { viewModel.uiState.first { state -> state.groups.any { it.id == SUB } } }
+        viewModel.subscriptionIdChanged(SUB)
+        withTimeout(5_000) { viewModel.uiState.first { it.selectedGroupId == SUB } }
         viewModel.onAction(MainAction.SortByTestResults)
         withTimeout(5_000) { source.realPingSortsCompleted.await() }
 

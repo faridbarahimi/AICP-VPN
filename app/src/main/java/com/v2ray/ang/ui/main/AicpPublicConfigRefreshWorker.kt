@@ -49,17 +49,17 @@ internal class AicpPublicConfigRefreshWorker(
         if (country == null) {
             val subscription = MmkvManager.decodeSubscription(selectedGroup)
             if (selectedGroup.isBlank() || subscription == null) {
-                LogUtil.i("AICP-VPN", "19m refresh skipped: selected tab '$selectedGroup' has no refreshable subscription")
+                LogUtil.i("AICP-VPN", "19m refresh skipped: selected tab has no refreshable subscription")
                 return Result.success()
             }
             return runCatching {
                 val result = AngConfigManager.updateConfigViaSub(SubscriptionCache(selectedGroup, subscription))
                 MessageHelper.sendMsg2UI(applicationContext, AppConfig.MSG_SERVERS_CHANGED, selectedGroup)
-                LogUtil.i("AICP-VPN", "19m selected subscription refresh complete: group=$selectedGroup configs=${result.configCount} updated=${result.successCount} failed=${result.failureCount} skipped=${result.skipCount}; no active tunnel restart")
+                LogUtil.i("AICP-VPN", "19m selected subscription refresh complete: configs=${result.configCount} updated=${result.successCount} failed=${result.failureCount} skipped=${result.skipCount}; no active tunnel restart")
                 if (result.failureCount > 0 && result.successCount == 0 && result.skipCount == 0) Result.retry()
                 else Result.success()
             }.getOrElse { error ->
-                LogUtil.w("AICP-VPN", "19m selected subscription refresh failed for $selectedGroup", error)
+                LogUtil.w("AICP-VPN", "19m selected subscription refresh failed (${error.javaClass.simpleName})")
                 if (error is CancellationException) throw error
                 Result.retry()
             }
@@ -90,7 +90,7 @@ internal class AicpPublicConfigRefreshWorker(
                 }
                 val created = MmkvManager.tryEncodeSubscription(
                     groupId,
-                    SubscriptionItem(remarks = "AICP Finder · $country", url = "", enabled = true, autoUpdate = false),
+                    SubscriptionItem(remarks = "AICP Finder · ${if (country == PublicConfigCatalog.GLOBAL_FEED_CODE) "Global" else country}", url = "", enabled = true, autoUpdate = false),
                 )
                 if (created == null) return Result.retry()
             }

@@ -576,4 +576,32 @@ class CoreConfigManagerTest {
         assertTrue(CoreConfigManager.shouldUseStandardObservatory(BalancerStrategyType.RANDOM, "proxy-group-1-a"))
         assertFalse(CoreConfigManager.shouldUseStandardObservatory(BalancerStrategyType.ROUND_ROBIN, null))
     }
+    @Test
+    fun httpInboundRetainsSocksAccountsAndListenerExposurePolicy() {
+        val credentials = listOf(V2rayConfig.InboundBean.InSettingsBean.SocksAccountBean("lan-user", "lan-secret"))
+        val exposedSocks = V2rayConfig.InboundBean(
+            tag = "socks",
+            port = 10808,
+            protocol = "socks",
+            listen = "0.0.0.0",
+            settings = V2rayConfig.InboundBean.InSettingsBean(auth = "password", udp = true, accounts = credentials),
+        )
+        val exposedHttp = CoreConfigManager.createHttpInboundFromSocks(exposedSocks, 10809)
+        assertEquals("http", exposedHttp.tag)
+        assertEquals("http", exposedHttp.protocol)
+        assertEquals(10809, exposedHttp.port)
+        assertEquals("0.0.0.0", exposedHttp.listen)
+        assertNull(exposedHttp.settings?.auth) // HTTP uses accounts, not the SOCKS auth mode.
+        assertNull(exposedHttp.settings?.udp)
+        assertEquals(credentials, exposedHttp.settings?.accounts)
+
+        val loopbackSocks = exposedSocks.copy(
+            listen = AppConfig.LOOPBACK,
+            settings = V2rayConfig.InboundBean.InSettingsBean(auth = "noauth", accounts = null),
+        )
+        val loopbackHttp = CoreConfigManager.createHttpInboundFromSocks(loopbackSocks, 10810)
+        assertEquals(AppConfig.LOOPBACK, loopbackHttp.listen)
+        assertTrue(loopbackHttp.settings?.accounts.isNullOrEmpty())
+    }
+
 }

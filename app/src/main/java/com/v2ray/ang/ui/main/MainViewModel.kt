@@ -1339,7 +1339,7 @@ class MainViewModel(
                             if (dataSource.getSubscriptionItem(groupId) == null) {
                                 val stored = MmkvManager.tryEncodeSubscription(
                                     groupId,
-                                    SubscriptionItem(remarks = "AICP Finder · $countryCode", url = "", enabled = true, autoUpdate = false)
+                                    SubscriptionItem(remarks = "AICP Finder · ${if (countryCode == PublicConfigCatalog.GLOBAL_FEED_CODE) "Global" else countryCode}", url = "", enabled = true, autoUpdate = false)
                                 )
                                 if (stored == null) throw IllegalStateException("Could not create country bank")
                             }
@@ -1429,11 +1429,13 @@ class MainViewModel(
         multiLocationCurrentCountryGroupId = null
         multiLocationCountryFinalizing = false
         multiLocationCountryQueue.addAll(countries)
+        // Run the mixed Telegram snapshot once before country-specific discovery.
+        multiLocationCountryQueue.addFirst(PublicConfigCatalog.GLOBAL_FEED_CODE)
         multiLocationSuccessfulCount = dataSource.getServerGuidList("aicp-multilocation").size
         multiLocationScannedLocations = 0
         multiLocationAwaitingContinue = false
         multiLocationRecoveryActive = true
-        beginOperationProgress(VpnOperation.FIND_PUBLIC_CONFIGS, "Countries", total = countries.size)
+        beginOperationProgress(VpnOperation.FIND_PUBLIC_CONFIGS, "Global feed + countries", total = countries.size + 1)
         _uiState.update { it.copy(multiLocationNeedsContinue = false) }
         scanNextMultiLocationCountry()
     }
@@ -1527,7 +1529,7 @@ class MainViewModel(
                             multiLocationCurrentCountryGroupId = groupId
                             if (dataSource.getSubscriptionItem(groupId) == null) {
                                 val stored = MmkvManager.tryEncodeSubscription(groupId, SubscriptionItem(
-                                    remarks = "AICP Finder · $countryCode", url = "", enabled = true, autoUpdate = false
+                                    remarks = "AICP Finder · ${if (countryCode == PublicConfigCatalog.GLOBAL_FEED_CODE) "Global" else countryCode}", url = "", enabled = true, autoUpdate = false
                                 ))
                                 if (stored == null) {
                                     LogUtil.w(AppConfig.TAG, "Could not create recovery bank for $countryCode")
@@ -1750,7 +1752,7 @@ class MainViewModel(
                 if (fetched.configs.isEmpty()) return false
                 val stored = MmkvManager.tryEncodeSubscription(
                     groupId,
-                    SubscriptionItem(remarks = "AICP Finder · $countryCode", url = "", enabled = true, autoUpdate = false)
+                    SubscriptionItem(remarks = "AICP Finder · ${if (countryCode == PublicConfigCatalog.GLOBAL_FEED_CODE) "Global" else countryCode}", url = "", enabled = true, autoUpdate = false)
                 )
                 if (stored == null) throw IllegalStateException("Could not create AICP country bank")
             }
@@ -1853,7 +1855,7 @@ class MainViewModel(
                 } catch (cancelled: CancellationException) {
                     throw cancelled
                 } catch (e: Exception) {
-                    LogUtil.e(AppConfig.TAG, "Subscription update failed", e)
+                    LogUtil.e(AppConfig.TAG, "Subscription update failed (${e.javaClass.simpleName})")
                     toastError(R.string.toast_failure)
                 }
             }

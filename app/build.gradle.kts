@@ -16,8 +16,8 @@ android {
         applicationId = "com.aicp.vpn"
         minSdk = 29
         targetSdk = 37
-        versionCode = 768
-        versionName = (project.findProperty("aicpVersion") as? String)?.takeIf { it.isNotBlank() } ?: "2.3.27"
+        versionCode = 769
+        versionName = (project.findProperty("aicpVersion") as? String)?.takeIf { it.isNotBlank() } ?: "2.3.28"
 
         val abiFilterList = (properties["ABI_FILTERS"] as? String)?.split(';')
         splits {
