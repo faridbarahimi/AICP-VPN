@@ -97,6 +97,8 @@ def collect(source_config):
         source_id, channel = str(source["id"]), str(source["channel"])
         try:
             uris = extract_uris(fetch_channel(channel))
+            if not uris:
+                raise ValueError("no supported proxy URIs in public preview")
             for uri in uris:
                 identity = uri.split("#", 1)[0]
                 if identity not in seen:
