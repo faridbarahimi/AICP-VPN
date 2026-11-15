@@ -1,0 +1,25 @@
+[Unit]
+Description=AICP VPN Telegram feed collector and GitHub snapshot publisher
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/aicp-vpn-telegram-feed
+Environment=HOME=/root
+Environment=PYTHONUNBUFFERED=1
+Environment=GIT_TERMINAL_PROMPT=0
+ExecStart=/opt/aicp-vpn-telegram-feed/scripts/publish_telegram_config_feed.sh
+TimeoutStartSec=180
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/aicp-vpn-telegram-feed /tmp
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
