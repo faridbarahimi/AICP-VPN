@@ -10,7 +10,7 @@ WorkingDirectory=/opt/aicp-vpn-telegram-feed
 Environment=HOME=/root
 Environment=PYTHONUNBUFFERED=1
 Environment=GIT_TERMINAL_PROMPT=0
-ExecStart=/opt/aicp-vpn-telegram-feed/scripts/publish_telegram_config_feed.sh
+ExecStart=/bin/bash /opt/aicp-vpn-telegram-feed/scripts/publish_telegram_config_feed.sh
 TimeoutStartSec=180
 UMask=0077
 NoNewPrivileges=true
