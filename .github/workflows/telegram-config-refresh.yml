@@ -1,0 +1,42 @@
+name: AICP VPN Telegram Config Feed
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: aicp-vpn-telegram-config-feed
+  cancel-in-progress: false
+jobs:
+  collect-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test collector
+        run: python -m unittest tests.test_telegram_config_engine -v
+      - name: Collect current Telegram profiles
+        run: |
+          python scripts/telegram_config_engine.py \\
+            --sources config/telegram-sources.json \\
+            --output "$RUNNER_TEMP/telegram-all.txt" \\
+            --manifest "$RUNNER_TEMP/telegram-all.json"
+      - name: Publish rolling snapshot
+        env:
+          FEED_DIR: ${{ runner.temp }}/feed-worktree
+        run: |
+          git worktree add --detach "$FEED_DIR" "$GITHUB_SHA"
+          git -C "$FEED_DIR" switch --orphan feed-snapshot
+          git -C "$FEED_DIR" rm -rf . >/dev/null 2>&1 || true
+          mkdir -p "$FEED_DIR/feed"
+          cp "$RUNNER_TEMP/telegram-all.txt" "$FEED_DIR/feed/telegram-all.txt"
+          cp "$RUNNER_TEMP/telegram-all.json" "$FEED_DIR/feed/telegram-all.json"
+          git -C "$FEED_DIR" add feed/telegram-all.txt feed/telegram-all.json
+          git -C "$FEED_DIR" -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "chore(vpn-feed): refresh rolling Telegram snapshot"
+          git -C "$FEED_DIR" push --force origin HEAD:refs/heads/config-feed
