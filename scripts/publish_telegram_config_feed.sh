@@ -27,6 +27,13 @@ git -C "$TMP_DIR" -c commit.gpgsign=false commit -m "chore(vpn-feed): refresh ro
 git -C "$TMP_DIR" remote add origin git@github.com:faridbarahimi/AICP-VPN.git
 git -C "$TMP_DIR" push --force origin HEAD:refs/heads/config-feed
 
+# Invalidate both public jsDelivr edges so clients do not keep a successful but stale 200 response.
+for file in telegram-all.txt telegram-all.json; do
+  if ! curl -fsS --max-time 20 "https://purge.jsdelivr.net/gh/faridbarahimi/AICP-VPN@config-feed/feed/$file" >/dev/null; then
+    printf 'WARNING: jsDelivr cache purge failed for %s; origin snapshot is still published\\n' "$file" >&2
+  fi
+done
+
 printf 'Published rolling Telegram snapshot: '
 grep '^# generated_at=' "$TMP_DIR/feed/telegram-all.txt"
 grep '^# config_count=' "$TMP_DIR/feed/telegram-all.txt"
