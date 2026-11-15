@@ -1,0 +1,52 @@
+[
+  {
+    "remarks": "Direct private IPs",
+    "outboundTag": "direct",
+    "ip": [
+      "geoip:private"
+    ]
+  },
+  {
+    "remarks": "Direct private domains",
+    "outboundTag": "direct",
+    "domain": [
+      "geosite:private"
+    ]
+  },
+  {
+    "remarks": "Proxy Google AI Studio and Gemini endpoints",
+    "outboundTag": "proxy",
+    "domain": [
+      "domain:ai.google.dev",
+      "domain:aistudio.google.com",
+      "domain:gemini.google.com",
+      "domain:generativelanguage.googleapis.com",
+      "domain:googleapis.com",
+      "domain:accounts.google.com",
+      "domain:oauth2.googleapis.com",
+      "domain:google.com",
+      "domain:gstatic.com",
+      "domain:googleusercontent.com",
+      "domain:google.dev",
+      "geosite:google"
+    ]
+  },
+  {
+    "remarks": "Proxy Google-owned IP ranges",
+    "outboundTag": "proxy",
+    "ip": [
+      "geoip:google"
+    ]
+  },
+  {
+    "remarks": "Block UDP/443 for remaining destinations",
+    "outboundTag": "block",
+    "port": "443",
+    "network": "udp"
+  },
+  {
+    "remarks": "Direct all remaining traffic",
+    "port": "0-65535",
+    "outboundTag": "direct"
+  }
+]

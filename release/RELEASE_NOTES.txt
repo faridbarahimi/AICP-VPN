@@ -1,0 +1,34 @@
+AICP VPN 2.3.27 — maintenance revision r1 (versionCode 768)
+
+This release hardens connection recovery and improves Smart Connect selection:
+- Treat HTTP 404/410 from public configuration mirrors as terminal for that source, avoiding long retries against dead mirrors.
+- Rank eligible candidates using the combined real-ping and measured-bandwidth score used by Smart Connect.
+- Add bounded Xray health recovery with exponential backoff (30s, 60s, 120s, capped at 4 minutes) and a recovery budget of 3 attempts per 5-minute window.
+- Show clear Persian/English recovery-failure feedback and explain when a speed test is rejected because no verified direct network is available.
+- Refine the app typography and compact the home cards and spacing while preserving readable touch targets.
+
+Android package: com.aicp.vpn
+Minimum Android: 10 (API 29); target API 37.
+
+Available APKs:
+- arm64-v8a: most modern Android phones/tablets using 64-bit ARM.
+- armeabi-v7a: older 32-bit ARM devices.
+- x86_64: 64-bit Intel/AMD Android devices and compatible emulators.
+- x86: 32-bit Intel Android devices/emulators.
+- universal: single APK containing all four supported ABI splits; largest download.
+
+Validation evidence:
+- Gradle release build: BUILD SUCCESSFUL.
+- Android unit tests: 971 passed; 0 failures; 0 errors; 0 skipped (97 suites).
+- Full release lint: 0 errors, 214 warnings, 1 hint. Warnings are non-blocking and include existing Kotlin/API deprecations.
+- Native runtime asset hash verification and Xray artifact lock: PASS.
+- All five APKs: APK Signature Scheme v2 verified with the official AICP release certificate; zipalign verification passed; package/version metadata verified.
+- Release certificate SHA-256: 347d15f0992bb018a5ed2cfe9ed046daf17f6b132b53af4e8c194ec94608422a.
+
+Limitations:
+- Physical-device installation and live VPN traffic/egress behavior have NOT been verified; no ADB device was attached to the VPS.
+- DNS/IPv6 leak behavior, reconnect timing under real network loss, per-app routing, and RTL Persian rendering still require device QA.
+- Some new strings in Arabic, Russian, Vietnamese, Bengali, Chinese and BQI locales currently fall back to English; dedicated translations remain pending.
+- This is not a claim of operational acceptance or Play Store publication.
+
+See RELEASE_MANIFEST.txt and SHA256SUMS_2.3.27_r1.txt for per-file sizes and SHA-256 hashes.

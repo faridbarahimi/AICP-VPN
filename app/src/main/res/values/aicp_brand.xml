@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="aicp_launcher_background">#07162C</color>
+    <color name="aicp_brand_cyan">#25C6E8</color>
+    <color name="aicp_brand_amber">#FFBE55</color>
+</resources>

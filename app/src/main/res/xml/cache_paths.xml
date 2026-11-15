@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Only explicitly prepared, user-shared exports are reachable through FileProvider. -->
+    <cache-path name="backup_exports" path="shared_backups/" />
+    <cache-path name="log_exports" path="shared_logs/" />
+</paths>
