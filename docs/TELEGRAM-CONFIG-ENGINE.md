@@ -6,8 +6,8 @@ A separate collector fetches configured public Telegram previews, extracts only 
 
 The Android app never fetches Telegram directly. It consumes the country-mixed snapshot from:
 
-- Text feed: https://raw.githubusercontent.com/faridbarahimi/AICP-VPN/config-feed/feed/telegram-all.txt
-- Manifest: https://raw.githubusercontent.com/faridbarahimi/AICP-VPN/config-feed/feed/telegram-all.json
+- Text feed: https://cdn.jsdelivr.net/gh/faridbarahimi/AICP-VPN@config-feed/feed/telegram-all.txt
+- Manifest: https://cdn.jsdelivr.net/gh/faridbarahimi/AICP-VPN@config-feed/feed/telegram-all.json
 
 The app also has jsDelivr and Raw.Githack mirrors for the raw GitHub source.
 
