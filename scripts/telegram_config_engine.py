@@ -7,7 +7,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
-URI_RE = re.compile(r"(?i)(?:vless|vmess|trojan|ss|hysteria2|hy2|tuic)://[^\\s<>\\\"']+")
+URI_RE = re.compile(r"(?i)(?:vless|vmess|trojan|ss|hysteria2|hy2|tuic)://[^\s<>\"']+")
 TRAILING = ".,;!?)]}"
 MAX_RESPONSE_BYTES = 4 * 1024 * 1024
 
@@ -24,7 +24,7 @@ class MessageTextParser(HTMLParser):
             self.active, self.depth, self.parts = True, 1, []
         elif self.active:
             if tag == "br":
-                self.parts.append("\\n")
+                self.parts.append("\n")
             elif tag not in {"img", "hr"}:
                 self.depth += 1
     def handle_endtag(self, tag):
@@ -114,7 +114,7 @@ def collect(source_config):
     manifest = {
         "schema_version":1,"generated_at":timestamp,"source_count":len(results),
         "config_count":len(merged),
-        "sha256":hashlib.sha256(("\\n".join(merged)+"\\n").encode()).hexdigest(),
+        "sha256":hashlib.sha256(("\n".join(merged)+"\n").encode()).hexdigest(),
         "sources":results,"health_status":"not_probed"
     }
     return merged, manifest
@@ -134,8 +134,8 @@ def main():
     args.manifest.parent.mkdir(parents=True, exist_ok=True)
     header = ["# AICP VPN rolling Telegram feed",f"# generated_at={manifest['generated_at']}",
               f"# config_count={manifest['config_count']}",f"# sha256={manifest['sha256']}"]
-    args.output.write_text("\\n".join(header+configs)+"\\n",encoding="utf-8")
-    args.manifest.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+    args.output.write_text("\n".join(header+configs)+"\n",encoding="utf-8")
+    args.manifest.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(manifest,ensure_ascii=False))
     return 0
 
