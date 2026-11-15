@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh AICP VPN Telegram config feed every 20 minutes
+
+[Timer]
+OnCalendar=*-*-* *:0/20:00
+Persistent=true
+AccuracySec=1min
+Unit=aicp-vpn-telegram-feed.service
+
+[Install]
+WantedBy=timers.target
