@@ -1,0 +1,55 @@
+name: Publish Android APK release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: Git tag to create for this release (for example v2.3.28)
+        required: true
+        type: string
+      artifact_base_url:
+        description: Temporary HTTPS base URL containing the APKs and SHA256SUMS file
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout release notes
+        uses: actions/checkout@v4
+      - name: Validate and download release assets
+        env:
+          BASE_URL: ${{ inputs.artifact_base_url }}
+        run: |
+          set -euo pipefail
+          [[ "$BASE_URL" == https://* ]] || { echo 'artifact_base_url must use HTTPS'; exit 1; }
+          mkdir -p dist
+          files=(
+            AICP-VPN_2.3.28_r1_arm64-v8a.apk
+            AICP-VPN_2.3.28_r1_armeabi-v7a.apk
+            AICP-VPN_2.3.28_r1_universal.apk
+            AICP-VPN_2.3.28_r1_x86.apk
+            AICP-VPN_2.3.28_r1_x86_64.apk
+            SHA256SUMS_2.3.28_r1.txt
+          )
+          for file in "${files[@]}"; do
+            curl --fail --location --retry 3 --connect-timeout 15 --max-time 600 "$BASE_URL/$file" -o "dist/$file"
+          done
+          (cd dist && sha256sum --check SHA256SUMS_2.3.28_r1.txt)
+      - name: Publish GitHub release and APK assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag_name }}
+          target_commitish: main
+          name: AICP VPN 2.3.28
+          body_path: release/RELEASE_NOTES_2.3.28.md
+          files: |
+            dist/*.apk
+            dist/SHA256SUMS_2.3.28_r1.txt
+          draft: false
+          prerelease: false
+          make_latest: true
