@@ -20,10 +20,19 @@ Verify downloaded files against `SHA256SUMS_2.3.27_r1.txt` attached to the relea
 
 ## Build requirements
 
-- Android SDK with API 37 and Build Tools 37.0.0.
+- Android SDK with API 37 and Build Tools 37.0.0. The project also pins its native runtime and Xray AAR inputs; see the provisioning commands below.
 - JDK 17.
 - Gradle wrapper included in this repository.
 - Network access to the repositories declared in `settings.gradle.kts`.
+
+Provision the pinned binary build inputs first. The native bundle is downloaded from this repository's `v2.3.27` release and verified against `native-runtime-assets.sha256`; the Xray AAR is fetched from its pinned upstream release and verified against `xray-aar.lock.properties`:
+
+```bash
+./scripts/fetch-pinned-native-runtime-assets.sh
+./scripts/fetch-pinned-xray-aar.sh
+```
+
+The signed Psiphon server-list snapshot and publication stamp are included in `app/src/main/assets/`.
 
 Run unit tests and release lint:
 

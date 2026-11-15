@@ -18,3 +18,7 @@ local.properties
 # Generated Android packages (publish as GitHub Release assets)
 *.apk
 *.aab
+
+# Reproducible native runtime binaries and generated Xray AAR (fetch via scripts).
+app/libs/
+.kotlin/

@@ -33,3 +33,11 @@ Compatibility note:
 - The 2.3.26 release uses the same official AICP release certificate, so updating from 2.3.26 to 2.3.27 is expected to support an in-place upgrade. Device verification is still pending.
 
 Security note: release keystore and passwords remain outside the repository.
+
+Reproducible source build inputs:
+- AndroidLibXrayLite source module and its pinned source manifest are included in the public source tree.
+- Native runtime binaries are published as native-runtime-assets-2.3.27.tar.gz (69793977 bytes).
+- Native bundle SHA-256: 01eb7c715c0f731912379249a6a39f760319b5a2d03d7e3bcf4d09effaaa4565
+- Native binary hashes are individually verified against native-runtime-assets.sha256 by scripts/fetch-pinned-native-runtime-assets.sh.
+- Xray AAR is downloaded from the pinned upstream release and verified against xray-aar.lock.properties by scripts/fetch-pinned-xray-aar.sh.
+- Psiphon signed server-list snapshot and stamp are included under app/src/main/assets/.

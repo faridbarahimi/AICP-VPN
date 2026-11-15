@@ -149,7 +149,7 @@ val verifyNativeRuntimeAssets = tasks.register("verifyNativeRuntimeAssets") {
             "x86_64" to listOf("libaether.so", "libpsiphon-tunnel-core.so", "liblyrebird.so", "libhev-socks5-tunnel.so", "libhevsockstun.so"),
             "x86" to listOf("libhev-socks5-tunnel.so", "libhevsockstun.so"),
         )
-        val repoRoot = rootProject.projectDir.parentFile
+        val repoRoot = rootProject.projectDir
         val nativeManifest = repoRoot.resolve("native-runtime-assets.sha256")
         check(nativeManifest.isFile) { "Missing pinned native hash manifest: ${nativeManifest.absolutePath}" }
         val pinnedHashes = linkedMapOf<String, String>()
@@ -159,7 +159,7 @@ val verifyNativeRuntimeAssets = tasks.register("verifyNativeRuntimeAssets") {
             check(pinnedHashes.put(parts[1], parts[0]) == null) { "Duplicate native hash entry: ${parts[1]}" }
         }
         val requiredPaths = runtimeFiles.flatMap { (abi, names) ->
-            names.map { name -> "V2rayNG/app/libs/$abi/$name" }
+            names.map { name -> "app/libs/$abi/$name" }
         }.toSet()
         check(pinnedHashes.keys == requiredPaths) {
             "Native hash manifest paths do not match the required runtime ABI/file matrix."
@@ -169,7 +169,7 @@ val verifyNativeRuntimeAssets = tasks.register("verifyNativeRuntimeAssets") {
         runtimeFiles.forEach { (abi, names) ->
             names.forEach { name ->
                 val binary = file("libs/$abi/$name")
-                val relative = "V2rayNG/app/libs/$abi/$name"
+                val relative = "app/libs/$abi/$name"
                 check(binary.isFile && binary.length() > 0L) {
                     "Missing native runtime asset: ${binary.relativeTo(projectDir)}. " +
                         "Run scripts/fetch-pinned-native-runtime-assets.sh or build from pinned sources."
@@ -198,7 +198,7 @@ val verifyXrayCoreArtifact = tasks.register("verifyXrayCoreArtifact") {
     group = "verification"
     description = "Verifies the pinned AndroidLibXrayLite AAR and its source dependency lock."
     doLast {
-        val lockFile = rootProject.projectDir.parentFile.resolve("xray-aar.lock.properties")
+        val lockFile = rootProject.projectDir.resolve("xray-aar.lock.properties")
         check(lockFile.isFile) { "Missing Xray artifact lock: ${lockFile.absolutePath}" }
         val lock = Properties().apply {
             lockFile.inputStream().use { load(it) }
@@ -214,7 +214,7 @@ val verifyXrayCoreArtifact = tasks.register("verifyXrayCoreArtifact") {
         check(sha256(aar) == required("aar_sha256")) {
             "libv2ray.aar does not match pinned ${required("release_tag")}; inspect it before replacing."
         }
-        val repoRoot = rootProject.projectDir.parentFile
+        val repoRoot = rootProject.projectDir
         val sourceRoot = repoRoot.resolve("AndroidLibXrayLite")
         val sourceManifest = repoRoot.resolve("androidlibxraylite-source.sha256")
         check(sourceManifest.isFile && sha256(sourceManifest) == required("source_manifest_sha256")) {
