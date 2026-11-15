@@ -23,7 +23,7 @@ git -C "$TMP_DIR" init -b feed-snapshot >/dev/null
 git -C "$TMP_DIR" config user.name "AICP VPN Feed Publisher"
 git -C "$TMP_DIR" config user.email "aicp-vpn-feed@users.noreply.github.com"
 git -C "$TMP_DIR" add feed/telegram-all.txt feed/telegram-all.json
-git -C "$TMP_DIR" commit -m "chore(vpn-feed): refresh rolling Telegram snapshot" >/dev/null
+git -C "$TMP_DIR" -c commit.gpgsign=false commit -m "chore(vpn-feed): refresh rolling Telegram snapshot" >/dev/null
 git -C "$TMP_DIR" remote add origin git@github.com:faridbarahimi/AICP-VPN.git
 git -C "$TMP_DIR" push --force origin HEAD:refs/heads/config-feed
 
