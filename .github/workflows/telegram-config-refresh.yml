@@ -1,7 +1,5 @@
 name: AICP VPN Telegram Config Feed
 on:
-  schedule:
-    - cron: "*/20 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -35,6 +33,7 @@ jobs:
             --output "$RUNNER_TEMP/telegram-all.txt" \
             --manifest "$RUNNER_TEMP/telegram-all.json"
       - name: Publish rolling snapshot
+        if: github.event_name == 'workflow_dispatch'
         env:
           FEED_DIR: ${{ runner.temp }}/feed-worktree
         run: |
