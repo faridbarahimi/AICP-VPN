@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {"id":"proxy-kafee-telegram","channel":"proxy_kafee","enabled":true},
+    {"id":"marambashi-telegram","channel":"MARAMBASHI","enabled":true}
+  ]
+}
