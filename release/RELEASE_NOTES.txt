@@ -1,13 +1,14 @@
-AICP VPN 2.3.27 — maintenance revision r1 (versionCode 768)
+AICP VPN 2.3.28 — maintenance revision r1 (versionCode 769)
 
-This release hardens connection recovery and improves Smart Connect selection:
-- Treat HTTP 404/410 from public configuration mirrors as terminal for that source, avoiding long retries against dead mirrors.
-- Rank eligible candidates using the combined real-ping and measured-bandwidth score used by Smart Connect.
-- Add bounded Xray health recovery with exponential backoff (30s, 60s, 120s, capped at 4 minutes) and a recovery budget of 3 attempts per 5-minute window.
-- Show clear Persian/English recovery-failure feedback and explain when a speed test is rejected because no verified direct network is available.
-- Refine the app typography and compact the home cards and spacing while preserving readable touch targets.
+This release adds the Global Telegram aggregate source and tightens proxy-sharing behavior:
+- Add a Global feed to Source Finder and Multi-Location. The Android app fetches the published CDN snapshot and does not connect directly to Telegram.
+- Keep Global profiles separate from country attribution; the existing qualification checks determine which profiles enter the usable Multi-Location pool.
+- Add cache-busting and a Raw.Githack fallback for the public feed.
+- Harden LAN proxy sharing permission and credential checks.
+- Preserve authenticated accounts when deriving the HTTP inbound from the SOCKS listener.
 
 Android package: com.aicp.vpn
+Version: 2.3.28 (versionCode 769)
 Minimum Android: 10 (API 29); target API 37.
 
 Available APKs:
@@ -15,20 +16,20 @@ Available APKs:
 - armeabi-v7a: older 32-bit ARM devices.
 - x86_64: 64-bit Intel/AMD Android devices and compatible emulators.
 - x86: 32-bit Intel Android devices/emulators.
-- universal: single APK containing all four supported ABI splits; largest download.
+- universal: single APK containing all supported ABI splits; largest download.
 
 Validation evidence:
 - Gradle release build: BUILD SUCCESSFUL.
-- Android unit tests: 971 passed; 0 failures; 0 errors; 0 skipped (97 suites).
-- Full release lint: 0 errors, 214 warnings, 1 hint. Warnings are non-blocking and include existing Kotlin/API deprecations.
-- Native runtime asset hash verification and Xray artifact lock: PASS.
+- Android unit tests: 987 passed; 0 failures; 0 errors; 0 skipped.
+- Release lint: 0 errors; 214 warnings and 1 note (non-blocking).
+- Native runtime asset verification and Xray artifact lock: PASS.
 - All five APKs: APK Signature Scheme v2 verified with the official AICP release certificate; zipalign verification passed; package/version metadata verified.
-- Release certificate SHA-256: 347d15f0992bb018a5ed2cfe9ed046daf17f6b132b53af4e8c194ec94608422a.
+- SHA-256 checksums are in SHA256SUMS_2.3.28_r1.txt.
 
-Limitations:
-- Physical-device installation and live VPN traffic/egress behavior have NOT been verified; no ADB device was attached to the VPS.
-- DNS/IPv6 leak behavior, reconnect timing under real network loss, per-app routing, and RTL Persian rendering still require device QA.
-- Some new strings in Arabic, Russian, Vietnamese, Bengali, Chinese and BQI locales currently fall back to English; dedicated translations remain pending.
+Operational notes and limitations:
+- The VPS feed timer is enabled at a 20-minute interval. The 2026-11-15 18:20 UTC scheduled run failed closed because proxy_kafee returned no supported proxy URIs; the previous 77-profile snapshot was retained. A fresh feed publication is not claimed.
+- Feed manifest health_status remains not_probed; profile extraction is not proof that a proxy is live.
+- Physical-device installation and live VPN behavior have NOT been verified. DNS/IPv6 leak behavior, reconnect timing under real network loss, per-app routing, and RTL Persian rendering still require device QA.
 - This is not a claim of operational acceptance or Play Store publication.
 
-See RELEASE_MANIFEST.txt and SHA256SUMS_2.3.27_r1.txt for per-file sizes and SHA-256 hashes.
+See RELEASE_MANIFEST.txt and SHA256SUMS_2.3.28_r1.txt for build evidence and hashes.

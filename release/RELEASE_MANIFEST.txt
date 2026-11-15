@@ -1,43 +1,50 @@
 Product: AICP VPN
 Canonical source: apps/aicp-vpn/V2rayNG
-Release identity: 2.3.27 (maintenance revision r1)
-Android versionName: 2.3.27
-Android versionCode: 768
+Release identity: 2.3.28 (maintenance revision r1)
+Android versionName: 2.3.28
+Android versionCode: 769
 Package: com.aicp.vpn
 Minimum Android: 10 (API 29)
 Target Android: API 37
 Build environment: Gradle 9.8.0; Android Gradle Plugin 9.8.0; JDK 17; Android SDK Build Tools 37.0.0
-Build tasks: :app:testDebugUnitTest :app:lintRelease :app:assembleRelease
+Build tasks: :app:verifyNativeRuntimeAssets :app:verifyXrayCoreArtifact :app:testDebugUnitTest :app:lintRelease :app:assembleRelease
 Build result: BUILD SUCCESSFUL
-Unit tests: 971 passed; 0 failures; 0 errors; 0 skipped (97 suites)
-Lint: lintRelease PASS; 0 errors; 214 warnings; 1 hint
-Native runtime assets: verifyNativeRuntimeAssets PASS
+Unit tests: 987 passed; 0 failures; 0 errors; 0 skipped
+Lint: lintRelease PASS; 0 errors; 214 warnings; 1 note (non-blocking existing lint findings)
+Native runtime assets: verifyNativeRuntimeAssets PASS; pinned bundle unchanged from v2.3.27
 Xray AAR/source lock: verifyXrayCoreArtifact PASS
 APK signature: APK Signature Scheme v2 valid; one signer per APK
 Release certificate SHA-256: 347d15f0992bb018a5ed2cfe9ed046daf17f6b132b53af4e8c194ec94608422a
 zipalign: zipalign -c -v 4 PASS for all five APKs
 
-Artifacts (SHA-256 values are recorded in SHA256SUMS_2.3.27_r1.txt):
-- ABI arm64-v8a: AICP-VPN_2.3.27_r1_arm64-v8a.apk; 77265734 bytes
-- ABI armeabi-v7a: AICP-VPN_2.3.27_r1_armeabi-v7a.apk; 77800354 bytes
-- ABI universal: AICP-VPN_2.3.27_r1_universal.apk; 164061102 bytes
-- ABI x86: AICP-VPN_2.3.27_r1_x86.apk; 56999369 bytes
-- ABI x86_64: AICP-VPN_2.3.27_r1_x86_64.apk; 80803496 bytes
+Artifacts (SHA-256 values are recorded in SHA256SUMS_2.3.28_r1.txt):
+- ABI arm64-v8a: AICP-VPN_2.3.28_r1_arm64-v8a.apk; 77271254 bytes
+- ABI armeabi-v7a: AICP-VPN_2.3.28_r1_armeabi-v7a.apk; 77805874 bytes
+- ABI universal: AICP-VPN_2.3.28_r1_universal.apk; 164066622 bytes
+- ABI x86: AICP-VPN_2.3.28_r1_x86.apk; 57004889 bytes
+- ABI x86_64: AICP-VPN_2.3.28_r1_x86_64.apk; 80809016 bytes
+- Checksums: SHA256SUMS_2.3.28_r1.txt
+
+GitHub release: https://github.com/faridbarahimi/AICP-VPN/releases/tag/v2.3.28
+Source commit: 5edd1f9758d7a563c8552608ffea785b1560c9d3
 
 Operational acceptance:
 - Physical-device installation: NOT TESTED (no ADB device attached to VPS).
 - Live VPN connect/disconnect, DNS, IPv4/IPv6, egress, Smart Connect failover and per-app routing: NOT VERIFIED on a physical device.
-- Status: signed release APKs built and locally verified; NOT operationally accepted and NOT Play Store published.
+- Status: signed release APKs built and published; NOT operationally accepted and NOT Play Store published.
+
+Feed service status at release time:
+- VPS 20-minute timer enabled/active. The 2026-11-15 18:20 UTC scheduled collection failed closed because proxy_kafee yielded zero supported URIs; the prior 77-profile feed snapshot was preserved.
+- The manifest reports health_status=not_probed. Profile extraction is not evidence of live proxy health.
 
 Compatibility note:
-- The 2.3.26 release uses the same official AICP release certificate, so updating from 2.3.26 to 2.3.27 is expected to support an in-place upgrade. Device verification is still pending.
+- The 2.3.28 release uses the same official AICP release certificate as 2.3.27; in-place update is expected, but device verification is pending.
 
 Security note: release keystore and passwords remain outside the repository.
 
 Reproducible source build inputs:
 - AndroidLibXrayLite source module and its pinned source manifest are included in the public source tree.
-- Native runtime binaries are published as native-runtime-assets-2.3.27.tar.gz (69793977 bytes).
-- Native bundle SHA-256: 01eb7c715c0f731912379249a6a39f760319b5a2d03d7e3bcf4d09effaaa4565
+- Native runtime binaries remain unchanged and are downloaded from the v2.3.27 release as native-runtime-assets-2.3.27.tar.gz; SHA-256: 01eb7c715c0f731912379249a6a39f760319b5a2d03d7e3bcf4d09effaaa4565.
 - Native binary hashes are individually verified against native-runtime-assets.sha256 by scripts/fetch-pinned-native-runtime-assets.sh.
 - Xray AAR is downloaded from the pinned upstream release and verified against xray-aar.lock.properties by scripts/fetch-pinned-xray-aar.sh.
 - Psiphon signed server-list snapshot and stamp are included under app/src/main/assets/.
