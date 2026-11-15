@@ -2,11 +2,11 @@
 
 AICP VPN is an Android VPN client based on the open-source v2rayNG project, with AICP-specific connection management, configuration-source handling, Smart Connect selection, Xray health recovery and a refined Android UI.
 
-> **Project status:** Version `2.3.27` is built and signed. Automated unit tests and release lint passed. Physical-device acceptance (live VPN traffic, DNS/IPv6 leak checks, real failover timing, per-app routing and RTL Persian rendering) remains pending. Do not interpret a successful build as proof of operational acceptance.
+> **Project status:** Version `2.3.28` is built, signed, and published. Automated unit tests and release lint passed. Physical-device acceptance (live VPN traffic, DNS/IPv6 leak checks, real failover timing, per-app routing and RTL Persian rendering) remains pending. Do not interpret a successful build as proof of operational acceptance.
 
 ## Latest release
 
-**[AICP VPN 2.3.27 — GitHub Releases](https://github.com/faridbarahimi/AICP-VPN/releases/latest)**
+**[AICP VPN 2.3.28 — GitHub Releases](https://github.com/faridbarahimi/AICP-VPN/releases/latest)**
 
 The release page provides five signed APK variants:
 
@@ -16,7 +16,7 @@ The release page provides five signed APK variants:
 - `x86` — 32-bit Intel Android devices/emulators.
 - `universal` — all supported ABIs in one larger APK.
 
-Verify downloaded files against `SHA256SUMS_2.3.27_r1.txt` attached to the release and the official AICP signing certificate fingerprint documented in the release manifest.
+Verify downloaded files against `SHA256SUMS_2.3.28_r1.txt` attached to the release and the official AICP signing certificate fingerprint documented in the release manifest.
 
 ## Build requirements
 
@@ -46,7 +46,7 @@ Build release APK variants:
 
 ```bash
 ./gradlew --dependency-verification=strict \
-  :app:assembleRelease -PaicpVersion=2.3.27 \
+  :app:assembleRelease -PaicpVersion=2.3.28 \
   --no-daemon --no-parallel --max-workers=1
 ```
 
@@ -64,14 +64,16 @@ Never commit keystores, signing passwords, API tokens, or local environment file
 ## Version information
 
 - Application ID: `com.aicp.vpn`
-- Version name: `2.3.27`
-- Version code: `768`
+- Version name: `2.3.28`
+- Version code: `769`
 - Minimum Android: 10 (API 29)
 - Target Android API: 37
 
 ## Documentation
 
 - [`release/RELEASE_NOTES.txt`](release/RELEASE_NOTES.txt)
+- [`release/RELEASE_NOTES_2.3.28.md`](release/RELEASE_NOTES_2.3.28.md)
+- [`release/SHA256SUMS_2.3.28_r1.txt`](release/SHA256SUMS_2.3.28_r1.txt)
 - [`release/RELEASE_MANIFEST.txt`](release/RELEASE_MANIFEST.txt)
 - [`release/GOOGLE_PLAY_RELEASE_CHECKLIST.md`](release/GOOGLE_PLAY_RELEASE_CHECKLIST.md)
 - [`docs/release/AICP-VPN-2.3.27-CHECKPOINT.md`](docs/release/AICP-VPN-2.3.27-CHECKPOINT.md)
