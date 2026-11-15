@@ -14,6 +14,13 @@ internal interface PublicConfigSourceProvider {
         urlForCountry(countryCode, countryFileName)?.let { listOf(PublicConfigSourceEndpoint(id, it)) }.orEmpty()
 }
 
+/** Server-refreshed mixed Telegram snapshot; GL is an internal selector, not a country. */
+internal object TelegramAggregatorSource {
+    const val ID = "telegram-aggregator-global"
+    const val URL = "https://cdn.jsdelivr.net/gh/faridbarahimi/AICP-VPN@config-feed/feed/telegram-all.txt"
+    fun endpoint() = PublicConfigSourceEndpoint(ID, URL)
+}
+
 /** Country-specific V2Ray subscription shards published by Au1rxx. */
 internal object Au1rxxConfigSource : PublicConfigSourceProvider {
     override val id: String = "au1rxx"
@@ -112,6 +119,7 @@ internal object PublicConfigSourceRegistry {
     )
 
     fun forCountry(countryCode: String, countryFileName: String?): List<PublicConfigSourceEndpoint> {
+        if (countryCode.equals("GL", ignoreCase = true)) return listOf(TelegramAggregatorSource.endpoint())
         if (countryCode.equals("IR", ignoreCase = true)) return IranCarrierConfigSources.endpoints()
         return providers.flatMap { provider ->
             provider.endpointsForCountry(countryCode, countryFileName)

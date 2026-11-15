@@ -6,6 +6,7 @@ import android.util.AtomicFile
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.handler.MmkvManager
 import com.v2ray.ang.handler.SettingsManager
+import com.v2ray.ang.core.LanProxyExposurePolicy
 import com.v2ray.ang.root.RootProxyManager.TABLE
 import com.v2ray.ang.root.RootProxyManager.TUN
 import com.v2ray.ang.root.RootProxyManager.teardown
@@ -37,7 +38,7 @@ object RootProxyManager {
     private const val MARK = AppConfig.ROOT_MARK_ROUTE
 
     internal fun hasValidSocksCredentials(username: String?, password: String?): Boolean =
-        !username.isNullOrBlank() && !password.isNullOrBlank()
+        LanProxyExposurePolicy.hasCredentials(username, password)
 
     // Local / private / multicast destinations that must never be proxied.
     private val bypassCidrs = listOf(

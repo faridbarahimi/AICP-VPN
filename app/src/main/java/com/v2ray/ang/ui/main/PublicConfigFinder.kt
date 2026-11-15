@@ -210,9 +210,8 @@ internal object PublicConfigFinder {
     }
 
     /** Extracts the selected country only from structured country-indexed sources. */
-    private fun decodeSourcePayload(source: PublicConfigSourceEndpoint, body: String): String =
-        if (source.id != "lagzian-ss-collector") body
-        else runCatching {
+    private fun decodeSourcePayload(source: PublicConfigSourceEndpoint, body: String): String = when (source.id) {
+        "lagzian-ss-collector" -> runCatching {
             val country = requireNotNull(source.countryCode).lowercase(java.util.Locale.ROOT)
             val root = JsonParser.parseString(body).asJsonObject
             val countryData = root.getAsJsonObject("per_country_proto")?.getAsJsonObject(country)
@@ -223,6 +222,8 @@ internal object PublicConfigFinder {
                 }
             }.joinToString("\n").replace("&amp;", "&")
         }.getOrDefault("")
+        else -> body
+    }
 
     private fun fetchTextWithMirrorFallback(
         source: String,
@@ -232,7 +233,9 @@ internal object PublicConfigFinder {
     ): String {
         val mirrors = listOfNotNull(source, toJsDelivrMirror(source), toRawGithackMirror(source)).distinct()
         return fetchFirstAvailable(mirrors) { candidate ->
-            fetchText(candidate, network, connectTimeoutMillis, readTimeoutMillis)
+            val separator = if (candidate.contains("?")) "&" else "?"
+            val uncachedCandidate = "$candidate${separator}_aicp_refresh=${System.currentTimeMillis()}"
+            fetchText(uncachedCandidate, network, connectTimeoutMillis, readTimeoutMillis)
         }
     }
 
@@ -273,10 +276,21 @@ internal object PublicConfigFinder {
     /** Secondary public mirror for networks that block GitHub Raw and jsDelivr. */
     private fun toRawGithackMirror(source: String): String? = runCatching {
         val url = URL(source)
-        if (url.protocol != "https" || url.host != "raw.githubusercontent.com") return null
+        if (url.protocol != "https") return null
         val parts = url.path.removePrefix("/").split('/')
-        if (parts.size < 4 || parts.any { it.isBlank() || it == "." || it == ".." }) return null
-        "https://raw.githack.com/${parts[0]}/${parts[1]}/${parts[2]}/${parts.drop(3).joinToString("/")}"
+        when (url.host) {
+            "raw.githubusercontent.com" -> {
+                if (parts.size < 4 || parts.any { it.isBlank() || it == "." || it == ".." }) return null
+                "https://raw.githack.com/${parts[0]}/${parts[1]}/${parts[2]}/${parts.drop(3).joinToString("/")}"
+            }
+            "cdn.jsdelivr.net" -> {
+                if (parts.size < 5 || parts[0] != "gh" || parts.any { it.isBlank() || it == "." || it == ".." }) return null
+                val repoAndRef = parts[2].split("@", limit = 2)
+                if (repoAndRef.size != 2) return null
+                "https://raw.githack.com/${parts[1]}/${repoAndRef[0]}/${repoAndRef[1]}/${parts.drop(3).joinToString("/")}"
+            }
+            else -> null
+        }
     }.getOrNull()
 
     private fun fetchText(
@@ -295,6 +309,8 @@ internal object PublicConfigFinder {
             requestMethod = "GET"
             setRequestProperty("User-Agent", "AICP-VPN-PublicConfigFinder/1.0")
             setRequestProperty("Accept", "text/plain, */*")
+            setRequestProperty("Cache-Control", "no-cache, no-store")
+            setRequestProperty("Pragma", "no-cache")
         }
         try {
             val status = connection.responseCode

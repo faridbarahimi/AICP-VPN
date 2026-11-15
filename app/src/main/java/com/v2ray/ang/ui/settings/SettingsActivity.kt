@@ -1,6 +1,8 @@
 package com.v2ray.ang.ui.settings
 
+import android.Manifest
 import android.content.ActivityNotFoundException
+import android.content.pm.PackageManager
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -27,8 +29,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -36,6 +40,7 @@ import com.v2ray.ang.AppConfig
 import com.v2ray.ang.AppConfig.VPN
 import com.v2ray.ang.R
 import com.v2ray.ang.extension.toastError
+import com.v2ray.ang.core.LanProxyExposurePolicy
 import com.v2ray.ang.handler.AppLocaleManager
 import com.v2ray.ang.handler.MmkvManager
 import com.v2ray.ang.handler.MmkvManager.rememberMmkvBool
@@ -109,6 +114,10 @@ fun SettingsScreen(
     onRequestLocalNetworkPermission: ((Boolean) -> Unit) -> Unit
 ) {
     val context = LocalContext.current
+    val localNetworkPermissionDeniedMessage = stringResource(
+        R.string.toast_permission_denied_for,
+        stringResource(R.string.permission_local_network)
+    )
     val scrollState = rememberScrollState()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     val systemVpnSettingsAvailable by viewModel.systemVpnSettingsAvailable.collectAsStateWithLifecycle()
@@ -155,6 +164,22 @@ fun SettingsScreen(
     var socksPassword by rememberMmkvString(AppConfig.PREF_SOCKS_PASSWORD, "")
     var socksEnableUdp by rememberMmkvBool(AppConfig.PREF_SOCKS_ENABLE_UDP, AppConfig.DEFAULT_SOCKS_ENABLE_UDP)
     var proxySharing by rememberMmkvBool(AppConfig.PREF_PROXY_SHARING, false)
+
+    val lifecycleOwner = LocalLifecycleOwner.current
+    LaunchedEffect(lifecycleOwner) {
+        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK) != PackageManager.PERMISSION_GRANTED
+            ) {
+                val sharingWasEnabled = proxySharing || lanSharing
+                if (proxySharing) proxySharing = false
+                if (lanSharing) lanSharing = false
+                if (sharingWasEnabled) {
+                    context.toastError(localNetworkPermissionDeniedMessage)
+                }
+            }
+        }
+    }
 
     var speedEnabled by rememberMmkvBool(AppConfig.PREF_SPEED_ENABLED, false)
     var confirmRemove by rememberMmkvBool(AppConfig.PREF_CONFIRM_REMOVE, false)
@@ -449,7 +474,7 @@ fun SettingsScreen(
                     onCheckedChange = { enabled ->
                         if (!enabled) {
                             proxySharing = false
-                        } else if (socksUsername.isBlank() || socksPassword.isBlank()) {
+                        } else if (!LanProxyExposurePolicy.hasCredentials(socksUsername, socksPassword)) {
                             context.toastError(R.string.proxy_sharing_requires_auth)
                         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN) {
                             onRequestLocalNetworkPermission { granted -> proxySharing = granted }
@@ -705,7 +730,7 @@ fun SettingsScreen(
                     onCheckedChange = { newValue ->
                         if (!newValue) {
                             lanSharing = false
-                        } else if (socksUsername.isBlank() || socksPassword.isBlank()) {
+                        } else if (!LanProxyExposurePolicy.hasCredentials(socksUsername, socksPassword)) {
                             context.toastError(R.string.proxy_sharing_requires_auth)
                         } else {
                             val requestLocalNetworkPermission = {

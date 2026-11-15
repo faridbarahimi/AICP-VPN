@@ -1,5 +1,6 @@
 package com.v2ray.ang.ui.main
 
+
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -27,6 +28,7 @@ class PublicConfigFinderTest {
         assertEquals(5, PublicConfigFinder.sourceUrls("AL").size)
         assertEquals(9, PublicConfigFinder.sourceUrls("IR").size)
         assertTrue(PublicConfigFinder.sourceUrls("IR").any { it.endsWith("/Countries/Iran.txt") })
+        assertTrue(PublicConfigFinder.sourceUrls("IR").none { it.startsWith("https://t.me/") })
         assertEquals("0xradikal", PublicConfigCatalog.sourceEndpoints("IR").first().id)
         assertTrue(PublicConfigFinder.sourceUrls("IR").any { it.endsWith("/MCI") })
         assertTrue(PublicConfigFinder.sourceUrls("IR").any { it.endsWith("/Mobinet") })
@@ -39,8 +41,26 @@ class PublicConfigFinderTest {
         assertTrue(PublicConfigCatalog.countries.size >= 45)
         assertTrue(PublicConfigCatalog.countries.any { it.code == "AE" })
         assertTrue(PublicConfigCatalog.countries.any { it.code == "IR" })
+        assertFalse(PublicConfigCatalog.countries.any { it.code == PublicConfigCatalog.GLOBAL_FEED_CODE })
+        assertEquals("telegram-aggregator-global", PublicConfigCatalog.sourceEndpoints(PublicConfigCatalog.GLOBAL_FEED_CODE).single().id)
+        assertEquals("https://cdn.jsdelivr.net/gh/faridbarahimi/AICP-VPN@config-feed/feed/telegram-all.txt", PublicConfigCatalog.sourceUrls(PublicConfigCatalog.GLOBAL_FEED_CODE).single())
+        assertEquals("GL", AicpSelectedRefreshTargetPolicy.resolveCountry("aicp-finder-gl", "DE"))
+        assertEquals("GL", AicpSelectedRefreshTargetPolicy.resolveCountry("aicp-multilocation", "DE"))
     }
 
+
+    @Test fun globalTelegramSnapshotIsImportedAsOneMixedSourceWithoutCountryMislabeling() {
+        val source = PublicConfigCatalog.sourceEndpoints(PublicConfigCatalog.GLOBAL_FEED_CODE).single()
+        val result = PublicConfigFinder.fetchFromSources(listOf(source)) { url ->
+            assertEquals("https://cdn.jsdelivr.net/gh/faridbarahimi/AICP-VPN@config-feed/feed/telegram-all.txt", url)
+            "# generated_at=2026-11-15T16:00:00Z\nvless://id@de.example:443#DE\ntrojan://pw@nl.example:443#NL\n"
+        }
+        assertEquals(1, result.successfulSources)
+        assertEquals(0, result.failedSources)
+        assertEquals(2, result.configs.size)
+        assertTrue(result.configs.any { "de.example" in it })
+        assertTrue(result.configs.any { "nl.example" in it })
+    }
 
     @Test fun independentSourcesKeepSuccessfulResultsWhenOneProviderFails() {
         val sources = PublicConfigCatalog.sourceEndpoints("DE")
@@ -277,7 +297,7 @@ class PublicConfigFinderTest {
 
     @Test fun nineteenMinuteRefreshFollowsTheSelectedAicpTab() {
         assertEquals("IT", AicpSelectedRefreshTargetPolicy.resolveCountry("aicp-finder-it", "DE"))
-        assertEquals("DE", AicpSelectedRefreshTargetPolicy.resolveCountry("aicp-multilocation", "DE"))
+        assertEquals("GL", AicpSelectedRefreshTargetPolicy.resolveCountry("aicp-multilocation", "DE"))
         assertEquals("FI", AicpSelectedRefreshTargetPolicy.resolveCountry("", "FI"))
         assertEquals(null, AicpSelectedRefreshTargetPolicy.resolveCountry("user-subscription", "DE"))
         assertEquals(null, AicpSelectedRefreshTargetPolicy.resolveCountry("aicp-finder-invalid", "DE"))
