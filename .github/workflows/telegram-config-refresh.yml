@@ -23,9 +23,9 @@ jobs:
         run: python -m unittest tests.test_telegram_config_engine -v
       - name: Collect current Telegram profiles
         run: |
-          python scripts/telegram_config_engine.py \\
-            --sources config/telegram-sources.json \\
-            --output "$RUNNER_TEMP/telegram-all.txt" \\
+          python scripts/telegram_config_engine.py \
+            --sources config/telegram-sources.json \
+            --output "$RUNNER_TEMP/telegram-all.txt" \
             --manifest "$RUNNER_TEMP/telegram-all.json"
       - name: Publish rolling snapshot
         env:
