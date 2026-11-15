@@ -35,4 +35,4 @@ GitHub Actions validates the collector on relevant pushes. `workflow_dispatch` i
 
 ## Sources
 
-Enabled source channels are declared in `config/telegram-sources.json`. Currently enabled: `proxy_kafee` and `MARAMBASHI`. Proprietary NPV Tunnel `.npvt`/`.npvs` payloads are excluded until a compatible importer exists.
+Enabled source channels are declared in `config/telegram-sources.json`. Currently enabled: `v2ray_free_conf` and `MARAMBASHI`. The former replaces `proxy_kafee`, which returned HTTP 200 but stopped publishing supported proxy URIs in its public preview on 2026-11-15. Candidate replacement was live-checked before activation and yielded 19 supported URIs; the combined two-source collection yielded 90 unique profiles at the replacement checkpoint. Extracted profiles are not proof of live proxy connectivity. Proprietary NPV Tunnel `.npvt`/`.npvs` payloads are excluded until a compatible importer exists.
