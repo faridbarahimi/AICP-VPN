@@ -61,6 +61,8 @@ def extract_uris(document):
                     parsed = urlsplit(uri)
                     if not parsed.hostname:
                         continue
+                    if scheme == "vless" and not parsed.username:
+                        continue
                     if parsed.port is not None and not (1 <= parsed.port <= 65535):
                         continue
                 except ValueError:
