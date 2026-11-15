@@ -20,7 +20,7 @@ The production scheduler is a systemd timer on the AICP VPS:
 - Service: `aicp-vpn-telegram-feed.service`
 - Publisher: `scripts/publish_telegram_config_feed.sh`
 
-The service fast-forwards its isolated checkout from `main`, runs the collector, and force-updates the orphan `config-feed` branch. That branch contains only the current `feed/telegram-all.txt` and `feed/telegram-all.json` snapshot; old profiles and branch history are replaced, not appended.
+The service fast-forwards its isolated checkout from `main`, runs the collector, force-updates the orphan `config-feed` branch, and purges both jsDelivr edge paths. That branch contains only the current `feed/telegram-all.txt` and `feed/telegram-all.json` snapshot; old profiles and branch history are replaced, not appended.
 
 GitHub Actions validates the collector on relevant pushes. `workflow_dispatch` is retained as a manual publishing fallback; it is not the production scheduler.
 
