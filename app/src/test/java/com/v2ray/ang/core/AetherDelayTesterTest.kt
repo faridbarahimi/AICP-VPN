@@ -204,6 +204,36 @@ class AetherDelayTesterTest {
     }
 
     @Test
+    fun payloadQualificationRequiresAFullBodyAndRejects204HtmlAndShortResponses() {
+        assertTrue(AetherDelayTester.isVerifiedPayloadResponse(200, "application/octet-stream", 16 * 1024))
+        assertFalse(AetherDelayTester.isVerifiedPayloadResponse(200, "application/octet-stream", 16 * 1024 - 1))
+        assertFalse(AetherDelayTester.isVerifiedPayloadResponse(200, "text/html", 32 * 1024))
+        assertFalse(AetherDelayTester.isVerifiedPayloadResponse(204, null, 0))
+        assertFalse(AetherDelayTester.isVerifiedPayloadResponse(302, "text/plain", 32 * 1024))
+    }
+
+    @Test
+    fun payloadRequestReadsAtLeast16KiBThroughTheSocksTunnel() {
+        val payload = "x".repeat(AetherDelayTester.MIN_VERIFIED_PAYLOAD_BYTES)
+        HttpStub("200 OK", body = payload).use { http ->
+            SocksStub().use { socks ->
+                val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(5)
+                assertTrue(AetherDelayTester.requestPayload(socks.port, "http://127.0.0.1:${http.port}/payload", deadline) > 0L)
+            }
+        }
+    }
+
+    @Test
+    fun aShortPayloadDoesNotQualifyEvenWithHttp200() {
+        HttpStub("200 OK", body = "short").use { http ->
+            SocksStub().use { socks ->
+                val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(5)
+                assertEquals(-1L, AetherDelayTester.requestPayload(socks.port, "http://127.0.0.1:${http.port}/payload", deadline))
+            }
+        }
+    }
+
+    @Test
     fun aNoContentResponseIsNotARealPayloadProbe() {
         HttpStub("204 No Content").use { http ->
             SocksStub().use { socks ->

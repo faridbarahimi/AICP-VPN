@@ -358,6 +358,25 @@ internal object AicpThroughputTester {
         }
     }.getOrDefault(true)
 
+    /**
+     * Verify useful data transfer through this exact Xray outbound. The caller supplies an absolute
+     * deadline; the SOCKS probe requires HTTP 200, non-HTML and at least 16 KiB actually read.
+     */
+    internal fun verifyRealPayload(
+        context: Context,
+        content: String,
+        urls: List<String>,
+        deadlineNanos: Long,
+    ): Boolean {
+        val exitConfig = withExitNodeTag(content)
+        val port = CoreNativeManager.openExit(context, exitConfig)
+        return try {
+            AetherDelayTester.requestAnyPayload(port, urls, deadlineNanos)
+        } finally {
+            CoreNativeManager.closeExit()
+        }
+    }
+
     private fun withExitNodeTag(content: String): String {
         val root = JsonParser.parseString(content).asJsonObject
         val outbounds = root.getAsJsonArray("outbounds") ?: throw IOException("outbounds missing")

@@ -5,6 +5,7 @@ import com.v2ray.ang.core.AetherDelayTester
 import com.v2ray.ang.core.CoreConfigContextBuilder
 import com.v2ray.ang.core.CoreConfigManager
 import com.v2ray.ang.core.CoreNativeManager
+import com.v2ray.ang.ui.main.AicpThroughputTester
 import com.v2ray.ang.dto.RealPingEvent
 import com.v2ray.ang.enums.EConfigType
 import com.v2ray.ang.extension.isComplexType
@@ -92,8 +93,8 @@ internal object RealPingExecutionLimiter {
  */
 internal object RealPingTimeoutPolicy {
     const val TCP_REACHABILITY_TIMEOUT_MS = 1_800
-    const val NATIVE_PING_TIMEOUT_MS = 7_000L
-    const val AETHER_PING_TIMEOUT_MS = 8_000L
+    const val NATIVE_PING_TIMEOUT_MS = 16_000L
+    const val AETHER_PING_TIMEOUT_MS = 14_000L
 }
 
 class RealPingWorkerService(
@@ -112,6 +113,16 @@ class RealPingWorkerService(
     // Each native measurement has an isolated cancellation key. Cancelling one slow profile must
     // never cancel healthy profiles that happen to share this worker's subscription scan.
     private val activeProbeBatches = ConcurrentHashMap.newKeySet<String>()
+
+    // A latency endpoint alone can answer 204/empty and still say nothing about useful data transfer.
+    // Every positive candidate must also download a bounded 32 KiB payload through the same outbound.
+    private fun payloadProbeUrls(): List<String> {
+        val nonce = UUID.randomUUID().toString()
+        return listOf(
+            "https://speed.cloudflare.com/__down?bytes=32768&aicp_probe=$nonce",
+            "https://httpbin.org/bytes/32768?seed=${nonce.hashCode().toUInt()}"
+        )
+    }
 
     private val completedCount = AtomicInteger(0)
 
@@ -180,8 +191,13 @@ class RealPingWorkerService(
         // other hops: then it is measured as the chain it runs in, as every chained profile is.
         if (config.configType == EConfigType.AETHER && !CoreConfigContextBuilder.isChained(config)) {
             return withTimeoutOrNull(RealPingTimeoutPolicy.AETHER_PING_TIMEOUT_MS) {
-                val primary = AetherDelayTester.measure(context, guid, config, SettingsManager.getDelayTestUrl())
-                if (primary >= 0L) primary else AetherDelayTester.measure(context, guid, config, SettingsManager.getDelayTestUrl(true))
+                AetherDelayTester.measureWithPayload(
+                    context = context,
+                    guid = guid,
+                    profile = config,
+                    latencyUrls = listOf(SettingsManager.getDelayTestUrl(), SettingsManager.getDelayTestUrl(true)),
+                    payloadUrls = payloadProbeUrls(),
+                )
             } ?: retFailure
         }
 
@@ -195,8 +211,20 @@ class RealPingWorkerService(
             // that core: the live session, or a test tunnel on the same port, which its Aether outbounds
             // dial either way, and which dials out through a hop of the chain, as the session's would.
             // Its own server is not probed: it is only reachable through that core.
-            return AetherDelayTester.measureVia(context, guid, aether, configResult.content) { _, _ ->
-                measureOutboundDelayWithFallback(configResult.content, probeBatch, config.configType)
+            return AetherDelayTester.measureVia(context, guid, aether, configResult.content) { port, deadline ->
+                var latency = -1L
+                val latencyDeadline = minOf(deadline, System.nanoTime() + TimeUnit.SECONDS.toNanos(5))
+                for (url in listOf(SettingsManager.getDelayTestUrl(), SettingsManager.getDelayTestUrl(true))) {
+                    if (System.nanoTime() >= latencyDeadline) break
+                    latency = AetherDelayTester.cancellableRequestDelay(port, url, latencyDeadline)
+                    if (latency >= 0L) break
+                }
+                if (latency <= 0L) {
+                    -1L
+                } else {
+                    val payloadVerified = AetherDelayTester.verifyPayloadUrls(port, payloadProbeUrls(), deadline)
+                    if (payloadVerified) latency else -1L
+                }
             }
         }
         if (!config.configType.isComplexType()
@@ -226,9 +254,17 @@ class RealPingWorkerService(
                 activeProbeBatches.add(batch)
                 try {
                     val primary = CoreNativeManager.measureOutboundDelay(config, SettingsManager.getDelayTestUrl(), batch)
-                    // Keep the fallback inside the same deadline and cancellation scope. A slow first endpoint
-                    // is cancelled by the watchdog; the second call then sees the cancelled batch and returns at once.
-                    if (primary >= 0L) primary else CoreNativeManager.measureOutboundDelay(config, SettingsManager.getDelayTestUrl(true), batch)
+                    val latency = if (primary >= 0L) primary else
+                        CoreNativeManager.measureOutboundDelay(config, SettingsManager.getDelayTestUrl(true), batch)
+                    if (latency < 0L) {
+                        -1L
+                    } else {
+                        val payloadDeadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(6)
+                        val verified = runCatching {
+                            AicpThroughputTester.verifyRealPayload(context, config, payloadProbeUrls(), payloadDeadline)
+                        }.getOrDefault(false)
+                        if (verified) latency else -1L
+                    }
                 } finally {
                     activeProbeBatches.remove(batch)
                 }

@@ -7,12 +7,13 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class AicpEgressVerifierTest {
-    @Test fun vpnNetworkPayloadRequiresHttp200AndAtLeastOneBodyByte() {
-        assertTrue(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(200, true))
-        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(200, false))
-        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(204, false))
-        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(302, true))
-        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(503, true))
+    @Test fun vpnNetworkPayloadRequiresAtLeast16KiBFromAnHttp200NonHtmlResponse() {
+        assertTrue(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(200, "application/octet-stream", 16 * 1024))
+        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(200, "application/octet-stream", 16 * 1024 - 1))
+        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(200, "text/html", 32 * 1024))
+        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(204, "", 0))
+        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(302, "text/plain", 32 * 1024))
+        assertFalse(AicpEgressVerifier.isSuccessfulVpnPayloadResponse(503, "text/plain", 32 * 1024))
     }
     private fun snapshot(
         ip: String = "203.0.113.20",

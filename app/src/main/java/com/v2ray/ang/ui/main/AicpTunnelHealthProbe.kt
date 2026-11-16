@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 /** Bounded data-plane checks for Android VPN Network plus a local SOCKS diagnostic probe. */
 internal object AicpTunnelHealthProbe {
-    private const val MAX_TIMEOUT_MS = 2_000L
+    private const val MAX_TIMEOUT_MS = 4_000L
     @Volatile private var cachedPort: Int = -1
     @Volatile private var cachedTimeoutMillis: Long = -1L
     @Volatile private var cachedClient: OkHttpClient? = null

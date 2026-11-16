@@ -420,7 +420,7 @@ internal object AicpSmartConnectPolicy {
     // Smart Connect probes the live tunnel every 60s when healthy and every 5s while recovering.
     const val NORMAL_PROBE_INTERVAL_MS = 60_000L
     const val RECOVERY_PROBE_INTERVAL_MS = 5_000L
-    const val ACTIVE_TUNNEL_PROBE_TIMEOUT_MS = 2_000L
+    const val ACTIVE_TUNNEL_PROBE_TIMEOUT_MS = 5_000L
     const val UNHEALTHY_PERSISTENCE_MS = 10_000L
     const val HEALTHY_PROBES_TO_EXIT_RECOVERY = 2
     const val UNHEALTHY_LATENCY_THRESHOLD_MS = 300L

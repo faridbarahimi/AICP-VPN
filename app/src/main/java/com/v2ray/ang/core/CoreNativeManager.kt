@@ -8,6 +8,8 @@ import go.Seq
 import libv2ray.CoreCallbackHandler
 import libv2ray.CoreController
 import libv2ray.Libv2ray
+import java.util.concurrent.Semaphore
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -18,6 +20,10 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 object CoreNativeManager {
     private val initialized = AtomicBoolean(false)
+    // Libv2ray exposes one process-wide OpenExit slot. Share one lease across Aether, throughput and
+    // real-payload probes so concurrent workers cannot replace or close each other's SOCKS exit.
+    private val exitLease = Semaphore(1, true)
+    private val exitHeld = AtomicBoolean(false)
 
     /**
      * Initialize V2Ray core environment.
@@ -111,17 +117,30 @@ object CoreNativeManager {
      */
     fun openExit(context: Context, configuration: String): Int {
         initCoreEnv(context)
-        return Libv2ray.openExit(configuration).toInt()
+        if (!exitLease.tryAcquire(6, TimeUnit.SECONDS)) {
+            throw IllegalStateException("The shared Xray exit is busy; refusing to overlap a second payload probe")
+        }
+        return try {
+            val port = Libv2ray.openExit(configuration).toInt()
+            exitHeld.set(true)
+            port
+        } catch (error: Throwable) {
+            exitLease.release()
+            throw error
+        }
     }
 
     /**
      * Close the exit [openExit] opened: its exit-node goes, with the outbounds it dials through.
      */
     fun closeExit() {
+        if (!exitHeld.compareAndSet(true, false)) return
         try {
             Libv2ray.closeExit()
         } catch (e: Exception) {
             LogUtil.e(AppConfig.TAG, "Failed to close the exit", e)
+        } finally {
+            exitLease.release()
         }
     }
 

@@ -230,7 +230,7 @@ class PublicConfigFinderTest {
     @Test fun smartConnectUsesSixtySecondHealthyAndFiveSecondRecoveryCadence() {
         assertEquals(60_000L, AicpSmartConnectPolicy.probeIntervalMs(false))
         assertEquals(5_000L, AicpSmartConnectPolicy.probeIntervalMs(true))
-        assertEquals(2_000L, AicpSmartConnectPolicy.ACTIVE_TUNNEL_PROBE_TIMEOUT_MS)
+        assertEquals(5_000L, AicpSmartConnectPolicy.ACTIVE_TUNNEL_PROBE_TIMEOUT_MS)
         assertEquals(10_000L, AicpSmartConnectPolicy.UNHEALTHY_PERSISTENCE_MS)
         assertFalse(AicpSmartConnectPolicy.hasSustainedUnhealthy(450L, null, 13_000L))
         assertFalse(AicpSmartConnectPolicy.hasSustainedUnhealthy(450L, 10_000L, 19_999L))

@@ -1,6 +1,9 @@
 package com.v2ray.ang.ui.main
 
 import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
+import android.provider.OpenableColumns
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
@@ -238,15 +241,60 @@ class MainActivity : HelperBaseComponentActivity() {
     }
 
     private fun importConfigLocal() {
-        launchFileChooser { uri ->
+        launchFileChooser("*/*") { uri ->
             if (uri == null) return@launchFileChooser
             try {
-                contentResolver.openInputStream(uri)?.bufferedReader()?.use { reader ->
-                    mainViewModel.onAction(MainAction.ImportBatchConfig(reader.readText()))
+                val displayName = queryDisplayName(uri)
+                when (AicpProfileFileType.detect(displayName)) {
+                    AicpProfileFileType.OPENVPN -> openExternalProfile(uri, "application/x-openvpn-profile", R.string.openvpn_external_import)
+                    AicpProfileFileType.NPVT, AicpProfileFileType.NPVS -> openExternalProfile(uri, "application/octet-stream", R.string.npv_external_import)
+                    AicpProfileFileType.TEXT -> contentResolver.openInputStream(uri)?.bufferedReader()?.use { reader ->
+                        mainViewModel.onAction(MainAction.ImportBatchConfig(reader.readText()))
+                    }
                 }
             } catch (e: Exception) {
-                LogUtil.e(AppConfig.TAG, "Failed to read content from URI", e)
+                LogUtil.e(AppConfig.TAG, "Failed to import selected profile file", e)
+                toastError(R.string.profile_file_import_failed)
             }
+        }
+    }
+
+    private fun queryDisplayName(uri: Uri): String {
+        var cursor: Cursor? = null
+        return try {
+            cursor = contentResolver.query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)
+            if (cursor != null && cursor.moveToFirst()) {
+                cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME)).orEmpty()
+            } else ""
+        } finally {
+            cursor?.close()
+        }
+    }
+
+    /** Delegate formats whose runtime is not embedded in AICP to an installed native client. */
+    private fun openExternalProfile(uri: Uri, mimeType: String, chooserTitleRes: Int) {
+        val view = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, mimeType)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        val handlers = packageManager.queryIntentActivities(view, 0)
+        if (handlers.isNotEmpty()) {
+            startActivity(Intent.createChooser(view, getString(chooserTitleRes)))
+            return
+        }
+        if (mimeType == "application/octet-stream") {
+            // Retry with a wildcard MIME type so file-oriented handlers can match by extension.
+            val wildcard = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, "*/*")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            if (packageManager.queryIntentActivities(wildcard, 0).isNotEmpty()) {
+                startActivity(Intent.createChooser(wildcard, getString(chooserTitleRes)))
+            } else {
+                toastError(R.string.npv_client_required)
+            }
+        } else {
+            toastError(R.string.openvpn_client_required)
         }
     }
 

@@ -947,4 +947,9 @@
     <string name="backup_legacy_warning_message">This backup is not password-protected. Only restore it if you trust its source.</string>
     <string name="backup_legacy_restore_confirm">Restore anyway</string>
     <string name="proxy_sharing_requires_auth">Set a non-empty username and password before sharing the proxy on your local network.</string>
+    <string name="openvpn_external_import">Open with an OpenVPN client</string>
+    <string name="npv_external_import">Open with an NPV Tunnel client</string>
+    <string name="openvpn_client_required">Install an OpenVPN client to use this profile. AICP does not run OpenVPN natively yet.</string>
+    <string name="npv_client_required">Install NapsternetV/NPV Tunnel to open this file. Direct in-app NPVT decryption is not available yet.</string>
+    <string name="profile_file_import_failed">Could not read or open the selected profile file.</string>
 </resources>

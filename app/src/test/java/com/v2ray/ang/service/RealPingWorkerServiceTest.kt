@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit
 class RealPingWorkerServiceTest {
     @Test
     fun candidateProbeDeadlinesAreSlightlyMoreTolerant() {
-        assertEquals(7_000L, RealPingTimeoutPolicy.NATIVE_PING_TIMEOUT_MS)
-        assertEquals(8_000L, RealPingTimeoutPolicy.AETHER_PING_TIMEOUT_MS)
+        assertEquals(16_000L, RealPingTimeoutPolicy.NATIVE_PING_TIMEOUT_MS)
+        assertEquals(14_000L, RealPingTimeoutPolicy.AETHER_PING_TIMEOUT_MS)
         assertEquals(1_800, RealPingTimeoutPolicy.TCP_REACHABILITY_TIMEOUT_MS)
         assertEquals(14_000L, com.v2ray.ang.core.AetherDelayTester.TEST_BUDGET_MS)
     }

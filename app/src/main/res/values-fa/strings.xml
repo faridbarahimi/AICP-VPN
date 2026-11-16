@@ -911,4 +911,9 @@
     <string name="backup_legacy_warning_message">این پشتیبان با گذرواژه محافظت نشده است. فقط در صورتی آن را بازیابی کنید که به منبع آن اعتماد دارید.</string>
     <string name="backup_legacy_restore_confirm">با این حال بازیابی شود</string>
     <string name="proxy_sharing_requires_auth">برای اشتراک‌گذاری پروکسی در شبکهٔ محلی، ابتدا نام کاربری و گذرواژهٔ غیرخالی تعیین کنید.</string>
+    <string name="openvpn_external_import">بازکردن با برنامهٔ OpenVPN</string>
+    <string name="npv_external_import">بازکردن با برنامهٔ NPV Tunnel</string>
+    <string name="openvpn_client_required">برای استفاده از این پروفایل، یک کلاینت OpenVPN نصب کنید. اجرای بومی OpenVPN هنوز به AICP اضافه نشده است.</string>
+    <string name="npv_client_required">برای بازکردن این فایل، NapsternetV/NPV Tunnel را نصب کنید. رمزگشایی مستقیم NPVT درون برنامه هنوز فعال نیست.</string>
+    <string name="profile_file_import_failed">خواندن یا بازکردن فایل پروفایل انتخاب‌شده ناموفق بود.</string>
 </resources>

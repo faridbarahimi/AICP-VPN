@@ -38,6 +38,8 @@ object AetherDelayTester {
 
     /** No further attempt starts with less than this left; it could not tell anything. */
     private const val MIN_REQUEST_MS = 1_000L
+    internal const val MIN_VERIFIED_PAYLOAD_BYTES = 16 * 1024
+    internal const val PAYLOAD_ATTEMPT_BUDGET_MS = 3_000L
 
     /** Port every Cloudflare edge answers on TCP, whatever port the tunnel itself uses. */
     private const val EDGE_TCP_PORT = 443
@@ -57,6 +59,100 @@ object AetherDelayTester {
 
     suspend fun measure(context: Context, guid: String, profile: ProfileItem, url: String): Long =
         measureVia(context, guid, AetherCore.of(profile)) { port, deadline -> cancellableRequestDelay(port, url, deadline) }
+
+    /** Latency plus a bounded body-bearing download through the same Aether tunnel/session. */
+    suspend fun measureWithPayload(
+        context: Context,
+        guid: String,
+        profile: ProfileItem,
+        latencyUrls: List<String>,
+        payloadUrls: List<String>,
+    ): Long = measureVia(context, guid, AetherCore.of(profile)) { port, deadline ->
+        var latency = -1L
+        for (url in latencyUrls) {
+            if (System.nanoTime() >= deadline) break
+            latency = cancellableRequestDelay(port, url, deadline)
+            if (latency >= 0L) break
+        }
+        if (latency < 0L) {
+            -1L
+        } else {
+            val payloadOk = verifyPayloadUrls(port, payloadUrls, deadline)
+            if (payloadOk) latency else -1L
+        }
+    }
+
+    internal fun isVerifiedPayloadResponse(statusCode: Int, contentType: String?, bytesRead: Int): Boolean =
+        statusCode == 200 && bytesRead >= MIN_VERIFIED_PAYLOAD_BYTES &&
+            !contentType.orEmpty().trim().startsWith("text/html", ignoreCase = true)
+
+    /** One bounded transfer; a 204, redirect, captive portal or tiny/empty 200 is not a passing profile. */
+    internal fun requestPayload(
+        port: Int,
+        url: String,
+        deadline: Long = deadlineAfter(TEST_BUDGET_MS),
+        calls: ProbeCalls = ProbeCalls(),
+    ): Long {
+        val request = try {
+            Request.Builder().url(url).header("Cache-Control", "no-cache, no-store")
+                .header("Accept-Encoding", "identity").build()
+        } catch (_: IllegalArgumentException) { return -1L }
+        val client = OkHttpClient.Builder()
+            .proxy(Proxy(Proxy.Type.SOCKS, InetSocketAddress(AppConfig.LOOPBACK, port)))
+            .followRedirects(false).followSslRedirects(false).build()
+        return try {
+            val remaining = TimeUnit.NANOSECONDS.toMillis(deadline - System.nanoTime())
+            if (remaining < MIN_REQUEST_MS) return -1L
+            val attempt = client.newBuilder().connectTimeout(remaining, TimeUnit.MILLISECONDS)
+                .readTimeout(remaining, TimeUnit.MILLISECONDS).callTimeout(remaining, TimeUnit.MILLISECONDS).build()
+            val started = System.nanoTime()
+            calls.start(attempt.newCall(request)).execute().use { response ->
+                if (response.code != 200 || response.header("Content-Type").orEmpty().startsWith("text/html", true)) return -1L
+                val input = response.body.byteStream()
+                val buffer = ByteArray(8 * 1024)
+                var total = 0
+                while (total < MIN_VERIFIED_PAYLOAD_BYTES) {
+                    val read = input.read(buffer, 0, minOf(buffer.size, MIN_VERIFIED_PAYLOAD_BYTES - total))
+                    if (read < 0) break
+                    total += read
+                }
+                if (isVerifiedPayloadResponse(response.code, response.header("Content-Type"), total))
+                    TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - started).coerceAtLeast(1L)
+                else -1L
+            }
+        } catch (_: IOException) {
+            -1L
+        } finally {
+            client.connectionPool.evictAll()
+            client.dispatcher.executorService.shutdown()
+        }
+    }
+
+    /** Give independent providers bounded, fair attempts; one blackholed host must not consume the whole budget. */
+    suspend fun verifyPayloadUrls(port: Int, urls: List<String>, deadline: Long): Boolean {
+        for (url in urls) {
+            val attemptDeadline = minOf(deadline, deadlineAfter(PAYLOAD_ATTEMPT_BUDGET_MS))
+            if (System.nanoTime() < attemptDeadline && cancellablePayload(port, url, attemptDeadline) >= 0L) return true
+        }
+        return false
+    }
+
+    internal fun requestAnyPayload(port: Int, urls: List<String>, deadline: Long): Boolean {
+        for (url in urls) {
+            val attemptDeadline = minOf(deadline, deadlineAfter(PAYLOAD_ATTEMPT_BUDGET_MS))
+            if (System.nanoTime() < attemptDeadline && requestPayload(port, url, attemptDeadline) >= 0L) return true
+        }
+        return false
+    }
+
+    suspend fun cancellablePayload(port: Int, url: String, deadline: Long): Long = coroutineScope {
+        val calls = ProbeCalls()
+        val probe = async(Dispatchers.IO) { requestPayload(port, url, deadline, calls) }
+        try { probe.await() } catch (cancelled: CancellationException) {
+            calls.cancel()
+            throw cancelled
+        }
+    }
 
     /**
      * Runs [probe] against [core]: the live session when it runs this core, a test tunnel on the

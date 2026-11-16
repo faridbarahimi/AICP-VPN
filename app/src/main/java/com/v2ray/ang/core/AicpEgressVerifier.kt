@@ -25,7 +25,8 @@ internal object AicpEgressVerifier {
     private const val MAX_RESPONSE_BYTES = 64 * 1024
     private const val BASELINE_MAX_AGE_MS = 2 * 60 * 60 * 1000L
     private const val FAMILY_PROBE_TIMEOUT_MS = 3_000
-    private const val TUNNEL_PROBE_TIMEOUT_MS = 4_000
+    private const val TUNNEL_PROBE_TIMEOUT_MS = 5_000
+    private const val MIN_TUNNEL_PAYLOAD_BYTES = 16 * 1024
 
     data class ExitLocation(
         val provider: String,
@@ -321,13 +322,20 @@ internal object AicpEgressVerifier {
     private fun verifyVpnNetworkPayload(network: Network, timeoutMillis: Int): Boolean {
         val budgetMillis = timeoutMillis.coerceIn(250, TUNNEL_PROBE_TIMEOUT_MS)
         val deadlineNanos = System.nanoTime() + java.util.concurrent.TimeUnit.MILLISECONDS.toNanos(budgetMillis.toLong())
+        val nonce = System.nanoTime()
+        // Each endpoint must return a body; 204, redirects and captive-portal HTML never qualify.
+        // Distinct providers reduce false negatives on networks that block one test host.
         val endpoints = listOf(
-            "https://www.google.com/robots.txt",
-            "https://www.cloudflare.com/cdn-cgi/trace",
+            "https://speed.cloudflare.com/__down?bytes=32768&aicp_probe=$nonce",
+            "https://httpbin.org/bytes/32768?seed=$nonce",
+        )
+        val perEndpointBudgetNanos = java.util.concurrent.TimeUnit.MILLISECONDS.toNanos(
+            (budgetMillis / endpoints.size).toLong()
         )
         for (rawUrl in endpoints) {
+            val endpointDeadline = minOf(deadlineNanos, System.nanoTime() + perEndpointBudgetNanos)
             val remainingMillis = java.util.concurrent.TimeUnit.NANOSECONDS
-                .toMillis(deadlineNanos - System.nanoTime()).toInt()
+                .toMillis(endpointDeadline - System.nanoTime()).toInt()
             if (remainingMillis <= 0) break
             val connection = runCatching {
                 (network.openConnection(URL(rawUrl)) as HttpURLConnection).apply {
@@ -335,21 +343,32 @@ internal object AicpEgressVerifier {
                     readTimeout = remainingMillis
                     instanceFollowRedirects = false
                     requestMethod = "GET"
-                    setRequestProperty("User-Agent", "AICP-VPN-TunnelPayload/1.0")
-                    setRequestProperty("Accept", "text/plain,*/*;q=0.5")
+                    setRequestProperty("User-Agent", "AICP-VPN-TunnelPayload/2.0")
+                    setRequestProperty("Accept-Encoding", "identity")
+                    setRequestProperty("Cache-Control", "no-cache, no-store")
                 }
             }.getOrNull() ?: continue
             try {
                 connection.connect()
                 val readBudget = java.util.concurrent.TimeUnit.NANOSECONDS
-                    .toMillis(deadlineNanos - System.nanoTime()).toInt()
+                    .toMillis(endpointDeadline - System.nanoTime()).toInt()
                 if (readBudget <= 0) continue
                 connection.readTimeout = readBudget
                 val statusCode = connection.responseCode
-                val hasPayload = statusCode == HttpURLConnection.HTTP_OK && connection.inputStream.use { it.read() >= 0 }
-                if (isSuccessfulVpnPayloadResponse(statusCode, hasPayload)) return true
+                val contentType = connection.contentType.orEmpty()
+                if (statusCode != HttpURLConnection.HTTP_OK || contentType.startsWith("text/html", true)) continue
+                val buffer = ByteArray(8 * 1024)
+                var total = 0
+                connection.inputStream.use { input ->
+                    while (total < MIN_TUNNEL_PAYLOAD_BYTES) {
+                        val count = input.read(buffer, 0, minOf(buffer.size, MIN_TUNNEL_PAYLOAD_BYTES - total))
+                        if (count < 0) break
+                        total += count
+                    }
+                }
+                if (isSuccessfulVpnPayloadResponse(statusCode, contentType, total)) return true
             } catch (_: Exception) {
-                // Try the independent second endpoint within the same absolute deadline.
+                // Try the next independent endpoint within the same absolute deadline.
             } finally {
                 connection.disconnect()
             }
@@ -357,8 +376,9 @@ internal object AicpEgressVerifier {
         return false
     }
 
-    internal fun isSuccessfulVpnPayloadResponse(statusCode: Int, hasPayload: Boolean): Boolean =
-        statusCode == HttpURLConnection.HTTP_OK && hasPayload
+    internal fun isSuccessfulVpnPayloadResponse(statusCode: Int, contentType: String, bytesRead: Int): Boolean =
+        statusCode == HttpURLConnection.HTTP_OK && bytesRead >= MIN_TUNNEL_PAYLOAD_BYTES &&
+            !contentType.trim().startsWith("text/html", ignoreCase = true)
 
     private fun probeAddressFamily(host: String, family: String, preferFamily: Int, useAppProxy: Boolean): IpFamilyProbe {
         return try {

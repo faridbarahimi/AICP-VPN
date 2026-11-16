@@ -17,6 +17,16 @@
       "enabled": true,
       "retention": "keep",
       "low_frequency_after_days": 30
+    },
+    {
+      "id": "vaslbox-backup-telegram",
+      "channel": "VASLBOX",
+      "enabled": true,
+      "retention": "keep",
+      "low_frequency_after_days": 30,
+      "source_role": "public_backup_and_invite_discovery",
+      "main_channel_invite_url": "https://t.me/+Fi8jnlNsCt5kNGJk",
+      "access_note": "Public @VASLBOX page is a backup/invite pointer; main config channel is invite-only and is not scraped without authorized membership."
     }
   ]
 }
