@@ -124,4 +124,11 @@ class SourceIntelligenceTests(unittest.TestCase):
             self.assertEqual(1,result['source_count'])
             self.assertEqual(1,result['disabled_discovered_candidates'])
 
+    def test_attachment_only_source_is_not_misclassified_as_no_configs(self):
+        from scripts.telegram_source_intelligence import inspect_source
+        with patch("scripts.telegram_source_intelligence.fetch_channel", return_value='<div class="tgme_widget_message_text">NPV file available</div>'):
+            record, uris = inspect_source({"id":"srcvpn-telegram", "channel":"srcvpn", "enabled":True, "attachment_extensions":[".npvt", ".npvs"]})
+        self.assertEqual("attachment_only", record["status"])
+        self.assertEqual([], uris)
+
 if __name__ == '__main__': unittest.main()

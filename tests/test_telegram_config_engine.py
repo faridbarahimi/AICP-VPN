@@ -40,6 +40,24 @@ class TelegramConfigEngineTests(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     collect(catalog)
 
+    def test_attachment_only_source_does_not_block_uri_feed_collection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            catalog = Path(directory) / "sources.json"
+            catalog.write_text(json.dumps({"schema_version": 1, "sources": [
+                {"id": "srcvpn", "channel": "srcvpn", "enabled": True,
+                 "attachment_extensions": [".npvt", ".npvs"]},
+                {"id": "working", "channel": "working", "enabled": True}
+            ]}), encoding="utf-8")
+            def fake_fetch(channel):
+                if channel == "srcvpn": return '<div class="tgme_widget_message_text">NPV file</div>'
+                return '<div class="tgme_widget_message_text">vless://id@8.8.8.8:443#one</div>'
+            with patch("scripts.telegram_config_engine.fetch_channel", side_effect=fake_fetch):
+                uris, manifest = collect(catalog)
+            self.assertEqual(1, len(uris))
+            statuses = {item['channel']: item['status'] for item in manifest['sources']}
+            self.assertEqual('attachment_only', statuses['srcvpn'])
+            self.assertEqual('ok', statuses['working'])
+
     def test_cli_writes_snapshot_from_validated_uris_and_intelligence_report(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory); uris=root/'uris.json'; intelligence=root/'intelligence.json'

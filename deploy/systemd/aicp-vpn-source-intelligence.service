@@ -10,6 +10,7 @@ WorkingDirectory=/opt/aicp-vpn-telegram-feed
 Environment=HOME=/root
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/usr/bin/python3 /opt/aicp-vpn-telegram-feed/scripts/telegram_source_intelligence.py --catalog /opt/aicp-vpn-telegram-feed/config/telegram-sources.json --history /var/lib/aicp-vpn-source-intelligence/source-history.jsonl --registry /var/lib/aicp-vpn-source-intelligence/discovered-sources.json --report /var/lib/aicp-vpn-source-intelligence/latest-report.json --include-external --verify-external
+ExecStartPost=/usr/bin/python3 /opt/aicp-vpn-telegram-feed/scripts/telegram_npv_attachment_index.py --catalog /opt/aicp-vpn-telegram-feed/config/telegram-sources.json --output /var/lib/aicp-vpn-source-intelligence/npv-attachment-index.json
 TimeoutStartSec=600
 UMask=0077
 NoNewPrivileges=true

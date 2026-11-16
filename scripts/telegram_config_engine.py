@@ -136,8 +136,12 @@ def collect(source_config):
             continue
         source_id, channel = str(source["id"]), str(source["channel"])
         try:
-            uris = extract_uris(fetch_channel(channel))
+            document = fetch_channel(channel)
+            uris = extract_uris(document)
             if not uris:
+                if source.get("attachment_extensions"):
+                    results.append({"id":source_id,"channel":channel,"status":"attachment_only","extracted":0})
+                    continue
                 raise ValueError("no supported proxy URIs in public preview")
             for uri in uris:
                 identity = uri.split("#", 1)[0]

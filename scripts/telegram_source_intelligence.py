@@ -154,7 +154,10 @@ def inspect_source(source, now=None, probe_limit=MAX_PROBES_PER_SOURCE):
         uris = extract_uris(page)
         result["extracted"] = len(uris)
         if not uris:
-            result["status"] = "inactive" if result["message_count"] == 0 else "no_configs"
+            if source.get("attachment_extensions"):
+                result["status"] = "attachment_only"
+            else:
+                result["status"] = "inactive" if result["message_count"] == 0 else "no_configs"
             return result, []
         probes = []
         safe_uris = []
@@ -221,7 +224,7 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
     enabled_ids = {s["id"] for s in cfg["sources"] if s.get("enabled")}
     selected = [r for r in ranked if r["id"] in enabled_ids and r["status"] in {"active", "low_frequency", "no_reachable_endpoints"} and r["safe_configs"] > 0]
     enabled_errors = [r for r in ranked if r["id"] in enabled_ids and r["status"] == "error"]
-    excluded = [r for r in ranked if r["id"] in enabled_ids and r["status"] in {"stale", "no_configs", "no_safe_endpoints", "inactive"}]
+    excluded = [r for r in ranked if r["id"] in enabled_ids and r["status"] in {"stale", "no_configs", "no_safe_endpoints", "inactive", "attachment_only"}]
     rotation_blocked = bool(enabled_errors) or not selected
     feed_config_map = {}
     if not rotation_blocked:
@@ -254,6 +257,7 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
               "stale_sources": sum(r["status"] == "stale" for r in records),
               "low_frequency_sources": sum(r["status"] == "low_frequency" for r in records),
               "no_config_sources": sum(r["status"] == "no_configs" for r in records),
+              "attachment_only_sources": sum(r["status"] == "attachment_only" for r in records),
               "inactive_sources": sum(r["status"] == "inactive" for r in records),
               "disabled_discovered_candidates": sum(r["discovered"] for r in records),
               "extracted": sum(r["extracted"] for r in records),
