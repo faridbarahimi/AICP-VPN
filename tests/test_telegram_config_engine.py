@@ -47,14 +47,15 @@ class TelegramConfigEngineTests(unittest.TestCase):
             uris.write_text(json.dumps(['vless://id@8.8.8.8:443#one']))
             intelligence.write_text(json.dumps({'source_count':2,'ranked_sources':[],
                 'extracted':4,'tested':4,'tcp_reachable':3,'proxy_verified':0,
-                'feed_config_count':1,'feed_tested':4,'feed_tcp_reachable':3,'feed_extracted':4}))
+                'feed_config_count':1,'feed_tested':4,'feed_tcp_reachable':3,'feed_extracted':4,'external_sources':{'status':'fresh_verified_snapshot','included':2,'protocol_verified':2}}))
             argv=['telegram_config_engine','--validated-uris',str(uris),'--intelligence-report',str(intelligence),
                   '--output',str(output),'--manifest',str(manifest)]
             with patch.object(sys,'argv',argv), redirect_stdout(StringIO()):
                 self.assertEqual(0,main())
             data=json.loads(manifest.read_text())
             self.assertEqual(1,data['config_count'])
-            self.assertEqual('tcp_reachability_probed',data['health_status'])
+            self.assertEqual('mixed_telegram_tcp_and_external_sing_box_verified',data['health_status'])
+            self.assertEqual(2,data['external_protocol_verified_count'])
             self.assertEqual(3,data['tcp_reachable_count'])
             self.assertIn('vless://id@8.8.8.8:443#one',output.read_text())
 

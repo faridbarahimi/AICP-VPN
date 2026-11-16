@@ -101,3 +101,36 @@ The five candidate names were discovered from public GitHub repository READMEs. 
 - Cafe Proxy is explicitly selected in the production rotation at rank 2: 22 extracted, 22 safety-qualified, 22 TCP-tested, 20 TCP-reachable; latest visible post `2026-11-16T10:15:37Z`. It is not being removed or penalized for low cadence.
 - The `config-feed` branch still contains only the latest three files: `feed/telegram-all.txt`, `feed/telegram-all.json`, `feed/telegram-source-intelligence.json`.
 - Combined focused tests: 20/20 PASS; Python compilation, publisher shell syntax, and `git diff --check` PASS. Working tree clean after the source/config commit.
+
+
+## External Nova-inspired source integration (2026-11-16)
+
+- Added `scripts/external_source_intelligence.py` with 16 public subscription
+  aggregator URLs and typed network datasets for Cloudflare ranges, CM CIDRs,
+  AS13335/209242/24429/199524, Iran IPv4 ranges, Nova WARP endpoints, per-ISP
+  clean-IP lists, and Proxifly SOCKS5/HTTP records.
+- External inputs are quarantined under `/var/lib/aicp-vpn-source-intelligence/`
+  with mode 0600. They are not auto-enabled and raw IP/relay datasets are never
+  turned into public subscription profiles.
+- Added `scripts/verify_external_configs.py` using pinned sing-box 1.14.4 and
+  actual outbound HTTP 204 tests; only VLESS/Trojan TLS with supported
+  transports are eligible. Other protocols remain quarantined.
+- Added `scripts/merge_external_verified.py`: the publisher merges only
+  verified snapshots no older than 30 hours; stale/invalid snapshots are
+  excluded. Cafe Proxy remains separately enabled and retained.
+- First live run: 11/16 subscription source URLs responded; 9,956 unique safe
+  URI candidates; 2,333 VLESS/Trojan TLS candidates; first 200 selected, 179
+  TCP-reachable, 179 tested with sing-box, 64 protocol-verified. This is a
+  bounded sample, not a statement that all candidates work.
+- Dataset results: Cloudflare IPv4 15 CIDRs; CM 68; AS13335 1,108; AS209242 230;
+  AS24429 256; AS199524 307; Iran IPv4 1,747; WARP 82 endpoints; Proxifly
+  SOCKS5 5,415 and HTTP 4,119 records. Nova clean-IP files had zero usable
+  entries/placeholders or were missing; recorded as empty/unavailable.
+- Official sing-box ARM64 archive SHA-256 matched the GitHub release API digest;
+  binary installed at `/opt/aicp-vpn-tools/sing-box-1.14.4/sing-box`.
+- Daily systemd service now enables external collection and protocol
+  verification, with AF_NETLINK permitted for sing-box network initialization;
+  `TimeoutStartSec=600`. Live service run completed successfully at
+  `2026-11-16T11:25:58Z`, with 64 verified profiles and no batch errors.
+- Added unit tests for source parsing, source-host restrictions, quarantine
+  permissions, and freshness-gated feed merge.

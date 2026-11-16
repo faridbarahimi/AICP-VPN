@@ -22,7 +22,6 @@ python3 "$REPO_ROOT/scripts/telegram_source_intelligence.py" \
   --effective-catalog "$TMP_DIR/rotated-sources.json" \
   --validated-uris-output "$TMP_DIR/validated-uris.json" \
   --no-discovery
-cp "$TMP_DIR/feed/telegram-source-intelligence.json" "$STATE_DIR/latest-report.json"
 chmod 0600 "$STATE_DIR/latest-report.json"
 python3 - "$TMP_DIR/feed/telegram-source-intelligence.json" <<'PYROTATE'
 import json, sys
@@ -30,6 +29,12 @@ report = json.load(open(sys.argv[1], encoding="utf-8"))
 if report.get("rotation", {}).get("blocked"):
     raise SystemExit("source rotation blocked; preserving previous snapshot")
 PYROTATE
+python3 "$REPO_ROOT/scripts/merge_external_verified.py" \
+  --validated "$TMP_DIR/validated-uris.json" \
+  --intelligence "$TMP_DIR/feed/telegram-source-intelligence.json" \
+  --state-dir "$STATE_DIR"
+cp "$TMP_DIR/feed/telegram-source-intelligence.json" "$STATE_DIR/latest-report.json"
+chmod 0600 "$STATE_DIR/latest-report.json"
 python3 "$REPO_ROOT/scripts/telegram_config_engine.py" \
   --validated-uris "$TMP_DIR/validated-uris.json" \
   --intelligence-report "$TMP_DIR/feed/telegram-source-intelligence.json" \

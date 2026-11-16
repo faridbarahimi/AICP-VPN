@@ -198,6 +198,11 @@ def main():
                                  "feed_tested_count": intelligence.get("feed_tested", 0),
                                  "feed_tcp_reachable_count": intelligence.get("feed_tcp_reachable", 0),
                                  "feed_extracted_count": intelligence.get("feed_extracted", 0)})
+                external = intelligence.get("external_sources") or {}
+                manifest["external_sources"] = external
+                manifest["external_protocol_verified_count"] = external.get("included", external.get("protocol_verified_candidates", 0))
+                if manifest["external_protocol_verified_count"]:
+                    manifest["health_status"] = "mixed_telegram_tcp_and_external_sing_box_verified"
         else:
             configs, manifest = collect(args.sources)
     except Exception as exc:

@@ -180,7 +180,7 @@ def inspect_source(source, now=None, probe_limit=MAX_PROBES_PER_SOURCE):
         return result, []
 
 
-def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True, registry_path: Path | None = None, effective_catalog_path: Path | None = None, validated_uris_path: Path | None = None):
+def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True, registry_path: Path | None = None, effective_catalog_path: Path | None = None, validated_uris_path: Path | None = None, include_external=False, verify_external=False):
     cfg = json.loads(catalog_path.read_text(encoding="utf-8"))
     if cfg.get("schema_version") != 1 or not isinstance(cfg.get("sources"), list):
         raise ValueError("invalid source catalog")
@@ -241,6 +241,13 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
         # this is a ranking view, not a deletion/disable list.
         effective_sources = sorted(cfg["sources"], key=lambda x: rank_by_id.get(x["id"], 10**9))
         effective_catalog_path.write_text(json.dumps({"schema_version": 1, "sources": effective_sources}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    external_report = None
+    if include_external:
+        try:
+            from scripts.external_source_intelligence import run as run_external_sources
+            external_report = run_external_sources(history_path.parent, verify_protocol=verify_external)
+        except Exception as exc:
+            external_report = {"status": "error", "error": type(exc).__name__, "protocol_verified_candidates": 0}
     report = {"schema_version": 1, "generated_at": utcnow().isoformat(timespec="seconds"),
               "discovery": {"candidate_count": len(discovered), "candidates": discovered, "queries": discovery_evidence},
               "source_count": len(records), "active_sources": sum(r["status"] == "active" for r in records),
@@ -258,6 +265,7 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
               "feed_extracted": sum(r["extracted"] for r in selected),
               "feed_tested": sum(r["tested"] for r in selected),
               "feed_tcp_reachable": sum(r["tcp_reachable"] for r in selected),
+              "external_sources": external_report,
               "ranked_sources": ranked,
               "rotation": {"mode": "ranked_existing_sources", "blocked": rotation_blocked,
                            "retention_policy": "configured sources are never auto-deleted; low-frequency sources with safe endpoints remain eligible; sources without current profiles are rechecked on every run",
@@ -266,7 +274,7 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
                            "error_sources": [{"id": r["id"], "channel": r["channel"]} for r in enabled_errors],
                            "new_candidates_auto_enabled": False},
               "selection_policy": "existing enabled sources only; discovered sources require explicit review before activation; low-frequency enabled sources with safe endpoints remain eligible",
-              "connectivity_semantics": "tcp_reachable is a TCP socket check only; proxy_verified requires protocol-aware authenticated traffic and remains zero without a client probe adapter"}
+              "connectivity_semantics": "Telegram tcp_reachable is a TCP socket check only and Telegram proxy_verified remains zero; external profiles are reported separately and only supported VLESS/Trojan TLS candidates passing sing-box HTTP 204 are protocol-verified"}
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return report
@@ -281,9 +289,11 @@ def main():
     p.add_argument("--effective-catalog", type=Path)
     p.add_argument("--validated-uris-output", type=Path)
     p.add_argument("--no-discovery", action="store_true")
+    p.add_argument("--include-external", action="store_true", help="collect public external datasets into private quarantine")
+    p.add_argument("--verify-external", action="store_true", help="verify selected external candidates with pinned sing-box")
     a = p.parse_args()
     try:
-        result = run(a.catalog, a.history, a.report, not a.no_discovery, a.registry, a.effective_catalog, a.validated_uris_output)
+        result = run(a.catalog, a.history, a.report, not a.no_discovery, a.registry, a.effective_catalog, a.validated_uris_output, a.include_external, a.verify_external)
         print(json.dumps({k:v for k,v in result.items() if k != "ranked_sources"}, ensure_ascii=False))
         return 0
     except Exception as exc:
