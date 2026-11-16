@@ -90,3 +90,14 @@ The five candidate names were discovered from public GitHub repository READMEs. 
 - `IRNova/Nova-Proxy-App` is a separate Wails v3 / Go desktop client repository describing MITM and GSA Relay components. Its public README/tree does not expose a shared public configuration feed. It is useful as a technical research reference, not a direct feed source.
 - No third-party Nova code or binaries were copied into AICP-VPN. The Nova repositories and `@irnova` were not added to the active config feed because they do not currently expose a public shared config list.
 - Follow-up validation: 20 focused tests pass; Python compile, publisher shell syntax, and `git diff --check` pass. A dry-run against the live three-source catalog extracted 103 URIs, tested 103 endpoints, accepted 98 as safe, observed 96 TCP-reachable, and selected all three sources including Cafe Proxy. Protocol-level proxy verification remains 0.
+
+## Cafe Proxy restoration — production verification
+
+- Code/config commit: `b42bee3d7d5eeae34f10339b2dbb868e2389b8a3` (`fix(vpn-feed): retain low-frequency Cafe Proxy source`).
+- GitHub Actions run `43851022133` completed SUCCESS. Collector tests, bounded source intelligence qualification, and feed collection passed; the workflow's publication step was skipped for the push event as designed. The VPS publisher performed the production snapshot update.
+- Production publisher ran successfully at 2026-11-16 10:41:21 UTC (`Result=success`, `ExecMainStatus=0`).
+- Public immutable snapshot commit: `390e6ae`; generated at `2026-11-16T10:41:19Z`; `config_count=98`; manifest payload SHA-256 `dcba6eb8394d2188c482d79f06b6f582625e2530085e12a84b99487ddca07ee0`.
+- Production report: 114 extracted across all inspected sources, 114 endpoint checks, 102 endpoints passed safety/DNS checks, 105 TCP-reachable; selected-feed sources yielded 103 extracted, 103 tested, 95 TCP-reachable and 98 unique safe profiles after deduplication. `proxy_verified=0` (no protocol-aware session test yet).
+- Cafe Proxy is explicitly selected in the production rotation at rank 2: 22 extracted, 22 safety-qualified, 22 TCP-tested, 20 TCP-reachable; latest visible post `2026-11-16T10:15:37Z`. It is not being removed or penalized for low cadence.
+- The `config-feed` branch still contains only the latest three files: `feed/telegram-all.txt`, `feed/telegram-all.json`, `feed/telegram-source-intelligence.json`.
+- Combined focused tests: 20/20 PASS; Python compilation, publisher shell syntax, and `git diff --check` PASS. Working tree clean after the source/config commit.
