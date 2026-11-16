@@ -62,3 +62,15 @@ The five candidate names were discovered from public GitHub repository READMEs. 
 - `git diff --check`: PASS.
 - TCP reachability is not a working proxy session. `proxy_verified=0` because no protocol-aware client handshake/authenticated request adapter is present on this headless VPS. Do not label TCP-reachable endpoints as fully working VPNs.
 - GitHub Actions has not yet run against this commit at checkpoint creation. The new public snapshot has not yet been force-published by the updated publisher at checkpoint creation.
+
+## Post-checkpoint deployment verification
+
+- Implementation commit pushed to `main`: `d1c96a5487b2f34e9391b40add0e740bee15922d`.
+- Follow-up persistence fix pushed: `71f15c92dfe96c91cf15c226a3b352bb4406049a` (publisher now keeps `/var/lib/aicp-vpn-source-intelligence/latest-report.json` synchronized with each 20-minute publication).
+- GitHub Actions run `43849196684` for the implementation commit completed SUCCESS; unit tests, source intelligence qualification, and feed collection steps passed. Its conditional manual-publish step was skipped as expected for a push event.
+- Updated publisher ran on VPS successfully at 2026-11-16 10:29:56 UTC (`Result=success`, `ExecMainStatus=0`).
+- Public `config-feed` Snapshot was force-replaced and verified from raw GitHub: generated `2026-11-16T10:29:53Z`, 78 URI lines, `config_count=78`, payload SHA-256 `130f29b56a91af34ed22ce194f0296ddd46bde491d94a703a4a30d3d361c2a1d`, `health_status=tcp_reachability_probed`.
+- A subsequent public manifest read measured 92 extracted, 92 tested, 87 TCP-reachable across all scanned sources, 77 TCP-reachable within the selected feed, and 0 protocol-verified sessions. Small changes in TCP counts between runs are expected because endpoints are volatile.
+- Public snapshot files: `feed/telegram-all.txt`, `feed/telegram-all.json`, `feed/telegram-source-intelligence.json`; the publisher force-pushes a fresh orphan snapshot, so older snapshot contents are not retained on `config-feed`.
+- Local latest report SHA-256 after persistence fix: `da09601b11100888397c7083dca7a48839d3facc29d699e8a12b1da21d1d4981`.
+- Local append-only history SHA-256 after publisher run: `4b2c94f673aee34c8ff1d65a7c1dbec9c8978b8e94380b1daa40ff4d7bfde156`.
