@@ -16,10 +16,10 @@ fi
 command -v go >/dev/null || { echo "Go 1.27.4 is required" >&2; exit 1; }
 [[ "$(go env GOVERSION)" == "go1.27.4" ]] || { echo "Expected Go 1.27.4, got $(go env GOVERSION)" >&2; exit 1; }
 [[ "$(go env GOHOSTARCH)" == "amd64" ]] || { echo "gomobile Android AAR build currently requires an x86_64 host; use the Android NPV GitHub Actions workflow from ARM64 machines." >&2; exit 1; }
-go tool gomobile init
 mkdir -p "$ROOT/app/libs"
 (
   cd "$ROOT/AndroidLibPantegnos"
+  go tool gomobile init
   go tool gomobile bind -target=android -androidapi=29 -javapkg=com.aicp.vpn.npv \
     -o "$ROOT/app/libs/aicpnpv.aar" ./npv
 )
