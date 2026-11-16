@@ -8,9 +8,18 @@ on:
       - "config/telegram-sources.json"
       - "scripts/telegram_config_engine.py"
       - "scripts/telegram_source_intelligence.py"
+      - "scripts/external_source_intelligence.py"
+      - "scripts/verify_external_configs.py"
+      - "scripts/merge_external_verified.py"
+      - "scripts/install_pinned_sing_box.sh"
       - "scripts/publish_telegram_config_feed.sh"
       - "tests/test_telegram_config_engine.py"
       - "tests/test_telegram_source_intelligence.py"
+      - "tests/test_external_source_intelligence.py"
+      - "tests/test_merge_external_verified.py"
+      - "tests/test_telegram_config_engine.py"
+      - "docs/EXTERNAL-SOURCE-INTELLIGENCE.md"
+      - "deploy/systemd/aicp-vpn-source-intelligence.service"
 permissions:
   contents: write
 concurrency:
@@ -28,7 +37,11 @@ jobs:
         with:
           python-version: "3.12"
       - name: Test collector
-        run: python -m unittest tests.test_telegram_config_engine tests.test_telegram_source_intelligence -v
+        run: python -m unittest discover -s tests -v
+      - name: Compile Python tools
+        run: python -m py_compile scripts/*.py
+      - name: Validate shell scripts
+        run: bash -n scripts/publish_telegram_config_feed.sh scripts/install_pinned_sing_box.sh
       - name: Run source intelligence (bounded TCP qualification)
         run: |
           mkdir -p "$RUNNER_TEMP/source-intelligence"
