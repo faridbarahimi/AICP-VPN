@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily discovery and health review of public Telegram sources
+
+[Timer]
+OnCalendar=*-*-* 03:17:00
+Persistent=true
+RandomizedDelaySec=10m
+Unit=aicp-vpn-source-intelligence.service
+
+[Install]
+WantedBy=timers.target

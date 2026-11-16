@@ -1,0 +1,24 @@
+[Unit]
+Description=AICP VPN Telegram source discovery and qualification
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/aicp-vpn-telegram-feed
+Environment=HOME=/root
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /opt/aicp-vpn-telegram-feed/scripts/telegram_source_intelligence.py --catalog /opt/aicp-vpn-telegram-feed/config/telegram-sources.json --history /var/lib/aicp-vpn-source-intelligence/source-history.jsonl --registry /var/lib/aicp-vpn-source-intelligence/discovered-sources.json --report /var/lib/aicp-vpn-source-intelligence/latest-report.json
+TimeoutStartSec=240
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/aicp-vpn-telegram-feed /var/lib/aicp-vpn-source-intelligence
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6

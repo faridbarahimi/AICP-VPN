@@ -36,3 +36,17 @@ GitHub Actions validates the collector on relevant pushes. `workflow_dispatch` i
 ## Sources
 
 Enabled source channels are declared in `config/telegram-sources.json`. Currently enabled: `v2ray_free_conf` and `MARAMBASHI`. The former replaces `proxy_kafee`, which returned HTTP 200 but stopped publishing supported proxy URIs in its public preview on 2026-11-15. Candidate replacement was live-checked before activation and yielded 19 supported URIs; the combined two-source collection yielded 90 unique profiles at the replacement checkpoint. Extracted profiles are not proof of live proxy connectivity. Proprietary NPV Tunnel `.npvt`/`.npvs` payloads are excluded until a compatible importer exists.
+
+## Telegram Source Intelligence & Rotation
+
+The independent `scripts/telegram_source_intelligence.py` subsystem performs public discovery via GitHub repository search and README extraction for public Telegram channel links, channel freshness checks, URI extraction, bounded TCP endpoint qualification, ranking, deduplication, and append-only per-source history. It is intentionally separate from the feed collector.
+
+- Daily discovery/qualification: `aicp-vpn-source-intelligence.timer` / `.service` (03:17 UTC host-local systemd time, persistent timer).
+- Per-source history and disabled discovery registry: `/var/lib/aicp-vpn-source-intelligence/` (local VPS state; never committed to Git).
+- The every-20-minute publisher refreshes the qualification report and publishes `feed/telegram-source-intelligence.json` alongside the current text feed and manifest. The `config-feed` branch remains a single-root latest-snapshot branch; previous snapshot files/history are not accumulated there.
+- Discovered channels are stored as disabled candidates. They are inspected and ranked, but never automatically enabled or allowed into the user feed. Activation remains a deliberate catalog change after review.
+- Candidate sources are ranked by TCP-reachable endpoint count, then extracted count and freshness status. The rotation plan reorders enabled sources by this ranking and quarantines stale, inactive, no-config and unsafe-only sources; transient fetch errors block publication and preserve the previous snapshot. Stale channels are marked when their latest visible post is older than 30 days; channels with no visible messages are marked inactive, while channels posting without supported proxy URIs are marked no-configs.
+- URI validation rejects malformed endpoints, localhost, private/reserved IP literals, and non-routable DNS answers during probing. DNS answers are vetted and the exact vetted socket address is used to reduce DNS-rebinding risk. Probe count and timeout are bounded.
+- `extracted` = syntactically accepted unique URI count; `tested` = endpoints given a TCP test; `tcp_reachable` = endpoints accepting a TCP socket; `proxy_verified` = successful protocol-aware proxy traffic. The latter remains **0 / NOT VERIFIED** until a real client adapter performs a protocol handshake and authenticated request. TCP reachability alone is never called a working VPN.
+- Source history is append-only local JSONL. The public GitHub snapshot includes only the latest report, not the history database.
+- Discovery depends on public search-engine availability and is best-effort; failures are recorded in the report and do not silently activate sources.

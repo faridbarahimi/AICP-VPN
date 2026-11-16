@@ -7,7 +7,10 @@ on:
       - ".github/workflows/telegram-config-refresh.yml"
       - "config/telegram-sources.json"
       - "scripts/telegram_config_engine.py"
+      - "scripts/telegram_source_intelligence.py"
+      - "scripts/publish_telegram_config_feed.sh"
       - "tests/test_telegram_config_engine.py"
+      - "tests/test_telegram_source_intelligence.py"
 permissions:
   contents: write
 concurrency:
@@ -25,11 +28,24 @@ jobs:
         with:
           python-version: "3.12"
       - name: Test collector
-        run: python -m unittest tests.test_telegram_config_engine -v
+        run: python -m unittest tests.test_telegram_config_engine tests.test_telegram_source_intelligence -v
+      - name: Run source intelligence (bounded TCP qualification)
+        run: |
+          mkdir -p "$RUNNER_TEMP/source-intelligence"
+          python scripts/telegram_source_intelligence.py \
+            --catalog config/telegram-sources.json \
+            --history "$RUNNER_TEMP/source-intelligence/history.jsonl" \
+            --registry "$RUNNER_TEMP/source-intelligence/discovered-sources.json" \
+            --report "$RUNNER_TEMP/telegram-source-intelligence.json" \
+            --effective-catalog "$RUNNER_TEMP/rotated-sources.json" \
+            --validated-uris-output "$RUNNER_TEMP/validated-uris.json" \
+            --no-discovery
+          python -c 'import json,sys; d=json.load(open(sys.argv[1])); sys.exit(1 if d.get("rotation",{}).get("blocked") else 0)' "$RUNNER_TEMP/telegram-source-intelligence.json"
       - name: Collect current Telegram profiles
         run: |
           python scripts/telegram_config_engine.py \
-            --sources config/telegram-sources.json \
+            --validated-uris "$RUNNER_TEMP/validated-uris.json" \
+            --intelligence-report "$RUNNER_TEMP/telegram-source-intelligence.json" \
             --output "$RUNNER_TEMP/telegram-all.txt" \
             --manifest "$RUNNER_TEMP/telegram-all.json"
       - name: Publish rolling snapshot
@@ -43,6 +59,7 @@ jobs:
           mkdir -p "$FEED_DIR/feed"
           cp "$RUNNER_TEMP/telegram-all.txt" "$FEED_DIR/feed/telegram-all.txt"
           cp "$RUNNER_TEMP/telegram-all.json" "$FEED_DIR/feed/telegram-all.json"
-          git -C "$FEED_DIR" add feed/telegram-all.txt feed/telegram-all.json
+          cp "$RUNNER_TEMP/telegram-source-intelligence.json" "$FEED_DIR/feed/telegram-source-intelligence.json"
+          git -C "$FEED_DIR" add feed/telegram-all.txt feed/telegram-all.json feed/telegram-source-intelligence.json
           git -C "$FEED_DIR" -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "chore(vpn-feed): refresh rolling Telegram snapshot"
           git -C "$FEED_DIR" push --force origin HEAD:refs/heads/config-feed

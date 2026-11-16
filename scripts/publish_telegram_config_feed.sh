@@ -12,8 +12,25 @@ trap cleanup EXIT
 git -C "$REPO_ROOT" pull --ff-only origin main
 
 mkdir -p "$TMP_DIR/feed"
+STATE_DIR="/var/lib/aicp-vpn-source-intelligence"
+mkdir -p "$STATE_DIR"
+python3 "$REPO_ROOT/scripts/telegram_source_intelligence.py" \
+  --catalog "$REPO_ROOT/config/telegram-sources.json" \
+  --history "$STATE_DIR/source-history.jsonl" \
+  --registry "$STATE_DIR/discovered-sources.json" \
+  --report "$TMP_DIR/feed/telegram-source-intelligence.json" \
+  --effective-catalog "$TMP_DIR/rotated-sources.json" \
+  --validated-uris-output "$TMP_DIR/validated-uris.json" \
+  --no-discovery
+python3 - "$TMP_DIR/feed/telegram-source-intelligence.json" <<'PYROTATE'
+import json, sys
+report = json.load(open(sys.argv[1], encoding="utf-8"))
+if report.get("rotation", {}).get("blocked"):
+    raise SystemExit("source rotation blocked; preserving previous snapshot")
+PYROTATE
 python3 "$REPO_ROOT/scripts/telegram_config_engine.py" \
-  --sources "$REPO_ROOT/config/telegram-sources.json" \
+  --validated-uris "$TMP_DIR/validated-uris.json" \
+  --intelligence-report "$TMP_DIR/feed/telegram-source-intelligence.json" \
   --output "$TMP_DIR/feed/telegram-all.txt" \
   --manifest "$TMP_DIR/feed/telegram-all.json"
 
@@ -22,13 +39,13 @@ python3 "$REPO_ROOT/scripts/telegram_config_engine.py" \
 git -C "$TMP_DIR" init -b feed-snapshot >/dev/null
 git -C "$TMP_DIR" config user.name "AICP VPN Feed Publisher"
 git -C "$TMP_DIR" config user.email "aicp-vpn-feed@users.noreply.github.com"
-git -C "$TMP_DIR" add feed/telegram-all.txt feed/telegram-all.json
+git -C "$TMP_DIR" add feed/telegram-all.txt feed/telegram-all.json feed/telegram-source-intelligence.json
 git -C "$TMP_DIR" -c commit.gpgsign=false commit -m "chore(vpn-feed): refresh rolling Telegram snapshot" >/dev/null
 git -C "$TMP_DIR" remote add origin git@github.com:faridbarahimi/AICP-VPN.git
 git -C "$TMP_DIR" push --force origin HEAD:refs/heads/config-feed
 
 # Invalidate both public jsDelivr edges so clients do not keep a successful but stale 200 response.
-for file in telegram-all.txt telegram-all.json; do
+for file in telegram-all.txt telegram-all.json telegram-source-intelligence.json; do
   if ! curl -fsS --max-time 20 "https://purge.jsdelivr.net/gh/faridbarahimi/AICP-VPN@config-feed/feed/$file" >/dev/null; then
     printf 'WARNING: jsDelivr cache purge failed for %s; origin snapshot is still published\\n' "$file" >&2
   fi

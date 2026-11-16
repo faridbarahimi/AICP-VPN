@@ -22,3 +22,10 @@ local.properties
 # Reproducible native runtime binaries and generated Xray AAR (fetch via scripts).
 app/libs/
 .kotlin/
+
+# Local source intelligence history / discovery cache
+state/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
