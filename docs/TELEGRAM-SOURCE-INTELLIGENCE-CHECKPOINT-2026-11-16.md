@@ -134,3 +134,27 @@ The five candidate names were discovered from public GitHub repository READMEs. 
   `2026-11-16T11:25:58Z`, with 64 verified profiles and no batch errors.
 - Added unit tests for source parsing, source-host restrictions, quarantine
   permissions, and freshness-gated feed merge.
+
+## External-source publication and CI confirmation (2026-11-16 11:30 UTC)
+
+- Production publisher merged the 64 fresh sing-box-verified external profiles
+  with the existing Telegram feed. Public snapshot generated at
+  `2026-11-16T11:28:41Z`: 159 unique configuration URIs (95 Telegram-derived
+  and 64 external protocol-verified), SHA-256
+  `fbe88bd7341159da95e4f5a39d41db9aa6fcd89c6945014edbdc7a5f7d263d4a`.
+- Public `config-feed` branch commit: `51221d8e9156f9bc55b2c7996e2db386773623e5`.
+  Its tree contains only `feed/telegram-all.json`, `feed/telegram-all.txt`, and
+  `feed/telegram-source-intelligence.json`.
+- Independent public read-back confirmed manifest count = actual URI lines =
+  159, all 159 unique, zero unsafe URI entries, and all 64 verified external
+  profiles present. Public manifest reports
+  `mixed_telegram_tcp_and_external_sing_box_verified` and the external count.
+- Code commit `cc18bbe` (`feat(vpn): add verified external source intelligence`)
+  and CI coverage commit `5c2af80` (`ci(vpn): cover external source intelligence tests`)
+  are pushed to `main`; working tree clean.
+- GitHub Actions run `43858243366` for `5c2af80` completed SUCCESS. All jobs
+  succeeded; publish step was correctly skipped on push (production publishing
+  remains the VPS timer/publisher responsibility).
+- Local regression: 29/29 Python unit tests PASS; Python compile, shell syntax,
+  `git diff --check`, and systemd unit verification PASS. Both VPS timers remain
+  active; latest daily source-intelligence service result SUCCESS.
