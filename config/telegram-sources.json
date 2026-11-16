@@ -41,6 +41,15 @@
         ".npvs"
       ],
       "attachment_index": "public_metadata_only"
+    },
+    {
+      "id": "v2ray-mammad-telegram",
+      "channel": "v2ray_Mammad",
+      "enabled": true,
+      "retention": "keep",
+      "low_frequency_after_days": 30,
+      "source_role": "public_telegram_proxy_and_config_discovery",
+      "access_note": "Public preview currently contains Telegram MTProto proxy links and promotional posts; only supported VPN profile URIs are eligible for feed publication. MTProto links are not converted into VPN profiles."
     }
   ]
 }
