@@ -17,10 +17,13 @@ command -v go >/dev/null || { echo "Go 1.27.4 is required" >&2; exit 1; }
 [[ "$(go env GOVERSION)" == "go1.27.4" ]] || { echo "Expected Go 1.27.4, got $(go env GOVERSION)" >&2; exit 1; }
 [[ "$(go env GOHOSTARCH)" == "amd64" ]] || { echo "gomobile Android AAR build currently requires an x86_64 host; use the Android NPV GitHub Actions workflow from ARM64 machines." >&2; exit 1; }
 mkdir -p "$ROOT/app/libs"
+GOMOBILE_VERSION="v0.0.0-20260908204917-8b95e45f8d3e"
 (
   cd "$ROOT/AndroidLibPantegnos"
-  go tool gomobile init
-  go tool gomobile bind -target=android -androidapi=29 -javapkg=com.aicp.vpn.npv \
+  # Invoke the pinned module directly. The Go 1.27 `tool` directive made
+  # gomobile require a module tidy on CI before it could even initialize.
+  go run "golang.org/x/mobile/cmd/gomobile@${GOMOBILE_VERSION}" init
+  go run "golang.org/x/mobile/cmd/gomobile@${GOMOBILE_VERSION}" bind -target=android -androidapi=29 -javapkg=com.aicp.vpn.npv \
     -o "$ROOT/app/libs/aicpnpv.aar" ./npv
 )
 [[ -s "$ROOT/app/libs/aicpnpv.aar" ]] || { echo "gomobile did not produce aicpnpv.aar" >&2; exit 1; }

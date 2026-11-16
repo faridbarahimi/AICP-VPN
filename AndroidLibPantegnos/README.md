@@ -10,9 +10,9 @@ A minimal Android-bindable package for offline `.npvt` / `.npvs` decryption.
 - The later AGPL-3.0 Pantegnos releases are not included.
 
 Build an Android AAR on a supported x86_64 Linux/macOS host with Go 1.27.4,
-Android NDK 27.3.13750724 (recommended), and the gomobile version pinned by `go.mod`:
+Android NDK 27.3.13750724 (recommended), and the gomobile module version pinned in `scripts/build-aicp-npv-aar.sh`:
 
 ```sh
-go tool gomobile bind -target=android -androidapi=29 \
+go run golang.org/x/mobile/cmd/gomobile@v0.0.0-20260908204917-8b95e45f8d3e bind -target=android -androidapi=29 \
   -javapkg=com.aicp.vpn.npv -o ../app/libs/aicpnpv.aar ./npv
 ```
