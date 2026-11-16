@@ -54,6 +54,7 @@ jobs:
       - name: Test the isolated MIT NPV core
         working-directory: AndroidLibPantegnos
         run: |
+          go mod download all
           go vet ./...
           go test ./...
       - name: Fetch pinned native runtimes

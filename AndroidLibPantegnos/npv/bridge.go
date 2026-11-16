@@ -23,7 +23,12 @@ type result struct {
 }
 
 // Inspect returns whether an NPVT/NPVS file is recognized and whether it needs a passphrase.
-func Inspect(fileName string, data []byte) string {
+func Inspect(fileName string, data []byte) (out string) {
+	defer func() {
+		if v := recover(); v != nil {
+			out = encode(result{Error: fmt.Sprintf("profile inspection failed safely (%T)", v)})
+		}
+	}()
 	if len(data) == 0 || len(data) > maxInputBytes {
 		return encode(result{Error: "file is empty or exceeds the 4 MiB safety limit"})
 	}
@@ -48,6 +53,9 @@ func Decrypt(fileName string, data []byte, password string) (out string) {
 	}()
 	if len(data) == 0 || len(data) > maxInputBytes {
 		return encode(result{Error: "file is empty or exceeds the 4 MiB safety limit"})
+	}
+	if len(password) > 512 {
+		return encode(result{Error: "profile passphrase exceeds the 512-byte safety limit"})
 	}
 	ext := strings.ToLower(filepath.Ext(filepath.Base(fileName)))
 	if ext != ".npvt" && ext != ".npvs" {

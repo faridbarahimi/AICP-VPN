@@ -5,6 +5,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.text.InputFilter
 import android.text.InputType
 import android.widget.EditText
 import android.net.VpnService
@@ -327,6 +328,7 @@ class MainActivity : HelperBaseComponentActivity() {
             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             hint = getString(R.string.npv_password_hint)
             setSingleLine(true)
+            filters = arrayOf(InputFilter.LengthFilter(128))
         }
         AlertDialog.Builder(this)
             .setTitle(R.string.npv_password_title)

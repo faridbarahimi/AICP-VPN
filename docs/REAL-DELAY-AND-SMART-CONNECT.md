@@ -96,6 +96,9 @@ preserved in `AndroidLibPantegnos/LICENSE` and its provenance is recorded in
 - Recovered links are filtered to schemes AICP's own parser supports before
   import. Unsupported entries (for example SSH-only payloads) are not silently
   converted into a different protocol.
+- The upstream unit/vector suite and the Android import/filter tests pass, but
+  no user-provided real `.npvt`/`.npvs` file has been available for an end-to-end
+  sample test yet; device-level import acceptance remains pending.
 - The Go core is built as `app/libs/aicpnpv.aar` by
   `scripts/build-aicp-npv-aar.sh`; the generated AAR is intentionally ignored
   by Git like the existing Xray AAR. The build requires Go 1.27.4, the pinned
