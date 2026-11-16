@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
   "sources": [
-    {"id":"v2ray-free-conf-telegram","channel":"v2ray_free_conf","enabled":true},
-    {"id":"marambashi-telegram","channel":"MARAMBASHI","enabled":true}
+    {
+      "id": "v2ray-free-conf-telegram",
+      "channel": "v2ray_free_conf",
+      "enabled": true
+    },
+    {
+      "id": "marambashi-telegram",
+      "channel": "MARAMBASHI",
+      "enabled": true
+    },
+    {
+      "id": "proxy-kafee-telegram",
+      "channel": "proxy_kafee",
+      "enabled": true,
+      "retention": "keep",
+      "low_frequency_after_days": 30
+    }
   ]
 }

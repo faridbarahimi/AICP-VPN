@@ -44,7 +44,7 @@ class SourceIntelligenceTests(unittest.TestCase):
             self.assertEqual(0, result['proxy_verified'])
             self.assertEqual(2, len(history.read_text().splitlines()))
 
-    def test_rotation_ranks_existing_sources_and_excludes_stale_sources(self):
+    def test_rotation_ranks_existing_sources_and_excludes_unhealthy_sources(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d); cat=root/'cat.json'; reg=root/'reg.json'; effective=root/'effective.json'
             cat.write_text(json.dumps({'schema_version':1,'sources':[
@@ -58,7 +58,7 @@ class SourceIntelligenceTests(unittest.TestCase):
             with patch('scripts.telegram_source_intelligence.inspect_source', side_effect=fake_inspect):
                 result=run(cat,root/'hist',root/'report',False,reg,effective)
             rotated=json.loads(effective.read_text())
-            self.assertEqual(['strong'],[x['id'] for x in rotated['sources']])
+            self.assertEqual(['strong','weak'],[x['id'] for x in rotated['sources']])
             self.assertFalse(result['rotation']['blocked'])
             self.assertEqual('stale',result['rotation']['excluded_sources'][0]['reason'])
 
@@ -73,16 +73,38 @@ class SourceIntelligenceTests(unittest.TestCase):
             with patch('scripts.telegram_source_intelligence.inspect_source', side_effect=fake_inspect):
                 result=run(cat,root/'hist',root/'report',False,reg,effective)
             self.assertTrue(result['rotation']['blocked'])
-            self.assertEqual([],json.loads(effective.read_text())['sources'])
+            self.assertEqual(['bad'],[x['id'] for x in json.loads(effective.read_text())['sources']])
 
-    def test_channel_with_old_posts_is_marked_stale(self):
+    def test_channel_with_old_posts_and_safe_configs_is_low_frequency_not_removed(self):
         old_page = '<div class="tgme_widget_message_wrap"><time datetime="2026-09-01T10:00:00Z"></time><div class="tgme_widget_message_text">vless://id@8.8.8.8:443#old</div></div>'
         with patch('scripts.telegram_source_intelligence.fetch_channel', return_value=old_page), \
              patch('scripts.telegram_source_intelligence.probe_tcp', return_value={'status':'tcp_reachable','latency_ms':5}):
             from scripts.telegram_source_intelligence import inspect_source
             result, _ = inspect_source({'id':'old','channel':'old_chan','enabled':False}, now=datetime(2026,11,16,tzinfo=timezone.utc))
-        self.assertEqual('stale', result['status'])
+        self.assertEqual('low_frequency', result['status'])
         self.assertGreater(result['age_days'], 30)
+
+    def test_default_catalog_retains_cafe_proxy_as_enabled_source(self):
+        catalog=json.loads(Path('config/telegram-sources.json').read_text())
+        cafe=next(x for x in catalog['sources'] if x['channel']=='proxy_kafee')
+        self.assertTrue(cafe['enabled'])
+        self.assertEqual('keep',cafe['retention'])
+        self.assertEqual(30,cafe['low_frequency_after_days'])
+
+    def test_low_frequency_source_remains_selected_when_safe_configs_exist(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d); cat=root/'cat.json'; effective=root/'effective.json'
+            cat.write_text(json.dumps({'schema_version':1,'sources':[{'id':'cafe','channel':'proxy_kafee','enabled':True,'retention':'keep'}]}))
+            def fake_inspect(source):
+                return ({'id':'cafe','channel':'proxy_kafee','enabled':True,'discovered':False,
+                         'status':'low_frequency','extracted':3,'safe_configs':3,'tested':3,'tcp_reachable':2,
+                         'proxy_verified':0,'last_seen_at':'now','age_days':45},
+                        ['vless://id@8.8.8.8:443#one'])
+            with patch('scripts.telegram_source_intelligence.inspect_source',side_effect=fake_inspect):
+                result=run(cat,root/'hist',root/'report',False,root/'registry.json',effective,root/'validated.json')
+            self.assertEqual(['cafe'],[x['id'] for x in result['rotation']['selected_sources']])
+            self.assertEqual(['cafe'],[x['id'] for x in json.loads(effective.read_text())['sources']])
+            self.assertEqual(['vless://id@8.8.8.8:443#one'],json.loads((root/'validated.json').read_text()))
 
     def test_channel_with_no_messages_is_marked_inactive(self):
         with patch('scripts.telegram_source_intelligence.fetch_channel', return_value='<div class="tgme_channel_info">empty</div>'):

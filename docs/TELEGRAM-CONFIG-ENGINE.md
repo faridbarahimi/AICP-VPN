@@ -26,7 +26,7 @@ GitHub Actions validates the collector on relevant pushes. `workflow_dispatch` i
 
 ## Failure semantics and health
 
-- If any enabled source fails, has no supported URIs, or the resulting snapshot is empty, publishing fails and the previous snapshot remains.
+- If an enabled source fetch fails, or the resulting combined snapshot is empty, publishing fails and the previous snapshot remains. A successfully fetched source with no supported URI is omitted from that cycle only; its catalog entry is retained and rechecked on every run.
 - Each successful complete run replaces the previous snapshot.
 - The collector reads only public Telegram previews and requires no Telegram account, bot token, or session.
 - The feed contains public proxy URIs; never add private subscriptions or user credentials.
@@ -35,7 +35,7 @@ GitHub Actions validates the collector on relevant pushes. `workflow_dispatch` i
 
 ## Sources
 
-Enabled source channels are declared in `config/telegram-sources.json`. Currently enabled: `v2ray_free_conf` and `MARAMBASHI`. The former replaces `proxy_kafee`, which returned HTTP 200 but stopped publishing supported proxy URIs in its public preview on 2026-11-15. Candidate replacement was live-checked before activation and yielded 19 supported URIs; the combined two-source collection yielded 90 unique profiles at the replacement checkpoint. Extracted profiles are not proof of live proxy connectivity. Proprietary NPV Tunnel `.npvt`/`.npvs` payloads are excluded until a compatible importer exists.
+Enabled source channels are declared in `config/telegram-sources.json`. Currently enabled: `v2ray_free_conf`, `MARAMBASHI`, and `proxy_kafee` (Cafe Proxy). Cafe Proxy was temporarily removed after a preview check on 2026-11-15 returned no supported URI, but this was a false negative for a low-frequency publisher: on 2026-11-16 its public preview again contained fresh proxy profiles. It is now restored as a retained source. Low publication cadence alone must never disable or delete it; its latest visible profiles remain eligible when endpoint safety checks pass, and it is re-evaluated every run. Extracted profiles are not proof of live proxy connectivity. Proprietary NPV Tunnel `.npvt`/`.npvs` payloads are excluded until a compatible importer exists.
 
 ## Telegram Source Intelligence & Rotation
 
@@ -45,7 +45,7 @@ The independent `scripts/telegram_source_intelligence.py` subsystem performs pub
 - Per-source history and disabled discovery registry: `/var/lib/aicp-vpn-source-intelligence/` (local VPS state; never committed to Git).
 - The every-20-minute publisher refreshes the qualification report and publishes `feed/telegram-source-intelligence.json` alongside the current text feed and manifest. The `config-feed` branch remains a single-root latest-snapshot branch; previous snapshot files/history are not accumulated there.
 - Discovered channels are stored as disabled candidates. They are inspected and ranked, but never automatically enabled or allowed into the user feed. Activation remains a deliberate catalog change after review.
-- Candidate sources are ranked by TCP-reachable endpoint count, then extracted count and freshness status. The rotation plan reorders enabled sources by this ranking and quarantines stale, inactive, no-config and unsafe-only sources; transient fetch errors block publication and preserve the previous snapshot. Stale channels are marked when their latest visible post is older than 30 days; channels with no visible messages are marked inactive, while channels posting without supported proxy URIs are marked no-configs.
+- Candidate sources are ranked by TCP-reachable endpoint count, then extracted count and freshness status. The rotation plan reorders enabled sources by this ranking and keeps low-frequency sources with safe endpoints eligible, and excludes only the current run’s missing/unsafe profiles without deleting their catalog entries; transient fetch errors block publication and preserve the previous snapshot. Sources whose latest post is older than their configured low-frequency threshold (30 days by default) are marked `low_frequency`, not dead. If they still expose safe endpoints, they remain eligible for the feed. Channels with no visible messages are marked inactive and channels with no supported URI are marked no-configs for that run, but neither status removes the source from the catalog; every configured source is checked again on subsequent runs.
 - URI validation rejects malformed endpoints, localhost, private/reserved IP literals, and non-routable DNS answers during probing. DNS answers are vetted and the exact vetted socket address is used to reduce DNS-rebinding risk. Probe count and timeout are bounded.
 - `extracted` = syntactically accepted unique URI count; `tested` = endpoints given a TCP test; `tcp_reachable` = endpoints accepting a TCP socket; `proxy_verified` = successful protocol-aware proxy traffic. The latter remains **0 / NOT VERIFIED** until a real client adapter performs a protocol handshake and authenticated request. TCP reachability alone is never called a working VPN.
 - Source history is append-only local JSONL. The public GitHub snapshot includes only the latest report, not the history database.

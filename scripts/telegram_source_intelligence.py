@@ -149,11 +149,12 @@ def inspect_source(source, now=None, probe_limit=MAX_PROBES_PER_SOURCE):
             last_post = max(parsed_dates)
             result["last_post_at"] = last_post.isoformat()
             result["age_days"] = round((now-last_post).total_seconds()/86400, 2)
-            if now-last_post > timedelta(days=30): result["status"] = "stale"
+            low_frequency_after = int(source.get("low_frequency_after_days", 30))
+            if now-last_post > timedelta(days=low_frequency_after): result["status"] = "low_frequency"
         uris = extract_uris(page)
         result["extracted"] = len(uris)
         if not uris:
-            result["status"] = ("stale" if result["status"] == "stale" else ("inactive" if result["message_count"] == 0 else "no_configs"))
+            result["status"] = "inactive" if result["message_count"] == 0 else "no_configs"
             return result, []
         probes = []
         safe_uris = []
@@ -165,7 +166,12 @@ def inspect_source(source, now=None, probe_limit=MAX_PROBES_PER_SOURCE):
             if outcome["status"] == "tcp_reachable": result["tcp_reachable"] += 1
         result["safe_configs"] = len(safe_uris)
         result["proxy_verified"] = 0  # requires a protocol-aware client/auth handshake, not a TCP connect
-        if result["status"] != "stale": result["status"] = "active" if result["tcp_reachable"] else ("no_reachable_endpoints" if safe_uris else "no_safe_endpoints")
+        if result["status"] == "low_frequency" and safe_uris:
+            # Low publication cadence is not evidence of source failure. Keep
+            # previously published profiles eligible and re-check on every run.
+            pass
+        else:
+            result["status"] = "active" if result["tcp_reachable"] else ("no_reachable_endpoints" if safe_uris else "no_safe_endpoints")
         result["median_tcp_latency_ms"] = sorted(x["latency_ms"] for x in probes if x["latency_ms"] is not None)[len([x for x in probes if x["latency_ms"] is not None])//2] if result["tcp_reachable"] else None
         return result, safe_uris
     except Exception as exc:
@@ -213,7 +219,7 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
         for rec in records:
             out.write(json.dumps({"recorded_at": utcnow().isoformat(timespec="seconds"), **rec}, ensure_ascii=False) + "\n")
     enabled_ids = {s["id"] for s in cfg["sources"] if s.get("enabled")}
-    selected = [r for r in ranked if r["id"] in enabled_ids and r["status"] in {"active", "no_reachable_endpoints"} and r["safe_configs"] > 0]
+    selected = [r for r in ranked if r["id"] in enabled_ids and r["status"] in {"active", "low_frequency", "no_reachable_endpoints"} and r["safe_configs"] > 0]
     enabled_errors = [r for r in ranked if r["id"] in enabled_ids and r["status"] == "error"]
     excluded = [r for r in ranked if r["id"] in enabled_ids and r["status"] in {"stale", "no_configs", "no_safe_endpoints", "inactive"}]
     rotation_blocked = bool(enabled_errors) or not selected
@@ -230,12 +236,17 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
         validated_uris_path.write_text(json.dumps(list(feed_config_map.values()), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if effective_catalog_path:
         effective_catalog_path.parent.mkdir(parents=True, exist_ok=True)
-        effective_sources = [] if rotation_blocked else [next(x for x in cfg["sources"] if x["id"] == rec["id"]) for rec in selected]
+        rank_by_id = {rec["id"]: rec["rank"] for rec in ranked}
+        # Preserve every explicitly configured source in the effective catalog;
+        # this is a ranking view, not a deletion/disable list.
+        effective_sources = sorted(cfg["sources"], key=lambda x: rank_by_id.get(x["id"], 10**9))
         effective_catalog_path.write_text(json.dumps({"schema_version": 1, "sources": effective_sources}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     report = {"schema_version": 1, "generated_at": utcnow().isoformat(timespec="seconds"),
               "discovery": {"candidate_count": len(discovered), "candidates": discovered, "queries": discovery_evidence},
               "source_count": len(records), "active_sources": sum(r["status"] == "active" for r in records),
               "stale_sources": sum(r["status"] == "stale" for r in records),
+              "low_frequency_sources": sum(r["status"] == "low_frequency" for r in records),
+              "no_config_sources": sum(r["status"] == "no_configs" for r in records),
               "inactive_sources": sum(r["status"] == "inactive" for r in records),
               "disabled_discovered_candidates": sum(r["discovered"] for r in records),
               "extracted": sum(r["extracted"] for r in records),
@@ -249,11 +260,12 @@ def run(catalog_path: Path, history_path: Path, report_path: Path, discover=True
               "feed_tcp_reachable": sum(r["tcp_reachable"] for r in selected),
               "ranked_sources": ranked,
               "rotation": {"mode": "ranked_existing_sources", "blocked": rotation_blocked,
+                           "retention_policy": "configured sources are never auto-deleted; low-frequency sources with safe endpoints remain eligible; sources without current profiles are rechecked on every run",
                            "selected_sources": [{"id": r["id"], "channel": r["channel"], "rank": r["rank"], "extracted": r["extracted"], "safe_configs": r["safe_configs"], "tcp_reachable": r["tcp_reachable"]} for r in selected],
                            "excluded_sources": [{"id": r["id"], "channel": r["channel"], "reason": r["status"]} for r in excluded],
                            "error_sources": [{"id": r["id"], "channel": r["channel"]} for r in enabled_errors],
                            "new_candidates_auto_enabled": False},
-              "selection_policy": "existing enabled sources only; discovered sources require explicit review before activation",
+              "selection_policy": "existing enabled sources only; discovered sources require explicit review before activation; low-frequency enabled sources with safe endpoints remain eligible",
               "connectivity_semantics": "tcp_reachable is a TCP socket check only; proxy_verified requires protocol-aware authenticated traffic and remains zero without a client probe adapter"}
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
