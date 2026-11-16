@@ -70,34 +70,49 @@ are fabricated or scraped. The invite-only main channel can be enabled as a
 config source only after authorized membership/access is provided to the
 collector.
 
-## OpenVPN and NPV file handoff
+## OpenVPN and NPV file import
 
-The local file picker now recognizes `.ovpn`, `.npvt` and `.npvs` by filename
-and routes them to external Android handlers using the original SAF content URI
-with read permission. `.ovpn` uses the standard `application/x-openvpn-profile`
-MIME type. This delegates import to an installed OpenVPN client; AICP does not
-yet run an OpenVPN engine itself, and these external profiles are not managed
-by AICP Smart Connect or its profile rotation.
+`.ovpn` files are recognized by the local file picker and handed to an installed
+OpenVPN client using the original Storage Access Framework URI and read grant.
+AICP does not embed an OpenVPN engine: the imported profile runs in the external
+OpenVPN application, not inside AICP, and is not managed by AICP Smart Connect
+or profile rotation. The picker first tries `application/x-openvpn-profile`,
+then a wildcard file-handler fallback.
 
-NPVT/NPVS are NapsternetV formats. I checked Hiddify's public source/issues:
-its issue #2267 requests import/export of locked NPV Tunnel profiles and was
-closed as not planned; I found no official `.npvt` parser in the public source.
-If a particular Hiddify build accepts it, that behavior is not represented in
-the public repository evidence and needs a sample/version-specific check.
+`.npvt` and `.npvs` are now decrypted locally inside AICP. The importer uses
+only the MIT-licensed Pantegnos `v9.4.3` NPV implementation (commit
+`09ae0699f7d18717f1900643b703021344f6a9fe`), not its later AGPL releases and
+not the unlicensed third-party browser converter. The upstream MIT notice is
+preserved in `AndroidLibPantegnos/LICENSE` and its provenance is recorded in
+`AndroidLibPantegnos/UPSTREAM.md`.
 
-The discovered third-party decrypter reports white-box AES lookup tables and
-multiple NPVS envelope generations; its repository has no declared reuse
-license. AICP therefore does not bundle or copy its code or cryptographic
-tables, and does not upload private configuration files to a third-party
-converter. The picker offers the file to installed handlers using both the
-specific binary MIME type and a wildcard fallback. Direct in-app decryption/
-conversion remains pending a clear license or independent format specification
-and representative test files.
+- Supports the upstream `NPVT1` and supported current `NPVS` envelope variants,
+  including passphrase-protected exports. Legacy sealed `NPVT1`/`NPVTSUB1`
+  NPVS containers and recipient-ECDH-only wraps remain unsupported upstream.
+- A passphrase prompt appears only when the container reports that one is
+  required.
+- Files are read locally, capped at 4 MiB, and neither bytes, passwords nor
+  recovered key material are logged or uploaded.
+- Recovered links are filtered to schemes AICP's own parser supports before
+  import. Unsupported entries (for example SSH-only payloads) are not silently
+  converted into a different protocol.
+- The Go core is built as `app/libs/aicpnpv.aar` by
+  `scripts/build-aicp-npv-aar.sh`; the generated AAR is intentionally ignored
+  by Git like the existing Xray AAR. The build requires Go 1.27.4, the pinned
+  gomobile revision and a supported x86_64 Android-NDK host. The current ARM64
+  VPS cannot run this gomobile toolchain; the new x86_64 GitHub Actions job
+  builds the AAR and runs the Android regression suite.
+
+Hiddify's public issue #2267 requests import/export of locked NPV Tunnel
+profiles and was closed as not planned. I found no official `.npvt` parser in
+its public source; AICP's implementation therefore comes from the separately
+MIT-licensed Pantegnos v9.4.3 source, not Hiddify.
 
 Upstream references:
-- Hiddify NPV locked-profile import request (closed as not planned): https://github.com/hiddify/hiddify-app/issues/2267
-- NPVT/NPVS decrypter README (no license file found): https://github.com/aminbaghaeidev/NPVT-NPVS-Decrypter
-- OpenVPN Android MIME/API reference: https://github.com/schwabe/ics-openvpn
+- Pantegnos v9.4.3 MIT source: https://github.com/FrontierTM/Pantegnos/tree/v9.4.3
+- Pantegnos later-release license change: https://github.com/FrontierTM/Pantegnos
+- Hiddify NPV locked-profile import request: https://github.com/hiddify/hiddify-app/issues/2267
+- OpenVPN for Android: https://github.com/schwabe/ics-openvpn
 - OpenVPN Connect profile import: https://openvpn.net/connect-docs/import-profile/
 
 ## Anti-oscillation and runtime evidence

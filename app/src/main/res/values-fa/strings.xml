@@ -912,8 +912,10 @@
     <string name="backup_legacy_restore_confirm">با این حال بازیابی شود</string>
     <string name="proxy_sharing_requires_auth">برای اشتراک‌گذاری پروکسی در شبکهٔ محلی، ابتدا نام کاربری و گذرواژهٔ غیرخالی تعیین کنید.</string>
     <string name="openvpn_external_import">بازکردن با برنامهٔ OpenVPN</string>
-    <string name="npv_external_import">بازکردن با برنامهٔ NPV Tunnel</string>
     <string name="openvpn_client_required">برای استفاده از این پروفایل، یک کلاینت OpenVPN نصب کنید. اجرای بومی OpenVPN هنوز به AICP اضافه نشده است.</string>
-    <string name="npv_client_required">برای بازکردن این فایل، NapsternetV/NPV Tunnel را نصب کنید. رمزگشایی مستقیم NPVT درون برنامه هنوز فعال نیست.</string>
+    <string name="npv_password_title">رمز فایل NPV را وارد کنید</string>
+    <string name="npv_password_hint">رمز پروفایل</string>
+    <string name="npv_decryption_failed">رمزگشایی فایل NPV ناموفق بود؛ فایل و رمز را بررسی کنید.</string>
+    <string name="npv_no_importable_profiles">فایل رمزگشایی شد، اما پروفایل قابل‌استفاده‌ای در قالب‌های پشتیبانی‌شدهٔ AICP ندارد.</string>
     <string name="profile_file_import_failed">خواندن یا بازکردن فایل پروفایل انتخاب‌شده ناموفق بود.</string>
 </resources>

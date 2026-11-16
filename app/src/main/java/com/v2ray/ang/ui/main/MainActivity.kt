@@ -1,9 +1,12 @@
 package com.v2ray.ang.ui.main
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.text.InputType
+import android.widget.EditText
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.lifecycleScope
+import com.aicp.vpn.npv.Npv
 import com.v2ray.ang.AngApplication
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.R
@@ -55,6 +59,9 @@ import com.v2ray.ang.util.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 
 class MainActivity : HelperBaseComponentActivity() {
 
@@ -244,10 +251,10 @@ class MainActivity : HelperBaseComponentActivity() {
         launchFileChooser("*/*") { uri ->
             if (uri == null) return@launchFileChooser
             try {
-                val displayName = queryDisplayName(uri)
+                val displayName = queryDisplayName(uri).ifBlank { uri.lastPathSegment.orEmpty() }
                 when (AicpProfileFileType.detect(displayName)) {
                     AicpProfileFileType.OPENVPN -> openExternalProfile(uri, "application/x-openvpn-profile", R.string.openvpn_external_import)
-                    AicpProfileFileType.NPVT, AicpProfileFileType.NPVS -> openExternalProfile(uri, "application/octet-stream", R.string.npv_external_import)
+                    AicpProfileFileType.NPVT, AicpProfileFileType.NPVS -> importNpvFile(uri, displayName)
                     AicpProfileFileType.TEXT -> contentResolver.openInputStream(uri)?.bufferedReader()?.use { reader ->
                         mainViewModel.onAction(MainAction.ImportBatchConfig(reader.readText()))
                     }
@@ -277,25 +284,102 @@ class MainActivity : HelperBaseComponentActivity() {
             setDataAndType(uri, mimeType)
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
-        val handlers = packageManager.queryIntentActivities(view, 0)
-        if (handlers.isNotEmpty()) {
+        if (packageManager.queryIntentActivities(view, 0).isNotEmpty()) {
             startActivity(Intent.createChooser(view, getString(chooserTitleRes)))
             return
         }
-        if (mimeType == "application/octet-stream") {
-            // Retry with a wildcard MIME type so file-oriented handlers can match by extension.
-            val wildcard = Intent(Intent.ACTION_VIEW).apply {
-                setDataAndType(uri, "*/*")
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            if (packageManager.queryIntentActivities(wildcard, 0).isNotEmpty()) {
-                startActivity(Intent.createChooser(wildcard, getString(chooserTitleRes)))
-            } else {
-                toastError(R.string.npv_client_required)
-            }
+        // Many OpenVPN clients and file handlers register only */* plus extension sniffing.
+        val wildcard = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, "*/*")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        if (packageManager.queryIntentActivities(wildcard, 0).isNotEmpty()) {
+            startActivity(Intent.createChooser(wildcard, getString(chooserTitleRes)))
         } else {
             toastError(R.string.openvpn_client_required)
         }
+    }
+
+    /** Read and decrypt NPVT/NPVS locally; never upload or log configuration bytes or secrets. */
+    private fun importNpvFile(uri: Uri, displayName: String) {
+        lifecycleScope.launch {
+            try {
+                val data = withContext(Dispatchers.IO) { readProfileBytesBounded(uri, MAX_NPV_FILE_BYTES) }
+                val inspection = withContext(Dispatchers.Default) { JSONObject(Npv.inspect(displayName, data)) }
+                if (!inspection.optBoolean("ok")) {
+                    toastError(inspection.optString("error", getString(R.string.npv_decryption_failed)))
+                    return@launch
+                }
+                if (inspection.optBoolean("needsPassword")) {
+                    showNpvPasswordDialog(displayName, data)
+                } else {
+                    decryptAndImportNpv(displayName, data, "")
+                }
+            } catch (e: Exception) {
+                LogUtil.e(AppConfig.TAG, "NPV profile import failed (${e.javaClass.simpleName})")
+                toastError(R.string.npv_decryption_failed)
+            }
+        }
+    }
+
+    private fun showNpvPasswordDialog(displayName: String, data: ByteArray) {
+        val passwordInput = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            hint = getString(R.string.npv_password_hint)
+            setSingleLine(true)
+        }
+        AlertDialog.Builder(this)
+            .setTitle(R.string.npv_password_title)
+            .setView(passwordInput)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                val password = passwordInput.text.toString()
+                passwordInput.text?.clear()
+                decryptAndImportNpv(displayName, data, password)
+            }
+            .show()
+    }
+
+    private fun decryptAndImportNpv(displayName: String, data: ByteArray, password: String) {
+        lifecycleScope.launch {
+            try {
+                val result = withContext(Dispatchers.Default) { JSONObject(Npv.decrypt(displayName, data, password)) }
+                if (!result.optBoolean("ok")) {
+                    toastError(result.optString("error", getString(R.string.npv_decryption_failed)))
+                    return@launch
+                }
+                val links = AicpNpvProfileExtractor.extractImportableLinks(result.optString("text"))
+                if (links.isEmpty()) {
+                    toastError(R.string.npv_no_importable_profiles)
+                    return@launch
+                }
+                mainViewModel.onAction(MainAction.ImportBatchConfig(links.joinToString("\n")))
+            } catch (e: Exception) {
+                LogUtil.e(AppConfig.TAG, "NPV decryption/import failed (${e.javaClass.simpleName})")
+                toastError(R.string.npv_decryption_failed)
+            }
+        }
+    }
+
+    private fun readProfileBytesBounded(uri: Uri, maxBytes: Int): ByteArray {
+        val input = contentResolver.openInputStream(uri) ?: throw IOException("Cannot open selected file")
+        input.use { stream ->
+            val output = ByteArrayOutputStream()
+            val buffer = ByteArray(8192)
+            var total = 0
+            while (true) {
+                val count = stream.read(buffer)
+                if (count < 0) break
+                total += count
+                if (total > maxBytes) throw IOException("Selected profile exceeds the import size limit")
+                output.write(buffer, 0, count)
+            }
+            return output.toByteArray()
+        }
+    }
+
+    private companion object {
+        const val MAX_NPV_FILE_BYTES = 4 * 1024 * 1024
     }
 
     private fun editServer(guid: String, profile: ProfileItem) {

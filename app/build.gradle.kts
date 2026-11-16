@@ -136,6 +136,18 @@ android {
 
 }
 
+// The NPV decryptor is a locally built gomobile AAR from the MIT-licensed v9.4.3 core.
+val verifyAicpNpvAar = tasks.register("verifyAicpNpvAar") {
+    group = "verification"
+    description = "Checks that the offline NPVT/NPVS decryption bridge has been built."
+    doLast {
+        val aar = file("libs/aicpnpv.aar")
+        check(aar.isFile && aar.length() > 0L) {
+            "Missing app/libs/aicpnpv.aar. Run scripts/build-aicp-npv-aar.sh on a supported x86_64 host with Go and Android NDK."
+        }
+    }
+}
+
 // Fail early if required native runtimes or the signed Psiphon bootstrap list are omitted.
 // Hev JNI is loaded in-process; libhevsockstun is a standalone root-mode executable. The
 // Aether/Psiphon/Lyrebird binaries are executable child processes packaged under lib*.so names.
@@ -241,7 +253,7 @@ val verifyXrayCoreArtifact = tasks.register("verifyXrayCoreArtifact") {
         }
     }
 }
-tasks.named("preBuild").configure { dependsOn(verifyNativeRuntimeAssets, verifyXrayCoreArtifact) }
+tasks.named("preBuild").configure { dependsOn(verifyNativeRuntimeAssets, verifyXrayCoreArtifact, verifyAicpNpvAar) }
 
 dependencies {
     // Core Libraries
