@@ -2,11 +2,11 @@
 
 AICP VPN is an Android VPN client based on the open-source v2rayNG project, with AICP-specific connection management, configuration-source handling, Smart Connect selection, Xray health recovery and a refined Android UI.
 
-> **Project status:** Version `2.3.28` is built, signed, and published. Automated unit tests and release lint passed. Physical-device acceptance (live VPN traffic, DNS/IPv6 leak checks, real failover timing, per-app routing and RTL Persian rendering) remains pending. Do not interpret a successful build as proof of operational acceptance.
+> **Project status:** Version `2.3.42` is built and signed from canonical source commit `fa3fd1ceb6c615c4f713fd53e979a66d4d3c2178`. GitHub release publication is being completed. Physical-device acceptance (live VPN traffic, DNS/IPv6 leak checks, real failover timing, per-app routing and RTL Persian rendering) remains pending. Do not interpret a successful build as proof of operational acceptance.
 
 ## Latest release
 
-**[AICP VPN 2.3.28 — GitHub Releases](https://github.com/faridbarahimi/AICP-VPN/releases/latest)**
+**[AICP VPN 2.3.42 — GitHub Releases](https://github.com/faridbarahimi/AICP-VPN/releases/latest)**
 
 The release page provides five signed APK variants:
 
@@ -16,7 +16,11 @@ The release page provides five signed APK variants:
 - `x86` — 32-bit Intel Android devices/emulators.
 - `universal` — all supported ABIs in one larger APK.
 
-Verify downloaded files against `SHA256SUMS_2.3.28_r1.txt` attached to the release and the official AICP signing certificate fingerprint documented in the release manifest.
+Verify downloaded files against `SHA256SUMS_2.3.42_r1.txt` attached to the release and the official AICP signing certificate fingerprint documented in the release manifest.
+
+## Canonical source for 2.3.42
+
+The 2.3.42 APKs were built from `faridbarahimi/AICP-Core-Platform` at commit `fa3fd1ceb6c615c4f713fd53e979a66d4d3c2178`. This repository is the public release/distribution surface; the monorepo path `apps/aicp-vpn/V2rayNG` is the authoritative source for that release.
 
 ## Build requirements
 
@@ -50,6 +54,8 @@ Build release APK variants:
   --no-daemon --no-parallel --max-workers=1
 ```
 
+> Reproducibility note: the build commands above describe the historical source snapshot in this distribution repository. The 2.3.42 binaries were built from the authoritative monorepo source at commit `fa3fd1ceb6c615c4f713fd53e979a66d4d3c2178`; use that source tree to reproduce this release.
+
 ### Release signing
 
 Release signing is optional for local development. To sign release APKs with an authorized AICP release keystore, provide these environment variables in the build environment:
@@ -64,16 +70,17 @@ Never commit keystores, signing passwords, API tokens, or local environment file
 ## Version information
 
 - Application ID: `com.aicp.vpn`
-- Version name: `2.3.28`
-- Version code: `769`
+- Version name: `2.3.42`
+- Version code: `783`
 - Minimum Android: 10 (API 29)
 - Target Android API: 37
 
 ## Documentation
 
 - [`release/RELEASE_NOTES.txt`](release/RELEASE_NOTES.txt)
-- [`release/RELEASE_NOTES_2.3.28.md`](release/RELEASE_NOTES_2.3.28.md)
-- [`release/SHA256SUMS_2.3.28_r1.txt`](release/SHA256SUMS_2.3.28_r1.txt)
+- [`release/RELEASE_NOTES_2.3.42.md`](release/RELEASE_NOTES_2.3.42.md)
+- [`release/RELEASE_MANIFEST_2.3.42_r1.txt`](release/RELEASE_MANIFEST_2.3.42_r1.txt)
+- [`release/SHA256SUMS_2.3.42_r1.txt`](release/SHA256SUMS_2.3.42_r1.txt)
 - [`release/RELEASE_MANIFEST.txt`](release/RELEASE_MANIFEST.txt)
 - [`release/GOOGLE_PLAY_RELEASE_CHECKLIST.md`](release/GOOGLE_PLAY_RELEASE_CHECKLIST.md)
 - [`docs/release/AICP-VPN-2.3.27-CHECKPOINT.md`](docs/release/AICP-VPN-2.3.27-CHECKPOINT.md)
