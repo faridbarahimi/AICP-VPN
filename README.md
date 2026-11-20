@@ -2,11 +2,13 @@
 
 AICP VPN is an Android VPN client based on the open-source v2rayNG project, with AICP-specific connection management, configuration-source handling, Smart Connect selection, Xray health recovery and a refined Android UI.
 
-> **Project status:** Version `2.3.42` is built and signed from canonical source commit `fa3fd1ceb6c615c4f713fd53e979a66d4d3c2178`. GitHub release publication is being completed. Physical-device acceptance (live VPN traffic, DNS/IPv6 leak checks, real failover timing, per-app routing and RTL Persian rendering) remains pending. Do not interpret a successful build as proof of operational acceptance.
+> **Project status:** Version `2.3.42` is built, signed and published from canonical source commit `fa3fd1ceb6c615c4f713fd53e979a66d4d3c2178`. All five ABI APKs, the release manifest and SHA-256 sums are attached to the GitHub Release. Physical-device acceptance (live VPN traffic, DNS/IPv6 leak checks, real failover timing, per-app routing and RTL Persian rendering) remains pending. Do not interpret a successful build as proof of operational acceptance.
 
 ## Latest release
 
 **[AICP VPN 2.3.42 — GitHub Releases](https://github.com/faridbarahimi/AICP-VPN/releases/latest)**
+
+[Download ARM64 APK directly](https://github.com/faridbarahimi/AICP-VPN/releases/download/v2.3.42/AICP-VPN_2.3.42_r1_arm64-v8a.apk).
 
 The release page provides five signed APK variants:
 
