@@ -1,0 +1,4285 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-21T18:09:20Z",
+  "config_count": 179,
+  "sha256": "83ff0976bf91747d0eded33dbf6b954587265b51fcb390256d51eb8efb4e8f70",
+  "health_status": "telegram_sing_box_verified",
+  "source_count": 108,
+  "sources": [
+    {
+      "id": "discovered-v2ma-apk",
+      "channel": "v2ma_apk",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 90,
+      "endpoint_safe_configs": 80,
+      "safe_configs": 75,
+      "tested": 80,
+      "tcp_reachable": 75,
+      "tcp_unreachable": 5,
+      "proxy_verified": 49,
+      "last_post_at": "2026-11-18T04:57:52+00:00",
+      "last_seen_at": "2026-11-21T18:02:13+00:00",
+      "errors": [],
+      "age_days": 3.54,
+      "attachment_count": 1,
+      "attachment_extensions_found": [
+        ".txt"
+      ],
+      "median_tcp_latency_ms": 93.39,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-18T04:57:52+00:00",
+          "age_days": 3.54
+        },
+        "structural_safety": {
+          "tested": 80,
+          "endpoint_safe": 80
+        },
+        "availability": {
+          "tcp_reachable": 75,
+          "tested": 80
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 1
+    },
+    {
+      "id": "discovered-v2cnf",
+      "channel": "v2cnf",
+      "enabled": false,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 154,
+      "endpoint_safe_configs": 76,
+      "safe_configs": 66,
+      "tested": 80,
+      "tcp_reachable": 66,
+      "tcp_unreachable": 10,
+      "proxy_verified": 1,
+      "last_post_at": "2026-11-21T16:00:47+00:00",
+      "last_seen_at": "2026-11-21T18:03:13+00:00",
+      "errors": [],
+      "age_days": 0.09,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 18.36,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T16:00:47+00:00",
+          "age_days": 0.09
+        },
+        "structural_safety": {
+          "tested": 80,
+          "endpoint_safe": 76
+        },
+        "availability": {
+          "tcp_reachable": 66,
+          "tested": 80
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 2
+    },
+    {
+      "id": "telegram-configraygan",
+      "channel": "configraygan",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 133,
+      "endpoint_safe_configs": 80,
+      "safe_configs": 63,
+      "tested": 80,
+      "tcp_reachable": 63,
+      "tcp_unreachable": 17,
+      "proxy_verified": 20,
+      "last_post_at": "2026-11-20T18:24:35+00:00",
+      "last_seen_at": "2026-11-21T18:00:16+00:00",
+      "errors": [],
+      "age_days": 0.98,
+      "attachment_count": 3,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 1.66,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-20T18:24:35+00:00",
+          "age_days": 0.98
+        },
+        "structural_safety": {
+          "tested": 80,
+          "endpoint_safe": 80
+        },
+        "availability": {
+          "tcp_reachable": 63,
+          "tested": 80
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 3
+    },
+    {
+      "id": "vpsave-telegram",
+      "channel": "VPsave",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 236,
+      "endpoint_safe_configs": 79,
+      "safe_configs": 61,
+      "tested": 80,
+      "tcp_reachable": 61,
+      "tcp_unreachable": 18,
+      "proxy_verified": 13,
+      "last_post_at": "2026-11-21T17:59:38+00:00",
+      "last_seen_at": "2026-11-21T18:02:33+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 8.51,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T17:59:38+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 80,
+          "endpoint_safe": 79
+        },
+        "availability": {
+          "tcp_reachable": 61,
+          "tested": 80
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 4
+    },
+    {
+      "id": "marambashi-telegram",
+      "channel": "MARAMBASHI",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 18,
+      "extracted": 69,
+      "endpoint_safe_configs": 69,
+      "safe_configs": 59,
+      "tested": 69,
+      "tcp_reachable": 59,
+      "tcp_unreachable": 10,
+      "proxy_verified": 39,
+      "last_post_at": "2026-11-21T17:59:56+00:00",
+      "last_seen_at": "2026-11-21T18:01:00+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 5,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 29.61,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T17:59:56+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 69,
+          "endpoint_safe": 69
+        },
+        "availability": {
+          "tcp_reachable": 59,
+          "tested": 69
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 5
+    },
+    {
+      "id": "discovered-surfboardv2ray",
+      "channel": "Surfboardv2ray",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 55,
+      "endpoint_safe_configs": 55,
+      "safe_configs": 55,
+      "tested": 55,
+      "tcp_reachable": 55,
+      "tcp_unreachable": 0,
+      "proxy_verified": 54,
+      "last_post_at": "2026-11-21T18:00:19+00:00",
+      "last_seen_at": "2026-11-21T18:02:11+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 10.47,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T18:00:19+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 55,
+          "endpoint_safe": 55
+        },
+        "availability": {
+          "tcp_reachable": 55,
+          "tested": 55
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 6
+    },
+    {
+      "id": "discovered-marambashi2",
+      "channel": "Marambashi2",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 19,
+      "extracted": 57,
+      "endpoint_safe_configs": 57,
+      "safe_configs": 49,
+      "tested": 57,
+      "tcp_reachable": 49,
+      "tcp_unreachable": 8,
+      "proxy_verified": 35,
+      "last_post_at": "2026-11-21T18:00:13+00:00",
+      "last_seen_at": "2026-11-21T18:01:22+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 4,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 28.47,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T18:00:13+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 57,
+          "endpoint_safe": 57
+        },
+        "availability": {
+          "tcp_reachable": 49,
+          "tested": 57
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 7
+    },
+    {
+      "id": "discovered-singbox1",
+      "channel": "singbox1",
+      "enabled": false,
+      "discovered": true,
+      "status": "active",
+      "message_count": 8,
+      "extracted": 38,
+      "endpoint_safe_configs": 38,
+      "safe_configs": 35,
+      "tested": 38,
+      "tcp_reachable": 35,
+      "tcp_unreachable": 3,
+      "proxy_verified": 13,
+      "last_post_at": "2026-11-21T17:15:19+00:00",
+      "last_seen_at": "2026-11-21T18:03:04+00:00",
+      "errors": [],
+      "age_days": 0.03,
+      "attachment_count": 19,
+      "attachment_extensions_found": [
+        ".conf",
+        ".ovpn",
+        ".txt"
+      ],
+      "median_tcp_latency_ms": 7.87,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T17:15:19+00:00",
+          "age_days": 0.03
+        },
+        "structural_safety": {
+          "tested": 38,
+          "endpoint_safe": 38
+        },
+        "availability": {
+          "tcp_reachable": 35,
+          "tested": 38
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 8
+    },
+    {
+      "id": "proxy-kafee-telegram",
+      "channel": "proxy_kafee",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 11,
+      "extracted": 25,
+      "endpoint_safe_configs": 25,
+      "safe_configs": 25,
+      "tested": 25,
+      "tcp_reachable": 25,
+      "tcp_unreachable": 0,
+      "proxy_verified": 11,
+      "last_post_at": "2026-11-21T17:20:27+00:00",
+      "last_seen_at": "2026-11-21T18:02:07+00:00",
+      "errors": [],
+      "age_days": 0.03,
+      "attachment_count": 10,
+      "attachment_extensions_found": [
+        ".ovpn"
+      ],
+      "median_tcp_latency_ms": 7.46,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T17:20:27+00:00",
+          "age_days": 0.03
+        },
+        "structural_safety": {
+          "tested": 25,
+          "endpoint_safe": 25
+        },
+        "availability": {
+          "tcp_reachable": 25,
+          "tested": 25
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 9
+    },
+    {
+      "id": "discovered-configx2ray",
+      "channel": "ConfigX2ray",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 21,
+      "endpoint_safe_configs": 21,
+      "safe_configs": 17,
+      "tested": 21,
+      "tcp_reachable": 17,
+      "tcp_unreachable": 4,
+      "proxy_verified": 1,
+      "last_post_at": "2026-11-21T17:59:52+00:00",
+      "last_seen_at": "2026-11-21T18:00:49+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 7,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "median_tcp_latency_ms": 9.18,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T17:59:52+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 21,
+          "endpoint_safe": 21
+        },
+        "availability": {
+          "tcp_reachable": 17,
+          "tested": 21
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 10
+    },
+    {
+      "id": "telegram-iranping24",
+      "channel": "iranping24",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 17,
+      "endpoint_safe_configs": 17,
+      "safe_configs": 17,
+      "tested": 17,
+      "tcp_reachable": 17,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T17:37:27+00:00",
+      "last_seen_at": "2026-11-21T18:01:00+00:00",
+      "errors": [],
+      "age_days": 0.02,
+      "attachment_count": 1,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 0.81,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T17:37:27+00:00",
+          "age_days": 0.02
+        },
+        "structural_safety": {
+          "tested": 17,
+          "endpoint_safe": 17
+        },
+        "availability": {
+          "tcp_reachable": 17,
+          "tested": 17
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 11
+    },
+    {
+      "id": "discovered-persianvpnhub",
+      "channel": "persianvpnhub",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 17,
+      "endpoint_safe_configs": 17,
+      "safe_configs": 16,
+      "tested": 17,
+      "tcp_reachable": 16,
+      "tcp_unreachable": 1,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T18:00:52+00:00",
+      "last_seen_at": "2026-11-21T18:01:37+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 3,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "median_tcp_latency_ms": 24.75,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T18:00:52+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 17,
+          "endpoint_safe": 17
+        },
+        "availability": {
+          "tcp_reachable": 16,
+          "tested": 17
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 12
+    },
+    {
+      "id": "v2ray-free-conf-telegram",
+      "channel": "v2ray_free_conf",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 19,
+      "endpoint_safe_configs": 18,
+      "safe_configs": 15,
+      "tested": 19,
+      "tcp_reachable": 15,
+      "tcp_unreachable": 3,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T17:58:02+00:00",
+      "last_seen_at": "2026-11-21T18:02:27+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 17.38,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T17:58:02+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 19,
+          "endpoint_safe": 18
+        },
+        "availability": {
+          "tcp_reachable": 15,
+          "tested": 19
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 13
+    },
+    {
+      "id": "discovered-free-vpn-configs-v2rayn",
+      "channel": "Free_VPN_Configs_v2rayN",
+      "enabled": true,
+      "discovered": true,
+      "status": "low_frequency",
+      "message_count": 20,
+      "extracted": 18,
+      "endpoint_safe_configs": 18,
+      "safe_configs": 13,
+      "tested": 18,
+      "tcp_reachable": 13,
+      "tcp_unreachable": 5,
+      "proxy_verified": 0,
+      "last_post_at": "2026-10-22T18:00:00+00:00",
+      "last_seen_at": "2026-11-21T18:00:53+00:00",
+      "errors": [],
+      "age_days": 30.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 1.15,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-10-22T18:00:00+00:00",
+          "age_days": 30.0
+        },
+        "structural_safety": {
+          "tested": 18,
+          "endpoint_safe": 18
+        },
+        "availability": {
+          "tcp_reachable": 13,
+          "tested": 18
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 14
+    },
+    {
+      "id": "telegram-jofavpn",
+      "channel": "JOFAVPN",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 10,
+      "endpoint_safe_configs": 10,
+      "safe_configs": 10,
+      "tested": 10,
+      "tcp_reachable": 10,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T17:50:32+00:00",
+      "last_seen_at": "2026-11-21T18:01:00+00:00",
+      "errors": [],
+      "age_days": 0.01,
+      "attachment_count": 5,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 1.09,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T17:50:32+00:00",
+          "age_days": 0.01
+        },
+        "structural_safety": {
+          "tested": 10,
+          "endpoint_safe": 10
+        },
+        "availability": {
+          "tcp_reachable": 10,
+          "tested": 10
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 15
+    },
+    {
+      "id": "discovered-goudrat-proxy",
+      "channel": "Goudrat_Proxy",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 7,
+      "endpoint_safe_configs": 7,
+      "safe_configs": 7,
+      "tested": 7,
+      "tcp_reachable": 7,
+      "tcp_unreachable": 0,
+      "proxy_verified": 2,
+      "last_post_at": "2026-11-21T09:16:21+00:00",
+      "last_seen_at": "2026-11-21T18:00:59+00:00",
+      "errors": [],
+      "age_days": 0.36,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 18.13,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T09:16:21+00:00",
+          "age_days": 0.36
+        },
+        "structural_safety": {
+          "tested": 7,
+          "endpoint_safe": 7
+        },
+        "availability": {
+          "tcp_reachable": 7,
+          "tested": 7
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 16
+    },
+    {
+      "id": "discovered-free2config",
+      "channel": "FREE2CONFIG",
+      "enabled": false,
+      "discovered": true,
+      "status": "active",
+      "message_count": 10,
+      "extracted": 6,
+      "endpoint_safe_configs": 6,
+      "safe_configs": 6,
+      "tested": 6,
+      "tcp_reachable": 6,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T17:52:45+00:00",
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "age_days": 0.01,
+      "attachment_count": 14,
+      "attachment_extensions_found": [
+        ".hc",
+        ".ovpn"
+      ],
+      "median_tcp_latency_ms": 22.97,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T17:52:45+00:00",
+          "age_days": 0.01
+        },
+        "structural_safety": {
+          "tested": 6,
+          "endpoint_safe": 6
+        },
+        "availability": {
+          "tcp_reachable": 6,
+          "tested": 6
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 17
+    },
+    {
+      "id": "discovered-privatevpns",
+      "channel": "PrivateVPNs",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 16,
+      "endpoint_safe_configs": 16,
+      "safe_configs": 3,
+      "tested": 16,
+      "tcp_reachable": 3,
+      "tcp_unreachable": 13,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T16:35:26+00:00",
+      "last_seen_at": "2026-11-21T18:01:41+00:00",
+      "errors": [],
+      "age_days": 0.06,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 12.06,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T16:35:26+00:00",
+          "age_days": 0.06
+        },
+        "structural_safety": {
+          "tested": 16,
+          "endpoint_safe": 16
+        },
+        "availability": {
+          "tcp_reachable": 3,
+          "tested": 16
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 18
+    },
+    {
+      "id": "discovered-abc-vpn-configs",
+      "channel": "abc_vpn_configs",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 3,
+      "endpoint_safe_configs": 3,
+      "safe_configs": 3,
+      "tested": 3,
+      "tcp_reachable": 3,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T17:36:34+00:00",
+      "last_seen_at": "2026-11-21T18:00:16+00:00",
+      "errors": [],
+      "age_days": 0.02,
+      "attachment_count": 5,
+      "attachment_extensions_found": [
+        ".ovpn"
+      ],
+      "median_tcp_latency_ms": 8.06,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T17:36:34+00:00",
+          "age_days": 0.02
+        },
+        "structural_safety": {
+          "tested": 3,
+          "endpoint_safe": 3
+        },
+        "availability": {
+          "tcp_reachable": 3,
+          "tested": 3
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 19
+    },
+    {
+      "id": "telegram-v2rayng-outline-vpn",
+      "channel": "V2RAYNG_Outline_VPN",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 3,
+      "endpoint_safe_configs": 3,
+      "safe_configs": 3,
+      "tested": 3,
+      "tcp_reachable": 3,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T07:58:48+00:00",
+      "last_seen_at": "2026-11-21T18:02:33+00:00",
+      "errors": [],
+      "age_days": 0.42,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 12.01,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T07:58:48+00:00",
+          "age_days": 0.42
+        },
+        "structural_safety": {
+          "tested": 3,
+          "endpoint_safe": 3
+        },
+        "availability": {
+          "tcp_reachable": 3,
+          "tested": 3
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 20
+    },
+    {
+      "id": "discovered-raydikalx",
+      "channel": "Raydikalx",
+      "enabled": true,
+      "discovered": true,
+      "status": "no_reachable_endpoints",
+      "message_count": 20,
+      "extracted": 2,
+      "endpoint_safe_configs": 2,
+      "safe_configs": 0,
+      "tested": 2,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 2,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-09T08:15:57+00:00",
+      "last_seen_at": "2026-11-21T18:02:08+00:00",
+      "errors": [],
+      "age_days": 12.41,
+      "attachment_count": 3,
+      "attachment_extensions_found": [
+        ".txt"
+      ],
+      "median_tcp_latency_ms": null,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-09T08:15:57+00:00",
+          "age_days": 12.41
+        },
+        "structural_safety": {
+          "tested": 2,
+          "endpoint_safe": 2
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 2
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 21
+    },
+    {
+      "id": "telegram-configshere",
+      "channel": "configshere",
+      "enabled": true,
+      "discovered": false,
+      "status": "no_configs",
+      "message_count": 18,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T10:06:26+00:00",
+      "last_seen_at": "2026-11-21T18:00:48+00:00",
+      "errors": [],
+      "age_days": 0.33,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T10:06:26+00:00",
+          "age_days": 0.33
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 22
+    },
+    {
+      "id": "telegram-configvibes",
+      "channel": "Configvibes",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-20T10:23:33+00:00",
+      "last_seen_at": "2026-11-21T18:00:48+00:00",
+      "errors": [],
+      "age_days": 1.32,
+      "attachment_count": 20,
+      "attachment_extensions_found": [
+        ".npvt",
+        ".ovpn"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-20T10:23:33+00:00",
+          "age_days": 1.32
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 23
+    },
+    {
+      "id": "telegram-configwireguard",
+      "channel": "ConfigWireguard",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 14,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T16:59:55+00:00",
+      "last_seen_at": "2026-11-21T18:00:48+00:00",
+      "errors": [],
+      "age_days": 0.04,
+      "attachment_count": 7,
+      "attachment_extensions_found": [
+        ".ovpn"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T16:59:55+00:00",
+          "age_days": 0.04
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 24
+    },
+    {
+      "id": "confing-costume-telegram",
+      "channel": "confing_Costume",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T11:45:58+00:00",
+      "last_seen_at": "2026-11-21T18:00:53+00:00",
+      "errors": [],
+      "age_days": 0.26,
+      "attachment_count": 20,
+      "attachment_extensions_found": [
+        ".hc"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T11:45:58+00:00",
+          "age_days": 0.26
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 25
+    },
+    {
+      "id": "telegram-gp-config",
+      "channel": "Gp_config",
+      "enabled": true,
+      "discovered": false,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:01:00+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 26
+    },
+    {
+      "id": "telegram-nufilter",
+      "channel": "NUFiLTER",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-20T05:53:19+00:00",
+      "last_seen_at": "2026-11-21T18:01:37+00:00",
+      "errors": [],
+      "age_days": 1.51,
+      "attachment_count": 17,
+      "attachment_extensions_found": [
+        ".npvs",
+        ".npvt"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-20T05:53:19+00:00",
+          "age_days": 1.51
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 27
+    },
+    {
+      "id": "srcvpn-telegram",
+      "channel": "srcvpn",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-17T13:38:53+00:00",
+      "last_seen_at": "2026-11-21T18:02:11+00:00",
+      "errors": [],
+      "age_days": 4.18,
+      "attachment_count": 18,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-17T13:38:53+00:00",
+          "age_days": 4.18
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 28
+    },
+    {
+      "id": "v2ray-mammad-telegram",
+      "channel": "v2ray_Mammad",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 14,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T16:37:29+00:00",
+      "last_seen_at": "2026-11-21T18:02:32+00:00",
+      "errors": [],
+      "age_days": 0.06,
+      "attachment_count": 8,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T16:37:29+00:00",
+          "age_days": 0.06
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 29
+    },
+    {
+      "id": "vaslbox-backup-telegram",
+      "channel": "VASLBOX",
+      "enabled": true,
+      "discovered": false,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:33+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 30
+    },
+    {
+      "id": "telegram-v2ray-am",
+      "channel": "v2ray_AM",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T15:35:39+00:00",
+      "last_seen_at": "2026-11-21T18:02:56+00:00",
+      "errors": [],
+      "age_days": 0.1,
+      "attachment_count": 9,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T15:35:39+00:00",
+          "age_days": 0.1
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 31
+    },
+    {
+      "id": "telegram-amn-net",
+      "channel": "amn_net",
+      "enabled": true,
+      "discovered": false,
+      "status": "no_configs",
+      "message_count": 16,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T07:03:24+00:00",
+      "last_seen_at": "2026-11-21T18:02:56+00:00",
+      "errors": [],
+      "age_days": 0.46,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-21T07:03:24+00:00",
+          "age_days": 0.46
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 32
+    },
+    {
+      "id": "discovered-abc-configs",
+      "channel": "abc_configs",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 2,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-09-12T12:51:35+00:00",
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [],
+      "age_days": 70.22,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-09-12T12:51:35+00:00",
+          "age_days": 70.22
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 33
+    },
+    {
+      "id": "discovered-acliiu",
+      "channel": "acliiu",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 34
+    },
+    {
+      "id": "discovered-addstickers",
+      "channel": "addstickers",
+      "enabled": false,
+      "discovered": true,
+      "status": "error",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [
+        "ValueError"
+      ],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 35
+    },
+    {
+      "id": "discovered-alitdrp",
+      "channel": "AliTDRP",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 36
+    },
+    {
+      "id": "discovered-appxa",
+      "channel": "appxa",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 17,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T17:26:11+00:00",
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [],
+      "age_days": 0.03,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T17:26:11+00:00",
+          "age_days": 0.03
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 37
+    },
+    {
+      "id": "discovered-arshiajfb",
+      "channel": "ArshiaJFB",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 38
+    },
+    {
+      "id": "discovered-chicnetwork",
+      "channel": "ChicNetwork",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T10:08:17+00:00",
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [],
+      "age_days": 0.33,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T10:08:17+00:00",
+          "age_days": 0.33
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 39
+    },
+    {
+      "id": "discovered-choqoni",
+      "channel": "CHOQONI",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:57+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 40
+    },
+    {
+      "id": "discovered-cluvexstudio",
+      "channel": "CluvexStudio",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 15,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-19T20:35:28+00:00",
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "age_days": 1.89,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-19T20:35:28+00:00",
+          "age_days": 1.89
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 41
+    },
+    {
+      "id": "discovered-config-v2ray-vip",
+      "channel": "CONFIG_V2RAY_VIP",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 42
+    },
+    {
+      "id": "discovered-configraygan-group",
+      "channel": "configraygan_group",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 43
+    },
+    {
+      "id": "discovered-configrayganadmin",
+      "channel": "configrayganadmin",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 44
+    },
+    {
+      "id": "discovered-deltazedmusic",
+      "channel": "deltazedmusic",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 2,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-17T05:49:07+00:00",
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "age_days": 4.51,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-17T05:49:07+00:00",
+          "age_days": 4.51
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 45
+    },
+    {
+      "id": "discovered-derafshvpn",
+      "channel": "DERAFSHVPN",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 8,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T10:03:41+00:00",
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "age_days": 0.33,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T10:03:41+00:00",
+          "age_days": 0.33
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 46
+    },
+    {
+      "id": "discovered-eset-key-trial",
+      "channel": "Eset_key_trial",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-05T19:50:47+00:00",
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "age_days": 15.93,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-05T19:50:47+00:00",
+          "age_days": 15.93
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 47
+    },
+    {
+      "id": "discovered-everyday-vpn",
+      "channel": "Everyday_VPN",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 2,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2024-06-13T05:17:35+00:00",
+      "last_seen_at": "2026-11-21T18:02:58+00:00",
+      "errors": [],
+      "age_days": 891.53,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2024-06-13T05:17:35+00:00",
+          "age_days": 891.53
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 48
+    },
+    {
+      "id": "discovered-freeproxyglobal",
+      "channel": "FreeProxyGlobal",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T13:44:50+00:00",
+      "last_seen_at": "2026-11-21T18:02:59+00:00",
+      "errors": [],
+      "age_days": 0.18,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T13:44:50+00:00",
+          "age_days": 0.18
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 49
+    },
+    {
+      "id": "discovered-fridaychat",
+      "channel": "FridayChat",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:59+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 50
+    },
+    {
+      "id": "discovered-fridayot",
+      "channel": "fridayOT",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:02:59+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 51
+    },
+    {
+      "id": "discovered-fridaysupportofficial",
+      "channel": "FridaySupportOfficial",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 2,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2021-04-07T09:21:43+00:00",
+      "last_seen_at": "2026-11-21T18:02:59+00:00",
+      "errors": [],
+      "age_days": 2054.36,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2021-04-07T09:21:43+00:00",
+          "age_days": 2054.36
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 52
+    },
+    {
+      "id": "discovered-fridayub",
+      "channel": "FridayUB",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 18,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2021-12-16T13:39:22+00:00",
+      "last_seen_at": "2026-11-21T18:02:59+00:00",
+      "errors": [],
+      "age_days": 1801.18,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2021-12-16T13:39:22+00:00",
+          "age_days": 1801.18
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 53
+    },
+    {
+      "id": "discovered-ghachaghistudio",
+      "channel": "ghachaghistudio",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 54
+    },
+    {
+      "id": "discovered-globalproxytm",
+      "channel": "GlobalProxyTm",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T13:44:50+00:00",
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "age_days": 0.18,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T13:44:50+00:00",
+          "age_days": 0.18
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 55
+    },
+    {
+      "id": "discovered-goodbaye-filtering",
+      "channel": "Goodbaye_filtering",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 56
+    },
+    {
+      "id": "discovered-infoslashvpn",
+      "channel": "infoslashvpn",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 57
+    },
+    {
+      "id": "discovered-invoproxy",
+      "channel": "InvoProxy",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T14:58:03+00:00",
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "age_days": 0.13,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T14:58:03+00:00",
+          "age_days": 0.13
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 58
+    },
+    {
+      "id": "discovered-ipgenreator",
+      "channel": "ipgenreator",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T13:03:16+00:00",
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "age_days": 0.21,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T13:03:16+00:00",
+          "age_days": 0.21
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 59
+    },
+    {
+      "id": "discovered-ixiconfig",
+      "channel": "ixiconfig",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-06-20T14:15:05+00:00",
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "age_days": 154.16,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-06-20T14:15:05+00:00",
+          "age_days": 154.16
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 60
+    },
+    {
+      "id": "discovered-jofavpn-support",
+      "channel": "JOFAVPN_Support",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:00+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 61
+    },
+    {
+      "id": "discovered-joonvpn",
+      "channel": "JoonVPN",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 1,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-17T16:17:34+00:00",
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "age_days": 4.07,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-17T16:17:34+00:00",
+          "age_days": 4.07
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 62
+    },
+    {
+      "id": "discovered-luluch-code",
+      "channel": "luluch_code",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T18:00:40+00:00",
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T18:00:40+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 63
+    },
+    {
+      "id": "discovered-macneoo",
+      "channel": "macneoo",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 64
+    },
+    {
+      "id": "discovered-mammadfx",
+      "channel": "Mammadfx",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 65
+    },
+    {
+      "id": "discovered-marambashi1",
+      "channel": "Marambashi1",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 66
+    },
+    {
+      "id": "discovered-marambashi3",
+      "channel": "marambashi3",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 3,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-07-15T15:27:42+00:00",
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "age_days": 129.11,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-07-15T15:27:42+00:00",
+          "age_days": 129.11
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 67
+    },
+    {
+      "id": "discovered-maxikvinadapter",
+      "channel": "maxikvinadapter",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 3,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-07-07T11:00:37+00:00",
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "age_days": 137.29,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-07-07T11:00:37+00:00",
+          "age_days": 137.29
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 68
+    },
+    {
+      "id": "discovered-memo-vpn",
+      "channel": "Memo_VPN",
+      "enabled": false,
+      "discovered": true,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T16:12:03+00:00",
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "age_days": 0.08,
+      "attachment_count": 6,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T16:12:03+00:00",
+          "age_days": 0.08
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 69
+    },
+    {
+      "id": "discovered-mohamaadfg",
+      "channel": "mohamaadfg",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:01+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 70
+    },
+    {
+      "id": "discovered-musicdealer",
+      "channel": "musicdealer",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:02+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 71
+    },
+    {
+      "id": "discovered-noxbyak",
+      "channel": "noxbyak",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:02+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 72
+    },
+    {
+      "id": "discovered-pahlavii-news",
+      "channel": "Pahlavii_News",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T17:49:00+00:00",
+      "last_seen_at": "2026-11-21T18:03:02+00:00",
+      "errors": [],
+      "age_days": 0.01,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T17:49:00+00:00",
+          "age_days": 0.01
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 73
+    },
+    {
+      "id": "discovered-paradise-of-freedom",
+      "channel": "Paradise_Of_Freedom",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-09T18:12:11+00:00",
+      "last_seen_at": "2026-11-21T18:03:02+00:00",
+      "errors": [],
+      "age_days": 11.99,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-09T18:12:11+00:00",
+          "age_days": 11.99
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 74
+    },
+    {
+      "id": "discovered-paskoocheh",
+      "channel": "Paskoocheh",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T11:04:51+00:00",
+      "last_seen_at": "2026-11-21T18:03:02+00:00",
+      "errors": [],
+      "age_days": 0.29,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T11:04:51+00:00",
+          "age_days": 0.29
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 75
+    },
+    {
+      "id": "discovered-proxyskull",
+      "channel": "ProxySkull",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T18:00:39+00:00",
+      "last_seen_at": "2026-11-21T18:03:02+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T18:00:39+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 76
+    },
+    {
+      "id": "discovered-reza-s1402",
+      "channel": "Reza_S1402",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:03+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 77
+    },
+    {
+      "id": "discovered-reza-s1405",
+      "channel": "Reza_S1405",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:03+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 78
+    },
+    {
+      "id": "discovered-rkp-channel",
+      "channel": "RKP_channel",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-17T14:12:59+00:00",
+      "last_seen_at": "2026-11-21T18:03:03+00:00",
+      "errors": [],
+      "age_days": 4.16,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-17T14:12:59+00:00",
+          "age_days": 4.16
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 79
+    },
+    {
+      "id": "discovered-shadowsocks-ltd",
+      "channel": "shadowsocks_ltd",
+      "enabled": false,
+      "discovered": true,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T16:12:01+00:00",
+      "last_seen_at": "2026-11-21T18:03:03+00:00",
+      "errors": [],
+      "age_days": 0.08,
+      "attachment_count": 6,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T16:12:01+00:00",
+          "age_days": 0.08
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 80
+    },
+    {
+      "id": "discovered-shahsmiley",
+      "channel": "shahsmiley",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-20T20:52:07+00:00",
+      "last_seen_at": "2026-11-21T18:03:03+00:00",
+      "errors": [],
+      "age_days": 0.88,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-20T20:52:07+00:00",
+          "age_days": 0.88
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 81
+    },
+    {
+      "id": "discovered-share",
+      "channel": "share",
+      "enabled": false,
+      "discovered": true,
+      "status": "error",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:03+00:00",
+      "errors": [
+        "ValueError"
+      ],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 82
+    },
+    {
+      "id": "discovered-shayangeedook",
+      "channel": "shayangeedook",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T14:33:26+00:00",
+      "last_seen_at": "2026-11-21T18:03:03+00:00",
+      "errors": [],
+      "age_days": 0.15,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T14:33:26+00:00",
+          "age_days": 0.15
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 83
+    },
+    {
+      "id": "discovered-src-admin1",
+      "channel": "src_admin1",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:12+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 84
+    },
+    {
+      "id": "discovered-src-admin2",
+      "channel": "src_admin2",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:12+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 85
+    },
+    {
+      "id": "discovered-srcvpn-sup",
+      "channel": "SRCVPN_SUP",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 19,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-10-26T13:33:35+00:00",
+      "last_seen_at": "2026-11-21T18:03:12+00:00",
+      "errors": [],
+      "age_days": 26.19,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-10-26T13:33:35+00:00",
+          "age_days": 26.19
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 86
+    },
+    {
+      "id": "discovered-srcvpngp",
+      "channel": "SRCVPNGP",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:12+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 87
+    },
+    {
+      "id": "discovered-tabgapproxy",
+      "channel": "TabGapProxy",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 13,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-09-09T12:28:58+00:00",
+      "last_seen_at": "2026-11-21T18:03:12+00:00",
+      "errors": [],
+      "age_days": 73.23,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-09-09T12:28:58+00:00",
+          "age_days": 73.23
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 88
+    },
+    {
+      "id": "discovered-telzoon",
+      "channel": "TelZoon",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T18:00:43+00:00",
+      "last_seen_at": "2026-11-21T18:03:12+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T18:00:43+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 89
+    },
+    {
+      "id": "discovered-uuison",
+      "channel": "uuison",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T16:33:04+00:00",
+      "last_seen_at": "2026-11-21T18:03:12+00:00",
+      "errors": [],
+      "age_days": 0.06,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T16:33:04+00:00",
+          "age_days": 0.06
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 90
+    },
+    {
+      "id": "discovered-vpnbuying",
+      "channel": "vpnbuying",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:35+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 91
+    },
+    {
+      "id": "discovered-vpnsmega",
+      "channel": "vpnsmega",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-19T16:00:32+00:00",
+      "last_seen_at": "2026-11-21T18:03:35+00:00",
+      "errors": [],
+      "age_days": 2.09,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-19T16:00:32+00:00",
+          "age_days": 2.09
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 92
+    },
+    {
+      "id": "discovered-vpsave-admin",
+      "channel": "VPsave_ADMIN",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:35+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 93
+    },
+    {
+      "id": "discovered-whitedns",
+      "channel": "whitedns",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T14:40:08+00:00",
+      "last_seen_at": "2026-11-21T18:03:35+00:00",
+      "errors": [],
+      "age_days": 0.14,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T14:40:08+00:00",
+          "age_days": 0.14
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 94
+    },
+    {
+      "id": "discovered-yade1819",
+      "channel": "Yade1819",
+      "enabled": false,
+      "discovered": true,
+      "status": "attachment_only",
+      "message_count": 9,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T15:42:08+00:00",
+      "last_seen_at": "2026-11-21T18:03:35+00:00",
+      "errors": [],
+      "age_days": 0.1,
+      "attachment_count": 2,
+      "attachment_extensions_found": [
+        ".json",
+        ".npvs"
+      ],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T15:42:08+00:00",
+          "age_days": 0.1
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 95
+    },
+    {
+      "id": "discovered-yawhackka",
+      "channel": "yawhackka",
+      "enabled": false,
+      "discovered": true,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 96
+    },
+    {
+      "id": "discovered-zprxy",
+      "channel": "ZPrxy",
+      "enabled": false,
+      "discovered": true,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-21T18:00:39+00:00",
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-21T18:00:39+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 97
+    },
+    {
+      "id": "discovered-another-channel",
+      "channel": "another_channel",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 98
+    },
+    {
+      "id": "discovered-channel-name",
+      "channel": "channel_name",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 99
+    },
+    {
+      "id": "discovered-freestarsonlinebot",
+      "channel": "FreeStarsOnlineBot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 100
+    },
+    {
+      "id": "discovered-freevpntkm-bot",
+      "channel": "freevpntkm_bot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 101
+    },
+    {
+      "id": "discovered-happ-unlock-bot",
+      "channel": "happ_unlock_bot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 102
+    },
+    {
+      "id": "discovered-ipwhois-cfcheckbot",
+      "channel": "IPWHOIS_CFCheckBot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 103
+    },
+    {
+      "id": "discovered-proxy",
+      "channel": "proxy",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 104
+    },
+    {
+      "id": "discovered-socks",
+      "channel": "socks",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 105
+    },
+    {
+      "id": "discovered-some-channel",
+      "channel": "some_channel",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 106
+    },
+    {
+      "id": "discovered-urlsources",
+      "channel": "urlsources",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 107
+    },
+    {
+      "id": "discovered-vpnsmegabot",
+      "channel": "vpnsmegabot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-21T18:03:36+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 108
+    }
+  ],
+  "extracted_count": 996,
+  "tested_count": 703,
+  "tcp_reachable_count": 598,
+  "proxy_verified_count": 179,
+  "unique_safe_config_count": 179,
+  "feed_tested_count": 577,
+  "feed_tcp_reachable_count": 491,
+  "feed_extracted_count": 796,
+  "telegram_protocol_verified_count": 179,
+  "telegram_protocol_verification": {
+    "generated_at": "2026-11-21T18:09:15Z",
+    "candidate_total": 426,
+    "supported_candidates_total": 391,
+    "selected_for_probe": 300,
+    "skipped_unsupported_or_invalid": 35,
+    "tested": 300,
+    "config_rejected": 0,
+    "probe_failed": 121,
+    "protocol_verified": 179,
+    "verification": "sing-box authenticated outbound request fetched a body-producing HTTPS endpoint with HTTP 2xx",
+    "test_urls": [
+      "https://www.cloudflare.com/cdn-cgi/trace",
+      "https://www.microsoft.com/robots.txt",
+      "https://www.google.com/robots.txt",
+      "https://www.wikipedia.org/robots.txt"
+    ],
+    "core_version": "sing-box version 1.14.4",
+    "batch_errors": []
+  },
+  "external_sources": {
+    "status": "stale_or_untrusted_snapshot",
+    "age_hours": 25.44,
+    "included": 0,
+    "protocol_verified": 0
+  },
+  "external_protocol_verified_count": 0
+}
