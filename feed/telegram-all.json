@@ -1,0 +1,1506 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-28T14:47:17Z",
+  "config_count": 155,
+  "sha256": "26298a370c93d7f904fb9738424a4a30717a24f2ddd3a5df0474b392f8bd3fd7",
+  "health_status": "telegram_and_external_sing_box_verified",
+  "source_count": 40,
+  "sources": [
+    {
+      "id": "discovered-v2ma-apk",
+      "channel": "v2ma_apk",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 90,
+      "endpoint_safe_configs": 80,
+      "safe_configs": 70,
+      "tested": 80,
+      "tcp_reachable": 70,
+      "tcp_unreachable": 10,
+      "proxy_verified": 6,
+      "last_post_at": "2026-11-18T04:57:52+00:00",
+      "last_seen_at": "2026-11-28T14:41:48+00:00",
+      "errors": [],
+      "age_days": 10.41,
+      "attachment_count": 1,
+      "attachment_extensions_found": [
+        ".txt"
+      ],
+      "median_tcp_latency_ms": 93.31,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-18T04:57:52+00:00",
+          "age_days": 10.41
+        },
+        "structural_safety": {
+          "tested": 80,
+          "endpoint_safe": 80
+        },
+        "availability": {
+          "tcp_reachable": 70,
+          "tested": 80
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 1
+    },
+    {
+      "id": "vpsave-telegram",
+      "channel": "VPsave",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 235,
+      "endpoint_safe_configs": 79,
+      "safe_configs": 58,
+      "tested": 80,
+      "tcp_reachable": 58,
+      "tcp_unreachable": 21,
+      "proxy_verified": 14,
+      "last_post_at": "2026-11-28T14:35:32+00:00",
+      "last_seen_at": "2026-11-28T14:42:18+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 11.69,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T14:35:32+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 80,
+          "endpoint_safe": 79
+        },
+        "availability": {
+          "tcp_reachable": 58,
+          "tested": 80
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 2
+    },
+    {
+      "id": "telegram-configraygan",
+      "channel": "configraygan",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 148,
+      "endpoint_safe_configs": 77,
+      "safe_configs": 58,
+      "tested": 80,
+      "tcp_reachable": 58,
+      "tcp_unreachable": 19,
+      "proxy_verified": 20,
+      "last_post_at": "2026-11-27T19:12:21+00:00",
+      "last_seen_at": "2026-11-28T14:40:05+00:00",
+      "errors": [],
+      "age_days": 0.81,
+      "attachment_count": 1,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 3.62,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-27T19:12:21+00:00",
+          "age_days": 0.81
+        },
+        "structural_safety": {
+          "tested": 80,
+          "endpoint_safe": 77
+        },
+        "availability": {
+          "tcp_reachable": 58,
+          "tested": 80
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 3
+    },
+    {
+      "id": "discovered-surfboardv2ray",
+      "channel": "Surfboardv2ray",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 50,
+      "endpoint_safe_configs": 50,
+      "safe_configs": 50,
+      "tested": 50,
+      "tcp_reachable": 50,
+      "tcp_unreachable": 0,
+      "proxy_verified": 50,
+      "last_post_at": "2026-11-28T09:30:15+00:00",
+      "last_seen_at": "2026-11-28T14:41:45+00:00",
+      "errors": [],
+      "age_days": 0.22,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 24.69,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-28T09:30:15+00:00",
+          "age_days": 0.22
+        },
+        "structural_safety": {
+          "tested": 50,
+          "endpoint_safe": 50
+        },
+        "availability": {
+          "tcp_reachable": 50,
+          "tested": 50
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 4
+    },
+    {
+      "id": "marambashi-telegram",
+      "channel": "MARAMBASHI",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 17,
+      "extracted": 52,
+      "endpoint_safe_configs": 52,
+      "safe_configs": 45,
+      "tested": 52,
+      "tcp_reachable": 45,
+      "tcp_unreachable": 7,
+      "proxy_verified": 32,
+      "last_post_at": "2026-11-28T14:31:51+00:00",
+      "last_seen_at": "2026-11-28T14:40:51+00:00",
+      "errors": [],
+      "age_days": 0.01,
+      "attachment_count": 4,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 8.41,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T14:31:51+00:00",
+          "age_days": 0.01
+        },
+        "structural_safety": {
+          "tested": 52,
+          "endpoint_safe": 52
+        },
+        "availability": {
+          "tcp_reachable": 45,
+          "tested": 52
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 5
+    },
+    {
+      "id": "discovered-marambashi2",
+      "channel": "Marambashi2",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 17,
+      "extracted": 44,
+      "endpoint_safe_configs": 44,
+      "safe_configs": 38,
+      "tested": 44,
+      "tcp_reachable": 38,
+      "tcp_unreachable": 6,
+      "proxy_verified": 27,
+      "last_post_at": "2026-11-28T14:38:38+00:00",
+      "last_seen_at": "2026-11-28T14:41:01+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 4,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 7.89,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-28T14:38:38+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 44,
+          "endpoint_safe": 44
+        },
+        "availability": {
+          "tcp_reachable": 38,
+          "tested": 44
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 6
+    },
+    {
+      "id": "discovered-configx2ray",
+      "channel": "ConfigX2ray",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 28,
+      "endpoint_safe_configs": 27,
+      "safe_configs": 25,
+      "tested": 28,
+      "tcp_reachable": 25,
+      "tcp_unreachable": 2,
+      "proxy_verified": 8,
+      "last_post_at": "2026-11-28T14:37:21+00:00",
+      "last_seen_at": "2026-11-28T14:40:40+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 13,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "median_tcp_latency_ms": 9.13,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-28T14:37:21+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 28,
+          "endpoint_safe": 27
+        },
+        "availability": {
+          "tcp_reachable": 25,
+          "tested": 28
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 7
+    },
+    {
+      "id": "proxy-kafee-telegram",
+      "channel": "proxy_kafee",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 11,
+      "extracted": 27,
+      "endpoint_safe_configs": 27,
+      "safe_configs": 24,
+      "tested": 27,
+      "tcp_reachable": 24,
+      "tcp_unreachable": 3,
+      "proxy_verified": 12,
+      "last_post_at": "2026-11-28T12:50:10+00:00",
+      "last_seen_at": "2026-11-28T14:41:32+00:00",
+      "errors": [],
+      "age_days": 0.08,
+      "attachment_count": 10,
+      "attachment_extensions_found": [
+        ".ovpn"
+      ],
+      "median_tcp_latency_ms": 15.29,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T12:50:10+00:00",
+          "age_days": 0.08
+        },
+        "structural_safety": {
+          "tested": 27,
+          "endpoint_safe": 27
+        },
+        "availability": {
+          "tcp_reachable": 24,
+          "tested": 27
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 8
+    },
+    {
+      "id": "discovered-persianvpnhub",
+      "channel": "persianvpnhub",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 20,
+      "endpoint_safe_configs": 20,
+      "safe_configs": 18,
+      "tested": 20,
+      "tcp_reachable": 18,
+      "tcp_unreachable": 2,
+      "proxy_verified": 1,
+      "last_post_at": "2026-11-28T11:03:15+00:00",
+      "last_seen_at": "2026-11-28T14:41:09+00:00",
+      "errors": [],
+      "age_days": 0.15,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 28.1,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-28T11:03:15+00:00",
+          "age_days": 0.15
+        },
+        "structural_safety": {
+          "tested": 20,
+          "endpoint_safe": 20
+        },
+        "availability": {
+          "tcp_reachable": 18,
+          "tested": 20
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 9
+    },
+    {
+      "id": "v2ray-free-conf-telegram",
+      "channel": "v2ray_free_conf",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 18,
+      "endpoint_safe_configs": 18,
+      "safe_configs": 13,
+      "tested": 18,
+      "tcp_reachable": 13,
+      "tcp_unreachable": 5,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T14:36:01+00:00",
+      "last_seen_at": "2026-11-28T14:42:11+00:00",
+      "errors": [],
+      "age_days": 0.0,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 8.24,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T14:36:01+00:00",
+          "age_days": 0.0
+        },
+        "structural_safety": {
+          "tested": 18,
+          "endpoint_safe": 18
+        },
+        "availability": {
+          "tcp_reachable": 13,
+          "tested": 18
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 10
+    },
+    {
+      "id": "discovered-free-vpn-configs-v2rayn",
+      "channel": "Free_VPN_Configs_v2rayN",
+      "enabled": true,
+      "discovered": true,
+      "status": "low_frequency",
+      "message_count": 20,
+      "extracted": 18,
+      "endpoint_safe_configs": 18,
+      "safe_configs": 13,
+      "tested": 18,
+      "tcp_reachable": 13,
+      "tcp_unreachable": 5,
+      "proxy_verified": 0,
+      "last_post_at": "2026-10-22T18:00:00+00:00",
+      "last_seen_at": "2026-11-28T14:40:44+00:00",
+      "errors": [],
+      "age_days": 36.86,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 1.07,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-10-22T18:00:00+00:00",
+          "age_days": 36.86
+        },
+        "structural_safety": {
+          "tested": 18,
+          "endpoint_safe": 18
+        },
+        "availability": {
+          "tcp_reachable": 13,
+          "tested": 18
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 11
+    },
+    {
+      "id": "telegram-iranping24",
+      "channel": "iranping24",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 13,
+      "endpoint_safe_configs": 13,
+      "safe_configs": 13,
+      "tested": 13,
+      "tcp_reachable": 13,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T13:34:59+00:00",
+      "last_seen_at": "2026-11-28T14:40:51+00:00",
+      "errors": [],
+      "age_days": 0.05,
+      "attachment_count": 2,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 0.79,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T13:34:59+00:00",
+          "age_days": 0.05
+        },
+        "structural_safety": {
+          "tested": 13,
+          "endpoint_safe": 13
+        },
+        "availability": {
+          "tcp_reachable": 13,
+          "tested": 13
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 12
+    },
+    {
+      "id": "discovered-abc-vpn-configs",
+      "channel": "abc_vpn_configs",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 14,
+      "endpoint_safe_configs": 14,
+      "safe_configs": 12,
+      "tested": 14,
+      "tcp_reachable": 12,
+      "tcp_unreachable": 2,
+      "proxy_verified": 1,
+      "last_post_at": "2026-11-28T14:04:56+00:00",
+      "last_seen_at": "2026-11-28T14:40:00+00:00",
+      "errors": [],
+      "age_days": 0.02,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 8.55,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-28T14:04:56+00:00",
+          "age_days": 0.02
+        },
+        "structural_safety": {
+          "tested": 14,
+          "endpoint_safe": 14
+        },
+        "availability": {
+          "tcp_reachable": 12,
+          "tested": 14
+        },
+        "protocol_verification": "verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 13
+    },
+    {
+      "id": "telegram-jofavpn",
+      "channel": "JOFAVPN",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 9,
+      "endpoint_safe_configs": 9,
+      "safe_configs": 9,
+      "tested": 9,
+      "tcp_reachable": 9,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T13:47:39+00:00",
+      "last_seen_at": "2026-11-28T14:40:51+00:00",
+      "errors": [],
+      "age_days": 0.04,
+      "attachment_count": 5,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "median_tcp_latency_ms": 0.72,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T13:47:39+00:00",
+          "age_days": 0.04
+        },
+        "structural_safety": {
+          "tested": 9,
+          "endpoint_safe": 9
+        },
+        "availability": {
+          "tcp_reachable": 9,
+          "tested": 9
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 14
+    },
+    {
+      "id": "discovered-goudrat-proxy",
+      "channel": "Goudrat_Proxy",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 18,
+      "extracted": 4,
+      "endpoint_safe_configs": 4,
+      "safe_configs": 4,
+      "tested": 4,
+      "tcp_reachable": 4,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-27T18:01:16+00:00",
+      "last_seen_at": "2026-11-28T14:40:50+00:00",
+      "errors": [],
+      "age_days": 0.86,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 28.12,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-27T18:01:16+00:00",
+          "age_days": 0.86
+        },
+        "structural_safety": {
+          "tested": 4,
+          "endpoint_safe": 4
+        },
+        "availability": {
+          "tcp_reachable": 4,
+          "tested": 4
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 15
+    },
+    {
+      "id": "discovered-privatevpns",
+      "channel": "PrivateVPNs",
+      "enabled": true,
+      "discovered": true,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 12,
+      "endpoint_safe_configs": 12,
+      "safe_configs": 3,
+      "tested": 12,
+      "tcp_reachable": 3,
+      "tcp_unreachable": 9,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T12:35:25+00:00",
+      "last_seen_at": "2026-11-28T14:41:14+00:00",
+      "errors": [],
+      "age_days": 0.09,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 11.78,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-28T12:35:25+00:00",
+          "age_days": 0.09
+        },
+        "structural_safety": {
+          "tested": 12,
+          "endpoint_safe": 12
+        },
+        "availability": {
+          "tcp_reachable": 3,
+          "tested": 12
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 16
+    },
+    {
+      "id": "telegram-v2rayng-outline-vpn",
+      "channel": "V2RAYNG_Outline_VPN",
+      "enabled": true,
+      "discovered": false,
+      "status": "active",
+      "message_count": 20,
+      "extracted": 2,
+      "endpoint_safe_configs": 2,
+      "safe_configs": 2,
+      "tested": 2,
+      "tcp_reachable": 2,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T07:08:18+00:00",
+      "last_seen_at": "2026-11-28T14:42:18+00:00",
+      "errors": [],
+      "age_days": 0.32,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "median_tcp_latency_ms": 12.32,
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T07:08:18+00:00",
+          "age_days": 0.32
+        },
+        "structural_safety": {
+          "tested": 2,
+          "endpoint_safe": 2
+        },
+        "availability": {
+          "tcp_reachable": 2,
+          "tested": 2
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 17
+    },
+    {
+      "id": "discovered-raydikalx",
+      "channel": "Raydikalx",
+      "enabled": true,
+      "discovered": true,
+      "status": "no_reachable_endpoints",
+      "message_count": 20,
+      "extracted": 2,
+      "endpoint_safe_configs": 2,
+      "safe_configs": 0,
+      "tested": 2,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 2,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-09T08:15:57+00:00",
+      "last_seen_at": "2026-11-28T14:41:41+00:00",
+      "errors": [],
+      "age_days": 19.27,
+      "attachment_count": 3,
+      "attachment_extensions_found": [
+        ".txt"
+      ],
+      "median_tcp_latency_ms": null,
+      "trust_assessment": {
+        "provenance": "discovered_public_candidate",
+        "activity": {
+          "last_post_at": "2026-11-09T08:15:57+00:00",
+          "age_days": 19.27
+        },
+        "structural_safety": {
+          "tested": 2,
+          "endpoint_safe": 2
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 2
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 18
+    },
+    {
+      "id": "telegram-configshere",
+      "channel": "configshere",
+      "enabled": true,
+      "discovered": false,
+      "status": "no_configs",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T14:02:41+00:00",
+      "last_seen_at": "2026-11-28T14:40:40+00:00",
+      "errors": [],
+      "age_days": 0.03,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T14:02:41+00:00",
+          "age_days": 0.03
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 19
+    },
+    {
+      "id": "telegram-configvibes",
+      "channel": "Configvibes",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-26T21:14:47+00:00",
+      "last_seen_at": "2026-11-28T14:40:40+00:00",
+      "errors": [],
+      "age_days": 1.73,
+      "attachment_count": 20,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-26T21:14:47+00:00",
+          "age_days": 1.73
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 20
+    },
+    {
+      "id": "telegram-configwireguard",
+      "channel": "ConfigWireguard",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 11,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T13:30:41+00:00",
+      "last_seen_at": "2026-11-28T14:40:40+00:00",
+      "errors": [],
+      "age_days": 0.05,
+      "attachment_count": 10,
+      "attachment_extensions_found": [
+        ".ovpn"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T13:30:41+00:00",
+          "age_days": 0.05
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 21
+    },
+    {
+      "id": "confing-costume-telegram",
+      "channel": "confing_Costume",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 16,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T08:53:38+00:00",
+      "last_seen_at": "2026-11-28T14:40:44+00:00",
+      "errors": [],
+      "age_days": 0.24,
+      "attachment_count": 20,
+      "attachment_extensions_found": [
+        ".hc"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T08:53:38+00:00",
+          "age_days": 0.24
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 22
+    },
+    {
+      "id": "telegram-gp-config",
+      "channel": "Gp_config",
+      "enabled": true,
+      "discovered": false,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:40:51+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 23
+    },
+    {
+      "id": "telegram-nufilter",
+      "channel": "NUFiLTER",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-26T19:58:08+00:00",
+      "last_seen_at": "2026-11-28T14:41:09+00:00",
+      "errors": [],
+      "age_days": 1.78,
+      "attachment_count": 19,
+      "attachment_extensions_found": [
+        ".npvs",
+        ".npvt"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-26T19:58:08+00:00",
+          "age_days": 1.78
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 24
+    },
+    {
+      "id": "srcvpn-telegram",
+      "channel": "srcvpn",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-27T09:28:42+00:00",
+      "last_seen_at": "2026-11-28T14:41:45+00:00",
+      "errors": [],
+      "age_days": 1.22,
+      "attachment_count": 17,
+      "attachment_extensions_found": [
+        ".npvs"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-27T09:28:42+00:00",
+          "age_days": 1.22
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 25
+    },
+    {
+      "id": "v2ray-mammad-telegram",
+      "channel": "v2ray_Mammad",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 12,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T14:07:29+00:00",
+      "last_seen_at": "2026-11-28T14:42:18+00:00",
+      "errors": [],
+      "age_days": 0.02,
+      "attachment_count": 6,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T14:07:29+00:00",
+          "age_days": 0.02
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 26
+    },
+    {
+      "id": "vaslbox-backup-telegram",
+      "channel": "VASLBOX",
+      "enabled": true,
+      "discovered": false,
+      "status": "inactive",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:18+00:00",
+      "errors": [],
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": null,
+          "age_days": null
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 27
+    },
+    {
+      "id": "telegram-v2ray-am",
+      "channel": "v2ray_AM",
+      "enabled": true,
+      "discovered": false,
+      "status": "attachment_only",
+      "message_count": 20,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-26T21:22:17+00:00",
+      "last_seen_at": "2026-11-28T14:42:58+00:00",
+      "errors": [],
+      "age_days": 1.72,
+      "attachment_count": 9,
+      "attachment_extensions_found": [
+        ".npvt"
+      ],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-26T21:22:17+00:00",
+          "age_days": 1.72
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 28
+    },
+    {
+      "id": "telegram-amn-net",
+      "channel": "amn_net",
+      "enabled": true,
+      "discovered": false,
+      "status": "no_configs",
+      "message_count": 16,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": "2026-11-28T06:44:51+00:00",
+      "last_seen_at": "2026-11-28T14:42:58+00:00",
+      "errors": [],
+      "age_days": 0.33,
+      "attachment_count": 0,
+      "attachment_extensions_found": [],
+      "trust_assessment": {
+        "provenance": "configured_source",
+        "activity": {
+          "last_post_at": "2026-11-28T06:44:51+00:00",
+          "age_days": 0.33
+        },
+        "structural_safety": {
+          "tested": 0,
+          "endpoint_safe": 0
+        },
+        "availability": {
+          "tcp_reachable": 0,
+          "tested": 0
+        },
+        "protocol_verification": "failed_or_not_verified",
+        "stability": "requires_repeated_scheduled_observations",
+        "source_reputation": "not_independently_audited",
+        "privacy": "unknown_operator_logging_and_retention_policy"
+      },
+      "rank": 29
+    },
+    {
+      "id": "discovered-another-channel",
+      "channel": "another_channel",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 30
+    },
+    {
+      "id": "discovered-channel-name",
+      "channel": "channel_name",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 31
+    },
+    {
+      "id": "discovered-freestarsonlinebot",
+      "channel": "FreeStarsOnlineBot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 32
+    },
+    {
+      "id": "discovered-freevpntkm-bot",
+      "channel": "freevpntkm_bot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 33
+    },
+    {
+      "id": "discovered-happ-unlock-bot",
+      "channel": "happ_unlock_bot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 34
+    },
+    {
+      "id": "discovered-ipwhois-cfcheckbot",
+      "channel": "IPWHOIS_CFCheckBot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 35
+    },
+    {
+      "id": "discovered-proxy",
+      "channel": "proxy",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 36
+    },
+    {
+      "id": "discovered-socks",
+      "channel": "socks",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 37
+    },
+    {
+      "id": "discovered-some-channel",
+      "channel": "some_channel",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 38
+    },
+    {
+      "id": "discovered-urlsources",
+      "channel": "urlsources",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 39
+    },
+    {
+      "id": "discovered-vpnsmegabot",
+      "channel": "vpnsmegabot",
+      "enabled": false,
+      "discovered": true,
+      "status": "rejected_placeholder",
+      "message_count": 0,
+      "extracted": 0,
+      "endpoint_safe_configs": 0,
+      "safe_configs": 0,
+      "tested": 0,
+      "tcp_reachable": 0,
+      "tcp_unreachable": 0,
+      "proxy_verified": 0,
+      "last_post_at": null,
+      "last_seen_at": "2026-11-28T14:42:59+00:00",
+      "errors": [],
+      "rejection_reason": "placeholder_or_invalid_telegram_username",
+      "rank": 40
+    }
+  ],
+  "extracted_count": 786,
+  "tested_count": 553,
+  "tcp_reachable_count": 455,
+  "proxy_verified_count": 140,
+  "unique_safe_config_count": 140,
+  "feed_tested_count": 551,
+  "feed_tcp_reachable_count": 455,
+  "feed_extracted_count": 784,
+  "telegram_protocol_verified_count": 140,
+  "telegram_protocol_verification": {
+    "generated_at": "2026-11-28T14:47:12Z",
+    "candidate_total": 407,
+    "supported_candidates_total": 375,
+    "selected_for_probe": 300,
+    "skipped_unsupported_or_invalid": 32,
+    "tested": 300,
+    "config_rejected": 0,
+    "probe_failed": 160,
+    "protocol_verified": 140,
+    "verification": "sing-box authenticated outbound request fetched a body-producing HTTPS endpoint with HTTP 2xx",
+    "test_urls": [
+      "https://www.cloudflare.com/cdn-cgi/trace",
+      "https://www.microsoft.com/robots.txt",
+      "https://www.google.com/robots.txt",
+      "https://www.wikipedia.org/robots.txt"
+    ],
+    "core_version": "sing-box version 1.14.4",
+    "batch_errors": []
+  },
+  "external_sources": {
+    "status": "fresh_verified_snapshot",
+    "generated_at": "2026-11-28T03:33:02Z",
+    "age_hours": 11.24,
+    "included": 15,
+    "protocol_verified": 16,
+    "verification": "sing-box authenticated outbound request fetched a body-producing HTTPS endpoint with HTTP 2xx"
+  },
+  "external_protocol_verified_count": 15
+}
